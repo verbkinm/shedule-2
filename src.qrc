@@ -1,0 +1,19 @@
+<RCC>
+    <qresource prefix="/img">
+        <file alias="help">img/help.png</file>
+        <file alias="help_push">img/help_push.png</file>
+        <file alias="home">img/home.png</file>
+        <file alias="home_push">img/home_push.png</file>
+        <file alias="owl">img/Эмблема Лицея.png</file>
+        <file alias="empty_button">img/empty_button.png</file>
+        <file alias="empty_button_push">img/empty_button_push.png</file>
+        <file alias="shedule">img/shedule.png</file>
+        <file alias="shedule_push">img/shedule_push.png</file>
+        <file alias="news">img/news.png</file>
+        <file alias="news_push">img/news_push.png</file>
+        <file alias="lyceum">img/МБОУ.png</file>
+        <file alias="glass">img/LabelWorkSpace.png</file>
+        <file alias="glass_push">img/LabelWorkSpace_push.png</file>
+        <file alias="labelShedule">img/labelShedule.png</file>
+    </qresource>
+</RCC>
