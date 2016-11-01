@@ -1,0 +1,30 @@
+Header {
+    background: qlineargradient(x1:0, y1:1, x2:0, y2:0,
+                stop:0 #2525D2, 
+                stop: 0.4 white, 
+                stop:1 #2525D2);
+}
+Center {
+    background: qlineargradient(x1:0, y1:1, x2:0, y2:0,
+                stop:0 #EBA422, 
+                stop: 0.4 red, 
+                stop:1 #EBA422);
+}
+Footer {
+    background: qlineargradient(x1:0, y1:1, x2:0, y2:0,
+                stop:0 #2525D2, 
+                stop: 0.4 white, 
+                stop:1 #2525D2);
+}
+PanelDateAndTime{
+	border: 3px solid black;
+	border-radius: 25;    
+	background: qlineargradient(x1:0, y1:1, x2:0, y2:0,
+                stop:0 #2525D2, 
+                stop: 0.4 white, 
+                stop:1 #2525D2);
+}
+PanelDateAndTime > QLabel{
+color: black;
+}
+

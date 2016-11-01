@@ -1,4 +1,4 @@
-#-------------------------------------------------
+    #-------------------------------------------------
 #
 # Project created by QtCreator 2016-10-13T23:37:31
 #
@@ -29,7 +29,8 @@ HEADERS  += widget.h \
     header.h \
     center.h \
     myWidgets/centralWidget/desktop.h \
-    myWidgets/labelworkspace.h
+    myWidgets/labelworkspace.h \
+    generalsettings.h
 
 #INCLUDEPATH += ./
 

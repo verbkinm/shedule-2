@@ -1,10 +1,12 @@
-#ifndef LABELWORKSPACE_H
+﻿#ifndef LABELWORKSPACE_H
 #define LABELWORKSPACE_H
 
 #include <QLabel>
 #include <QObject>
 #include <QEvent>
 #include <QMouseEvent>
+
+#include "../generalsettings.h"
 
 class LabelWorkSpace : public QLabel
 {
@@ -13,7 +15,7 @@ public:
     LabelWorkSpace(QSize centralWidget, QString pixLabel = 0, QLabel *parent = 0);
     ~LabelWorkSpace();
 
-    void setSize();
+    void applySize(QSize size);
 //    virtual void paintEvent(QPaintEvent * );
 
 signals:
@@ -21,7 +23,7 @@ signals:
 
 private:
     QPixmap *pix_buff, *pix_push_buff, *buff, *label, *label_push;
-    QPixmap pix_resized, pix_push_resized;
+    QPixmap *pix_resized, *pix_push_resized;
     QLabel* pL;
     QSize LabelSize, privSize;
     bool pressed;

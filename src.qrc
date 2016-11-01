@@ -16,4 +16,7 @@
         <file alias="glass_push">img/LabelWorkSpace_push.png</file>
         <file alias="labelShedule">img/labelShedule.png</file>
     </qresource>
+    <qresource prefix="/">
+        <file>style.qss</file>
+    </qresource>
 </RCC>

@@ -1,0 +1,12 @@
+#ifndef GENERALSETTINGS
+#define GENERALSETTINGS
+
+#define LABEL_COUNTS 6
+#define LABEL_COUNTS_ROWS 2
+#define MARGIN_DESKTOP 50
+
+//if()
+
+
+#endif // GENERALSETTINGS
+

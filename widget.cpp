@@ -10,7 +10,7 @@ Widget::Widget(QWidget *parent)
 
     QVBoxLayout* pL = new QVBoxLayout;
     pL->setMargin(0);
-//    pL->setContentsMargins(0,0,0,0);
+    pL->setContentsMargins(0,0,0,0);
     pL->setSpacing(0);
 
     header = new Header;
@@ -19,15 +19,16 @@ Widget::Widget(QWidget *parent)
 
 
     header->setFixedHeight(heightDesktop / 100 * 20);
-    center->setFixedHeight(heightDesktop / 100 * 62);
     footer->setFixedHeight(heightDesktop / 100 * 20);
 
-    header->applySize();
-    footer->applySize();
+    center->setMaximumHeight(heightDesktop - (header->height() + footer->height()) );
 
     pL->addWidget(header);
     pL->addWidget(center);
     pL->addWidget(footer);
+
+    header->applySize();
+    footer->applySize();
 
     this->setLayout(pL);
 }

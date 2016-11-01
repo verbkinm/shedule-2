@@ -53,7 +53,7 @@ void Footer::paintEvent(QPaintEvent * )
 }
 void Footer::slotStyleApply()
 {
-    QFile file("simple.qss");
+    QFile file("/home/verbkinm/myProg/shedule-2/style.qss");
     file.open(QFile::ReadOnly);
     QString strCSS = QLatin1String(file.readAll());
     file.close();

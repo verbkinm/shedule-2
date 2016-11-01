@@ -6,14 +6,14 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
-    QFile file("simple.qss");
+    QFile file(":/style.qss");
     file.open(QFile::ReadOnly);
     QString strCSS = QLatin1String(file.readAll());
     file.close();
     a.setStyleSheet(strCSS);
 
     Widget w;
-    w.show();
+    w.showFullScreen();
 
     return a.exec();
 }

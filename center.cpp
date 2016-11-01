@@ -8,6 +8,7 @@ Center::Center(QWidget *parent) : QWidget(parent)
     desktop = new Desktop;
 
     pLayout = new QVBoxLayout;
+//    pLayout->setAlignment(Qt::AlignCenter);
     pLayout->setContentsMargins(0,0,0,0);
     pLayout->addWidget(desktop);
 
