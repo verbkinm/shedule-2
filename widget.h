@@ -21,8 +21,12 @@ public:
   Center *center;
   Footer *footer;
 
-
   QVBoxLayout *pMainLayout;
+
+private slots:
+  void slotVeiwHome();
+  void slotVeiwCalendar();
+  void slotVeiwShedule();
 };
 
 #endif // WIDGET_H

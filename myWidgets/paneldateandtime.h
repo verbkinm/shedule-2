@@ -22,7 +22,11 @@ private:
     QString date,time;
     QTimer* pTimer;
     QFont* pFont;
+
+    bool event(QEvent *event);
+
 signals:
+    void signalClick();
 
 public slots:
     void slotSetCurrentDateAndTime();

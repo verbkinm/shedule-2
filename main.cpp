@@ -14,6 +14,7 @@ int main(int argc, char *argv[])
 
     Widget w;
     w.showFullScreen();
+//    w.show();
 
     return a.exec();
 }

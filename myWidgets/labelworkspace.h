@@ -12,7 +12,7 @@ class LabelWorkSpace : public QLabel
 {
     Q_OBJECT
 public:
-    LabelWorkSpace(QSize centralWidget, QString pixLabel = 0, QLabel *parent = 0);
+    LabelWorkSpace(QSize centralWidget, QString text = 0, QString pixLabel = 0, QLabel *parent = 0);
     ~LabelWorkSpace();
 
     void applySize(QSize size);
@@ -28,6 +28,14 @@ private:
     QSize LabelSize, privSize;
     bool pressed;
     int currentWidth, currentHeight;
+
+    QString textLabel;
+    QLabel *pLText;
+    QFont *font, *font_push;
+
+    QRect rect;
+
+    void setUnits();
 
     bool event(QEvent *event);
     virtual void mouseMoveEvent(QMouseEvent *event);

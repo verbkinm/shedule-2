@@ -4,6 +4,8 @@
 #include <QWidget>
 #include <QVBoxLayout>
 #include "myWidgets/centralWidget/desktop.h"
+#include "myWidgets/centralWidget/calendar.h"
+#include "myWidgets/centralWidget/shedule/shedule.h"
 
 class Center : public QWidget
 {
@@ -12,21 +14,23 @@ public:
     Center(QWidget *parent = 0);
     ~Center();
 
-    void applySize(void);
-
 private:
-    int length;
-    float currentSize;
 
     QVBoxLayout *pLayout;
 
     void paintEvent(QPaintEvent * );
 
-    Desktop *desktop;
+    Desktop *pDesktop;
+    Calendar *pCalendar;
+
+    Shedule *pShedule;
 
 signals:
 
 public slots:
+    void slotViewHome();
+    void slotViewCalendar();
+    void slotViewShedule();
 };
 
 #endif // CENTER_H

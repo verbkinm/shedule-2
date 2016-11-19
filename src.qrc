@@ -14,7 +14,9 @@
         <file alias="lyceum">img/МБОУ.png</file>
         <file alias="glass">img/LabelWorkSpace.png</file>
         <file alias="glass_push">img/LabelWorkSpace_push.png</file>
-        <file alias="labelShedule">img/labelShedule.png</file>
+        <file alias="label-shedule">img/label-calendar-clock-icon.png</file>
+        <file alias="label-news">img/label-news.png</file>
+        <file alias="label-foto">img/label-foto.png</file>
     </qresource>
     <qresource prefix="/">
         <file>style.qss</file>

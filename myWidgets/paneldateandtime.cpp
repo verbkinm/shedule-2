@@ -4,7 +4,8 @@
 #include <QPainter>
 #include <QVBoxLayout>
 #include <QFont>
-#include <QDebug>
+#include <QEvent>
+//#include <QDebug>
 
 PanelDateAndTime::PanelDateAndTime(QWidget *parent) : QWidget(parent)
 {
@@ -53,3 +54,10 @@ void PanelDateAndTime::slotSetCurrentDateAndTime()
     pLabelTime->setText(time);
     pLabelDate->setText(date);
 }
+bool PanelDateAndTime::event(QEvent *event)
+{
+  if(event->type() == QEvent::MouseButtonPress || event->type() == QEvent::MouseButtonDblClick )
+      emit signalClick();
+  return QWidget::event(event);
+}
+

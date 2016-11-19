@@ -5,20 +5,24 @@
 
 Center::Center(QWidget *parent) : QWidget(parent)
 {
-    desktop = new Desktop;
+    pDesktop = new Desktop;
+
+
+    pCalendar = new Calendar;
+    pCalendar->setVisible(false);
+
+    pShedule = new Shedule;
+    pShedule->setVisible(false);
 
     pLayout = new QVBoxLayout;
-//    pLayout->setAlignment(Qt::AlignCenter);
     pLayout->setContentsMargins(0,0,0,0);
-    pLayout->addWidget(desktop);
+    pLayout->addWidget(pDesktop);
+    pLayout->addWidget(pCalendar);
+    pLayout->addWidget(pShedule);
 
     this->setLayout(pLayout);
 
-//    desktop->setSize();
-}
-void Center::applySize(void)
-{
-
+    connect(pDesktop, SIGNAL(signalLabel_0_Click()), SLOT(slotViewShedule()) );
 }
 void Center::paintEvent(QPaintEvent * )
 {
@@ -27,6 +31,25 @@ void Center::paintEvent(QPaintEvent * )
     QPainter p(this);
     style()->drawPrimitive(QStyle::PE_Widget, &opt, &p, this);
 }
+void Center::slotViewHome()
+{
+    for(int i = 0; i < pLayout->count(); i++)
+        pLayout->itemAt(i)->widget()->hide();
+    pDesktop->setVisible(true);
+}
+void Center::slotViewCalendar()
+{
+    for(int i = 0; i < pLayout->count(); i++)
+        pLayout->itemAt(i)->widget()->hide();
+    pCalendar->setVisible(true);
+}
+void Center::slotViewShedule()
+{
+    for(int i = 0; i < pLayout->count(); i++)
+        pLayout->itemAt(i)->widget()->hide();
+    pShedule->setVisible(true);
+}
+
 Center::~Center()
 {
 

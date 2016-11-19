@@ -1,30 +1,51 @@
 Header {
     background: qlineargradient(x1:0, y1:1, x2:0, y2:0,
-                stop:0 #2525D2, 
+                stop:0 #BFBFBF, 
                 stop: 0.4 white, 
-                stop:1 #2525D2);
+                stop:1 #BFBFBF);
 }
 Center {
     background: qlineargradient(x1:0, y1:1, x2:0, y2:0,
-                stop:0 #EBA422, 
-                stop: 0.4 red, 
-                stop:1 #EBA422);
-}
-Footer {
-    background: qlineargradient(x1:0, y1:1, x2:0, y2:0,
                 stop:0 #2525D2, 
                 stop: 0.4 white, 
                 stop:1 #2525D2);
+}
+SheduleLeftPanel {
+    background: qlineargradient(x1:0, y1:1, x2:0, y2:0,
+                stop:0 #D26525, 
+                stop: 0.4 white, 
+                stop:1 #D26525);	
+}
+SheduleRight {
+    background: qlineargradient(x1:0, y1:1, x2:0, y2:0,
+                stop:0 #AE9D93, 
+                stop: 0.4 white, 
+                stop:1 #AE9D93);	
+}
+Footer {
+    background: qlineargradient(x1:0, y1:1, x2:0, y2:0,
+                stop:0 red, 
+                stop: 0.4 white, 
+                stop:1 red);
 }
 PanelDateAndTime{
 	border: 3px solid black;
 	border-radius: 25;    
+	background: black;
+	/*
 	background: qlineargradient(x1:0, y1:1, x2:0, y2:0,
-                stop:0 #2525D2, 
+                stop:0 black, 
                 stop: 0.4 white, 
-                stop:1 #2525D2);
+                stop:1 black);
+                */
 }
 PanelDateAndTime > QLabel{
-color: black;
+color: green;
 }
-
+LabelWorkSpace{
+		border: 0px solid black;
+		border-radius:20;
+}
+LabelWorkSpace > QLabel{
+	color: black;
+}

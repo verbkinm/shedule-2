@@ -1,6 +1,7 @@
 #include "widget.h"
 
 #include <QDesktopWidget>
+#include <QDebug>
 
 Widget::Widget(QWidget *parent)
     : QWidget(parent)
@@ -31,7 +32,17 @@ Widget::Widget(QWidget *parent)
     footer->applySize();
 
     this->setLayout(pL);
+
+    connect(footer, SIGNAL(signalPushHome()), SLOT(slotVeiwHome()) ); // home
+    connect(footer, SIGNAL(signalPushDateAndTime()), SLOT(slotVeiwCalendar()) ); // calendar
+    connect(footer, SIGNAL(signalPushShedule()), SLOT(slotVeiwShedule()) ); // shedule
 }
+void Widget::slotVeiwHome()
+{center->slotViewHome();}
+void Widget::slotVeiwCalendar()
+{center->slotViewCalendar();}
+void Widget::slotVeiwShedule()
+{center->slotViewShedule();}
 Widget::~Widget()
 {
 

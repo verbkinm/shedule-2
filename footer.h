@@ -22,14 +22,16 @@ private:
     QHBoxLayout* pLayout;
     PushButton* buttons[4]; //*pHome, *pHelp, extra buttons;
     PanelDateAndTime* panelDateAndTime;
+//    bool calendarView;
 
     void paintEvent(QPaintEvent * );
 
 signals:
-    void signalPushHome();
-    void signalPushHelp();
     void signalPushShedule();
     void signalPushNews();
+    void signalPushHome();
+    void signalPushDateAndTime();
+    void signalPushHelp();
 
 public slots:
     void slotStyleApply();

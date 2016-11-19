@@ -1,6 +1,6 @@
 #include "header.h"
 
-#include <QDebug>
+//#include <QDebug>
 #include <QStyleOption>
 #include <QPainter>
 
@@ -25,14 +25,14 @@ void Header::applySize()
     pOwlLabel->setFixedSize(QSize(currentSize, currentSize) );
 
     QPixmap* buff = new QPixmap(":/img/owl");
-    QPixmap* pixOwl = new QPixmap(buff->scaled(currentSize, currentSize, Qt::KeepAspectRatio) );
+    QPixmap* pixOwl = new QPixmap(buff->scaled(currentSize, currentSize, Qt::KeepAspectRatio,Qt::SmoothTransformation) );
     delete buff;
     pOwlLabel->setPixmap(*pixOwl);
     delete pixOwl;
 
     buff = new QPixmap(":/img/lyceum");
-    qDebug() << currentSize;
-    QPixmap* pixLyceum = new QPixmap(buff->scaled(currentSize * 5.5, currentSize / 100 * 150, Qt::IgnoreAspectRatio) );
+//    qDebug() << currentSize;
+    QPixmap* pixLyceum = new QPixmap(buff->scaled(currentSize * 8, currentSize / 100 * 150, Qt::IgnoreAspectRatio) );
     delete buff;
     pLyceumText->setPixmap(*pixLyceum);
     delete pixLyceum;

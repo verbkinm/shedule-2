@@ -1,19 +1,21 @@
 #include "footer.h"
 
-#include <QDebug>
+//#include <QDebug>
 #include <QStyleOption>
 #include <QPainter>
 #include <QApplication>
 
 #define RATIO 80
 
-Footer::Footer(QWidget *parent) : QWidget(parent)
+Footer::Footer(QWidget *parent) : QWidget(parent)//, calendarView(false)
 {
     length = sizeof(buttons)/sizeof(buttons[0]);
 
     buttons[0] = new PushButton(":/img/home", ":/img/home_push");
     buttons[1] = new PushButton(":/img/help", ":/img/help_push");
+    buttons[1]->setDisabled(true);
     buttons[2] = new PushButton(":/img/news", ":/img/news_push");
+    buttons[2]->setDisabled(true);
     buttons[3] = new PushButton(":/img/shedule", ":/img/shedule_push");
 
     pLayout = new QHBoxLayout;
@@ -22,7 +24,10 @@ Footer::Footer(QWidget *parent) : QWidget(parent)
 
     this->setLayout(pLayout);
 
-    connect(buttons[0], SIGNAL(signalClick()),  SLOT(slotStyleApply()) );
+    connect(buttons[0], SIGNAL(signalClick()),  SLOT(slotStyleApply()) ); // временно
+    connect(buttons[0], SIGNAL(signalClick()),  SIGNAL(signalPushHome()) );
+    connect(buttons[3], SIGNAL(signalClick()),  SIGNAL(signalPushShedule()) );
+    connect(panelDateAndTime, SIGNAL(signalClick()), SIGNAL(signalPushDateAndTime()) );
 }
 void Footer::applySize()
 {
@@ -59,6 +64,7 @@ void Footer::slotStyleApply()
     file.close();
     qApp->setStyleSheet(strCSS);
 }
+
 Footer::~Footer()
 {
     delete panelDateAndTime;

@@ -1,5 +1,5 @@
 #include "pushbutton.h"
-#include <QDebug>
+//#include <QDebug>
 
 PushButton::PushButton(QString icon, QString icon_push) : QLabel(), pressed(false)
 {
@@ -12,8 +12,8 @@ void PushButton::setSize(QSize size)
   buttonSize = size;
   this->setFixedSize(buttonSize);
 
-  pix_resized = pix_buff->scaled(size, Qt::KeepAspectRatio);
-  pix_push_resized = pix_push_buff->scaled(size, Qt::KeepAspectRatio);
+  pix_resized = pix_buff->scaled(size, Qt::KeepAspectRatio,Qt::SmoothTransformation);
+  pix_push_resized = pix_push_buff->scaled(size, Qt::KeepAspectRatio,Qt::SmoothTransformation);
 
   this->setPixmap(pix_resized);
 
@@ -42,7 +42,7 @@ void PushButton::mouseMoveEvent(QMouseEvent *event)
 }
 bool PushButton::event(QEvent *event)
 {
-  if(event->type() == QEvent::MouseButtonPress || event->type() == QEvent::MouseButtonDblClick ){
+  if(this->isEnabled() && event->type() == QEvent::MouseButtonPress || event->type() == QEvent::MouseButtonDblClick ){
       pressed = true;
       this->setPixmap(pix_push_resized);
       return true;

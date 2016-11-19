@@ -20,7 +20,11 @@ SOURCES += main.cpp\
     header.cpp \
     center.cpp \
     myWidgets/centralWidget/desktop.cpp \
-    myWidgets/labelworkspace.cpp
+    myWidgets/labelworkspace.cpp \
+    myWidgets/centralWidget/calendar.cpp \
+    myWidgets/centralWidget/shedule/shedule.cpp \
+    myWidgets/centralWidget/shedule/sheduleleftpanel.cpp \
+    myWidgets/centralWidget/shedule/sheduleright.cpp
 
 HEADERS  += widget.h \
     footer.h \
@@ -30,7 +34,11 @@ HEADERS  += widget.h \
     center.h \
     myWidgets/centralWidget/desktop.h \
     myWidgets/labelworkspace.h \
-    generalsettings.h
+    generalsettings.h \
+    myWidgets/centralWidget/calendar.h \
+    myWidgets/centralWidget/shedule/shedule.h \
+    myWidgets/centralWidget/shedule/sheduleleftpanel.h \
+    myWidgets/centralWidget/shedule/sheduleright.h
 
 #INCLUDEPATH += ./
 
