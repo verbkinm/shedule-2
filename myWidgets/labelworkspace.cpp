@@ -2,7 +2,7 @@
 
 #include <QStyleOption>
 #include <QPainter>
-#include <QDebug>
+//#include <QDebug>
 #include <QVBoxLayout>
 #include <QRect>
 

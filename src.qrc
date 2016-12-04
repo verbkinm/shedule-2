@@ -17,6 +17,8 @@
         <file alias="label-shedule">img/label-calendar-clock-icon.png</file>
         <file alias="label-news">img/label-news.png</file>
         <file alias="label-foto">img/label-foto.png</file>
+        <file alias="collapse">img/collapse.png</file>
+        <file alias="expand">img/expand.png</file>
     </qresource>
     <qresource prefix="/">
         <file>style.qss</file>

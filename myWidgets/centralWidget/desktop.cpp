@@ -3,7 +3,7 @@
 #include <QStyleOption>
 #include <QPainter>
 #include <QLabel>
-#include <QDebug>
+//#include <QDebug>
 
 static int resized = 0;
 
@@ -33,7 +33,7 @@ void Desktop::setUnits()
 
     for (int var = 0; var < LABEL_COUNTS; ++var) {
         pLabelShedule[var]->applySize(this->size() );
-        qDebug() << "size " << this->size();
+//        qDebug() << "size " << this->size();
     }
 
     for (int var = 3; var < LABEL_COUNTS; ++var) {

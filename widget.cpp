@@ -1,7 +1,7 @@
 #include "widget.h"
 
 #include <QDesktopWidget>
-#include <QDebug>
+//#include <QDebug>
 
 Widget::Widget(QWidget *parent)
     : QWidget(parent)

@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui xml
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -24,7 +24,8 @@ SOURCES += main.cpp\
     myWidgets/centralWidget/calendar.cpp \
     myWidgets/centralWidget/shedule/shedule.cpp \
     myWidgets/centralWidget/shedule/sheduleleftpanel.cpp \
-    myWidgets/centralWidget/shedule/sheduleright.cpp
+    myWidgets/centralWidget/shedule/sheduleright.cpp \
+    myWidgets/centralWidget/shedule/TreeWidgetItem/treewidgetitem.cpp
 
 HEADERS  += widget.h \
     footer.h \
@@ -38,7 +39,10 @@ HEADERS  += widget.h \
     myWidgets/centralWidget/calendar.h \
     myWidgets/centralWidget/shedule/shedule.h \
     myWidgets/centralWidget/shedule/sheduleleftpanel.h \
-    myWidgets/centralWidget/shedule/sheduleright.h
+    myWidgets/centralWidget/shedule/sheduleright.h \
+    myWidgets/centralWidget/shedule/treewidgetitem/treewidgetitem.h \
+    myWidgets/centralWidget/shedule/treewidgetitem.h \
+    myWidgets/centralWidget/shedule/TreeWidgetItem/treewidgetitem.h
 
 #INCLUDEPATH += ./
 
