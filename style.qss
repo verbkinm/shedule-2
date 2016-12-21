@@ -22,6 +22,11 @@ SheduleRight {
                 stop: 0.4 white, 
                 stop:1 #AE9D93);	
 }
+SheduleRight > QLabel {
+    background: qlineargradient(x1:0, y1:1, x2:0, y2:0,
+                stop:0 white,
+                stop:1 #D26525);      
+}
 Footer {
     background: qlineargradient(x1:0, y1:1, x2:0, y2:0,
                 stop:0 red, 
@@ -56,14 +61,6 @@ min-height: 20px;
 min-width: 40px;
 icon-size: 60px;
 }
-/*
-QTreeView::branch {
-min-height: 140px;
-min-width: 160px;
-max-width: 160px;
-icon-size: 260px;
-}*/
-
 QTreeView::branch:close{
 image: url(:/img/collapse);
 }
@@ -73,47 +70,7 @@ image: url(:/img/expand);
 QTreeView::branch:!has-children{
 image: url(:/img/expand1);
 }
-QTreeView::item{
-color:#505050;
-}
-QTreeView::item:!has-children:has-siblings{
-background-color:#D8D8D8;
-}
-QTreeView::item:!has-children:!has-siblings{
-background-color: rgba(169,169,169, 20%);
-}
 QTreeWidget {
     background-color: rgba(255, 255, 255, 0%);
     border: 3px none black;
-    border-radius: 15;
 }
-/*QTreeView::branch:has-siblings:!adjoins-item {
-border-image: none;
-image: url(:/img/expand);
-}*/
-
-/*
-QTreeView::branch:has-siblings:adjoins-item {
-border-image: none;
-image: url(:/img/collapse);
-}*/
-/*
-QTreeView::branch:!has-children:!has-siblings:adjoins-item {
-border-image: none;
-image: url(:/img/expand);
-}*/
-
-/*
-QTreeView::branch:has-children:!has-siblings:closed,
-QTreeView::branch:closed:has-children:has-siblings {
-border-image: none;
-image: url(:/img/expand);
-}*/
-
-/*
-QTreeView::branch:open:has-children:!has-siblings,
-QTreeView::branch:open:has-children:has-siblings {
-border-image: none;
-image: url(:/img/expand);
-} /*
-

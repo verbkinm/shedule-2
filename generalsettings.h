@@ -9,5 +9,7 @@
 #define FONT_SIZE 14 //24
 #define FONT_PUSH_SIZE FONT_SIZE - 1
 
+#define TEXT_ROOT_LIST "Предметы:"
+
 #endif // GENERALSETTINGS
 

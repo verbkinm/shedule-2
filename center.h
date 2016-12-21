@@ -20,7 +20,7 @@ private:
 
     void paintEvent(QPaintEvent * );
 
-    Desktop *pDesktop;
+    Desktop *pHome;
     Calendar *pCalendar;
 
     Shedule *pShedule;

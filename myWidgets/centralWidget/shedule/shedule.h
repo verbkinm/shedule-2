@@ -19,9 +19,12 @@ public:
     SheduleLeftPanel *pLeftWidget;
     SheduleRight *pRightWidget;
 
+private:
+    bool event(QEvent *event);
 signals:
 
 public slots:
+    void slotSheduleLeftPanelItemClick(QTreeWidgetItem*);
 };
 
 #endif // SHEDULE_H

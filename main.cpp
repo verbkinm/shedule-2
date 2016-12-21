@@ -13,8 +13,8 @@ int main(int argc, char *argv[])
     a.setStyleSheet(strCSS);
 
     Widget w;
-    w.showFullScreen();
-//    w.show();
+//    w.showFullScreen();
+    w.show();
 
     return a.exec();
 }

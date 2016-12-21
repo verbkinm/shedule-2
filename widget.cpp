@@ -19,8 +19,8 @@ Widget::Widget(QWidget *parent)
     footer = new Footer;
 
 
-    header->setFixedHeight(heightDesktop / 100 * 20);
-    footer->setFixedHeight(heightDesktop / 100 * 20);
+    header->setFixedHeight(heightDesktop / 100 * 15);
+    footer->setFixedHeight(heightDesktop / 100 * 15);
 
     center->setMaximumHeight(heightDesktop - (header->height() + footer->height()) );
 

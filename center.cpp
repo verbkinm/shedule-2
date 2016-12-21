@@ -5,7 +5,7 @@
 
 Center::Center(QWidget *parent) : QWidget(parent)
 {
-    pDesktop = new Desktop;
+    pHome = new Desktop;
 
 
     pCalendar = new Calendar;
@@ -16,13 +16,13 @@ Center::Center(QWidget *parent) : QWidget(parent)
 
     pLayout = new QVBoxLayout;
     pLayout->setContentsMargins(0,0,0,0);
-    pLayout->addWidget(pDesktop);
+    pLayout->addWidget(pHome);
     pLayout->addWidget(pCalendar);
     pLayout->addWidget(pShedule);
 
     this->setLayout(pLayout);
 
-    connect(pDesktop, SIGNAL(signalLabel_0_Click()), SLOT(slotViewShedule()) );
+    connect(pHome, SIGNAL(signalLabel_0_Click()), SLOT(slotViewShedule()) );
 }
 void Center::paintEvent(QPaintEvent * )
 {
@@ -35,7 +35,7 @@ void Center::slotViewHome()
 {
     for(int i = 0; i < pLayout->count(); i++)
         pLayout->itemAt(i)->widget()->hide();
-    pDesktop->setVisible(true);
+    pHome->setVisible(true);
 }
 void Center::slotViewCalendar()
 {

@@ -29,6 +29,7 @@ private:
     bool event(QEvent *event);
     void paintEvent(QPaintEvent * );
 
+
 signals:
     void signalLabel_0_Click();
 

@@ -1,4 +1,5 @@
 #include "sheduleleftpanel.h"
+#include "generalsettings.h"
 
 #include <QStyleOption>
 #include <QPainter>
@@ -6,7 +7,12 @@
 #include <QMessageBox>
 #include <QFileInfo>
 #include <QDir>
+#include <QScrollArea>
+#include <QAbstractScrollArea>
+#include <QScrollBar>
+#include <QObject>
 #include <QDebug>
+#include <QMouseEvent>
 
 static int resized = 0;
 
@@ -15,19 +21,18 @@ SheduleLeftPanel::SheduleLeftPanel(QWidget *parent) : QWidget(parent)
     pParent = parent;
     pLayout = new QVBoxLayout;
 
-    pListLessons = new QTreeWidget;
-    pListLessons->installEventFilter(this);
+    pListLessons = new MyTreeWidget;
+//    pListLessons->installEventFilter(this);
     pListLessons->setHeaderHidden(true);
     pListLessons->setAnimated(true);
 
     pItemRoot = new QTreeWidgetItem(pListLessons);
-    pItemRoot->setText(0, "Предметы:");
+    pItemRoot->setText(0, TEXT_ROOT_LIST);
 
     QFont *pFont = new QFont(pItemRoot->font(0));
-    pFont->setPixelSize(24);
+    pFont->setPixelSize(50);
     pFont->setBold(true);
     pItemRoot->setFont(0,*pFont);
-    pItemRoot->setIcon(0,QIcon(":/img/owl") );
 
 //    pItemLesson = new QTreeWidgetItem;
     pItemLesson = 0;
@@ -40,6 +45,10 @@ SheduleLeftPanel::SheduleLeftPanel(QWidget *parent) : QWidget(parent)
 
     this->setContentsMargins(0,0,0,0);
     this->setLayout(pLayout);
+
+//    connect(pListLessons, SIGNAL(itemClicked(QTreeWidgetItem*,int)), SLOT(slotItemClick(QTreeWidgetItem*,int))  );
+//    connect(pItemRoot, SIGNAL,    SLOT(slotItemExpanded(QTreeWidgetItem*))   );
+//    disconnect(pListLessons, SIGNAL(itemPressed(QTreeWidgetItem*,int)), SLOT(slotItemExpanded(QTreeWidgetItem*)) );
 }
 void SheduleLeftPanel::readFileLessons()
 {
@@ -58,16 +67,15 @@ void SheduleLeftPanel::readFileLessons()
         QDomElement domElement= domDoc.documentElement();
         traverseNode(domElement);
     }
-//    while(!pFile->atEnd()) {
-//        pItemLesson = new QTreeWidgetItem(pItemRoot);
-//        pItemLesson->setText(0, pFile->read(1));
-//        i++;
-//    }
     pFile->close();
-//    pListLessons->setItemExpanded();
 }
 void SheduleLeftPanel::traverseNode(const QDomNode& node)
 {
+
+    QFont *pFont = new QFont(pItemRoot->font(0));
+    pFont->setPixelSize(30);
+    pFont->setBold(true);
+
    QDomNode domNode = node.firstChild();
    while(!domNode.isNull()) {
        if(domNode.isElement()) {
@@ -75,11 +83,14 @@ void SheduleLeftPanel::traverseNode(const QDomNode& node)
           if(!domElement.isNull()) {
               if(domElement.tagName() == "lesson") {
                   pItemLesson = new QTreeWidgetItem(pItemRoot);
+                  pItemLesson->setFont(0,*pFont);
                   pItemLesson->setText(0, domElement.attribute("name", ""));
               }
               else {
                   pItemTeacher = new QTreeWidgetItem(pItemLesson);
+                  pItemTeacher->setFont(0,*pFont);
                   pItemTeacher->setText(0, domElement.text() );
+                  pItemTeacher->setIcon(0,QPixmap(":/img/empty_button"));
                   qDebug() << "учитель\t" << domElement.text();
              }
           }
@@ -103,8 +114,25 @@ void SheduleLeftPanel::paintEvent(QPaintEvent *)
 }
 bool SheduleLeftPanel::eventFilter(QObject *target, QEvent *event)
 {
-    qDebug() << "Event filters" << event->type();
-    return QWidget::eventFilter(target, event);
+////    QWidget *widget = qobject_cast<QWidget *>(objectSender);
+//    if (target == qobject_cast<QTreeWidget*>(target)) {
+//        if (event->type() == QEvent::MouseButtonPress) {
+//            QMouseEvent *mouseEvent = static_cast<QMouseEvent*>(event);
+//            if (mouseEvent->button() == Qt::RightButton){
+//            qDebug() << "right mouse press";
+//            return true;
+//            }
+//        } else {
+//            return false;
+//        }
+//    } else {
+//        // pass the event on to the parent class
+//        return QWidget::eventFilter(target, event);
+//    }
+//    qDebug() << "target - " << target << endl << "Event filters" << event->type();
+//    if(event->type() == QEvent::MouseButtonRelease ){
+//        return QWidget::eventFilter(target, event);
+//    }
 }
 
 bool SheduleLeftPanel::event(QEvent *event)
@@ -114,6 +142,24 @@ bool SheduleLeftPanel::event(QEvent *event)
         this->setUnits();
         resized = 1;
     }
+//    if(event->type() == QEvent::LayoutRequest){
+//        qDebug() << "click";
+//        return false;
+//    }
     return QWidget::event(event);
 }
-
+void SheduleLeftPanel::slotItemClick(QTreeWidgetItem *item, int column)
+{
+    emit signalItemClick(item);
+    if(!item->isExpanded())
+        pListLessons->expandItem(item);
+    else{
+        if(item->text(column) == "Предметы:")
+            pListLessons->collapseAll();
+        pListLessons->collapseItem(item);
+    }
+}
+void SheduleLeftPanel::slotItemExpanded(QTreeWidgetItem *item)
+{
+    qDebug() << "expand - " << item->text(0);
+}
