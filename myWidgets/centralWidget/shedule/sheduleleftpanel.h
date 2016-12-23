@@ -31,13 +31,10 @@ private:
     bool event(QEvent *event);
     void paintEvent(QPaintEvent * );
 
-    bool eventFilter(QObject *target, QEvent *event);
-
 signals:
     void signalItemClick(QTreeWidgetItem*);
 public slots:
-    void slotItemClick(QTreeWidgetItem* item,int column);
-    void slotItemExpanded(QTreeWidgetItem* item);
+
 };
 
 #endif // SHEDULELEFTPANEL_H

@@ -1,44 +1,85 @@
 #include "mytreewidget.h"
+#include "generalsettings.h"
+
 #include <QDebug>
 #include <QEvent>
 #include <QMouseEvent>
+#include <QDebug>
+#include <QModelIndex>
 
-MyTreeWidget::MyTreeWidget() : QTreeWidget(), pressed(false)
+MyTreeWidget::MyTreeWidget() : QTreeWidget(), pressed(false), stopY(-1), rootItem(0)
 {
+    this->setAnimated(true);
+    this->setHeaderHidden(true);
+    this->setExpandsOnDoubleClick(false);
+    this->setRootIsDecorated(false);
 
-    connect(this, SIGNAL(viewportEntered()), SLOT(slotView()) );
+    if(rootItem != 0)
+        this->expandItem(rootItem);
+
+    connect(this, SIGNAL(itemClicked(QTreeWidgetItem*,int)), SLOT(slotItemClick(QTreeWidgetItem*,int)) );
 }
-void MyTreeWidget::slotView()
+void MyTreeWidget::slotItemClick(QTreeWidgetItem *item, int column)
 {
-    qDebug() << "slot";
-}
+    emit signalItemClick(item);
 
-void MyTreeWidget::mouseMoveEvent(QMouseEvent *event)
-{
-
-    qDebug() << QCursor::pos();
+    if(!item->isExpanded())
+        this->expandItem(item);
+    else{
+        if(item->text(column) == "Предметы:")
+            this->collapseAll();
+        this->collapseItem(item);
+    }
 }
-void MyTreeWidget::mouseReleaseEvent(QMouseEvent *event)
+void MyTreeWidget::mousePressEvent(QMouseEvent *event)
 {
-    qDebug() << "&&&&&&&&&&&&&&&&&&&&&&&&&";
+    buffItem = 0;
+    qDebug() << "!!!!!!!!!";
+    QTreeView::mousePressEvent(event);
     foreach (QTreeWidgetItem* item, this->selectedItems()) {
         if(item->isSelected()){
-            if(!item->isExpanded())
-                this->expandItem(item);
-            else{
-                if(item->text(0) == "Предметы:")
-                    this->collapseAll();
-                this->collapseItem(item);
-            }
+            buffItem = item;
+            qDebug() << buffItem->text(0);
+            item->setSelected(false);
+            startY = QCursor::pos().y();
         }
     }
 }
-
-bool MyTreeWidget::event(QEvent *event)
+void MyTreeWidget::mouseMoveEvent(QMouseEvent *event)
 {
-//    if(event->type() == QEvent::Paint)
-//        return QWidget::event(event);
+    qDebug() << QCursor::pos();
+    stopY=QCursor::pos().y();
 
-    qDebug() << this->objectName() << event->type();
-    return QWidget::event(event);
+    if (!event->buttons().testFlag(Qt::LeftButton))
+        QTreeView::mouseMoveEvent(event);
 }
+void MyTreeWidget::mouseReleaseEvent(QMouseEvent *event)
+{
+    qDebug() << "startY="<<startY;
+    qDebug() << "stopY="<<stopY;
+
+    if(stopY == -1){
+        if(buffItem != 0){
+            if(buffItem->text(0) == TEXT_ROOT_LIST){
+                this->collapseAll();
+                this->expandItem(rootItem);
+            }
+            else{
+                this->setCurrentItem(buffItem);
+                this->itemClicked(buffItem,0);
+            }
+        }
+    }
+    startY  = -1;
+    stopY   = -1;
+//    QTreeView::mouseReleaseEvent(event);
+}
+
+//bool MyTreeWidget::event(QEvent *event)
+//{
+////    if(event->type() == QEvent::Paint)
+////        return QWidget::event(event);
+
+//    qDebug() << this->objectName() << event->type();
+//    return QWidget::event(event);
+//}*/

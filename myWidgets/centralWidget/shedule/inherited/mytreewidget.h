@@ -9,16 +9,22 @@ class MyTreeWidget : public QTreeWidget
 public:
     MyTreeWidget();
 
+    QTreeWidgetItem* rootItem;
+
 private:
-    int startX, startY;
+    int startX, startY, stopY;
     bool pressed;
 
-    bool event(QEvent *event);
+//    bool event(QEvent *event);
+    QTreeWidgetItem* buffItem;
     void mouseReleaseEvent(QMouseEvent* event);
+    void mousePressEvent(QMouseEvent* event);
     void mouseMoveEvent(QMouseEvent* event);
 
+signals:
+    void signalItemClick(QTreeWidgetItem*);
 private slots:
-    void slotView();
+    void slotItemClick(QTreeWidgetItem* item, int column);
 
 };
 

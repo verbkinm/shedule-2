@@ -22,11 +22,9 @@ SheduleLeftPanel::SheduleLeftPanel(QWidget *parent) : QWidget(parent)
     pLayout = new QVBoxLayout;
 
     pListLessons = new MyTreeWidget;
-//    pListLessons->installEventFilter(this);
-    pListLessons->setHeaderHidden(true);
-    pListLessons->setAnimated(true);
 
     pItemRoot = new QTreeWidgetItem(pListLessons);
+    pListLessons->rootItem = pItemRoot;
     pItemRoot->setText(0, TEXT_ROOT_LIST);
 
     QFont *pFont = new QFont(pItemRoot->font(0));
@@ -34,10 +32,8 @@ SheduleLeftPanel::SheduleLeftPanel(QWidget *parent) : QWidget(parent)
     pFont->setBold(true);
     pItemRoot->setFont(0,*pFont);
 
-//    pItemLesson = new QTreeWidgetItem;
     pItemLesson = 0;
 
-//    pItemTeacher = new QTreeWidgetItem;
     pItemTeacher = 0;
 
     pLayout->addWidget(pListLessons);
@@ -46,9 +42,7 @@ SheduleLeftPanel::SheduleLeftPanel(QWidget *parent) : QWidget(parent)
     this->setContentsMargins(0,0,0,0);
     this->setLayout(pLayout);
 
-//    connect(pListLessons, SIGNAL(itemClicked(QTreeWidgetItem*,int)), SLOT(slotItemClick(QTreeWidgetItem*,int))  );
-//    connect(pItemRoot, SIGNAL,    SLOT(slotItemExpanded(QTreeWidgetItem*))   );
-//    disconnect(pListLessons, SIGNAL(itemPressed(QTreeWidgetItem*,int)), SLOT(slotItemExpanded(QTreeWidgetItem*)) );
+    connect(pListLessons, SIGNAL(itemClicked(QTreeWidgetItem*,int)), this ,SIGNAL(signalItemClick(QTreeWidgetItem*))  );
 }
 void SheduleLeftPanel::readFileLessons()
 {
@@ -76,6 +70,8 @@ void SheduleLeftPanel::traverseNode(const QDomNode& node)
     pFont->setPixelSize(30);
     pFont->setBold(true);
 
+    pItemRoot->setTextAlignment(0,Qt::AlignHCenter);
+
    QDomNode domNode = node.firstChild();
    while(!domNode.isNull()) {
        if(domNode.isElement()) {
@@ -91,7 +87,7 @@ void SheduleLeftPanel::traverseNode(const QDomNode& node)
                   pItemTeacher->setFont(0,*pFont);
                   pItemTeacher->setText(0, domElement.text() );
                   pItemTeacher->setIcon(0,QPixmap(":/img/empty_button"));
-                  qDebug() << "учитель\t" << domElement.text();
+//                  qDebug() << "учитель\t" << domElement.text();
              }
           }
        }
@@ -101,7 +97,7 @@ void SheduleLeftPanel::traverseNode(const QDomNode& node)
 }
 void SheduleLeftPanel::setUnits()
 {
-    this->setFixedSize(float(pParent->width()) / 100 * 25, pParent->height());
+//    this->setFixedSize(float(pParent->width()) / 100 * 25, pParent->height());
     readFileLessons();
     pListLessons->expandItem(pItemRoot);
 }
@@ -112,54 +108,11 @@ void SheduleLeftPanel::paintEvent(QPaintEvent *)
     QPainter p(this);
     style()->drawPrimitive(QStyle::PE_Widget, &opt, &p, this);
 }
-bool SheduleLeftPanel::eventFilter(QObject *target, QEvent *event)
-{
-////    QWidget *widget = qobject_cast<QWidget *>(objectSender);
-//    if (target == qobject_cast<QTreeWidget*>(target)) {
-//        if (event->type() == QEvent::MouseButtonPress) {
-//            QMouseEvent *mouseEvent = static_cast<QMouseEvent*>(event);
-//            if (mouseEvent->button() == Qt::RightButton){
-//            qDebug() << "right mouse press";
-//            return true;
-//            }
-//        } else {
-//            return false;
-//        }
-//    } else {
-//        // pass the event on to the parent class
-//        return QWidget::eventFilter(target, event);
-//    }
-//    qDebug() << "target - " << target << endl << "Event filters" << event->type();
-//    if(event->type() == QEvent::MouseButtonRelease ){
-//        return QWidget::eventFilter(target, event);
-//    }
-}
-
 bool SheduleLeftPanel::event(QEvent *event)
 {
-//    qDebug() << event->type();
     if(event->type() == QEvent::Resize && resized < 1){
         this->setUnits();
         resized = 1;
     }
-//    if(event->type() == QEvent::LayoutRequest){
-//        qDebug() << "click";
-//        return false;
-//    }
     return QWidget::event(event);
-}
-void SheduleLeftPanel::slotItemClick(QTreeWidgetItem *item, int column)
-{
-    emit signalItemClick(item);
-    if(!item->isExpanded())
-        pListLessons->expandItem(item);
-    else{
-        if(item->text(column) == "Предметы:")
-            pListLessons->collapseAll();
-        pListLessons->collapseItem(item);
-    }
-}
-void SheduleLeftPanel::slotItemExpanded(QTreeWidgetItem *item)
-{
-    qDebug() << "expand - " << item->text(0);
 }

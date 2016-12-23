@@ -34,7 +34,7 @@ void SheduleRight::setHeaderText(QString str){
 }
 void SheduleRight::setUnits()
 {
-    qDebug() << this->size();
+//    qDebug() << this->size();
     this->setFixedSize(this->size());
 }
 
