@@ -97,7 +97,7 @@ void SheduleLeftPanel::traverseNode(const QDomNode& node)
 }
 void SheduleLeftPanel::setUnits()
 {
-//    this->setFixedSize(float(pParent->width()) / 100 * 25, pParent->height());
+    this->setFixedSize(float(pParent->width()) / 100 * 25, pParent->height());
     readFileLessons();
     pListLessons->expandItem(pItemRoot);
 }

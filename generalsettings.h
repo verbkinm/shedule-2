@@ -10,6 +10,7 @@
 #define FONT_PUSH_SIZE FONT_SIZE - 1
 
 #define TEXT_ROOT_LIST "Предметы:"
+#define TEXT_SHEDULE_DEFAULT "Расписание:"
 
 #endif // GENERALSETTINGS
 

@@ -14,19 +14,15 @@ MyTreeWidget::MyTreeWidget() : QTreeWidget(), pressed(false), stopY(-1), rootIte
     this->setExpandsOnDoubleClick(false);
     this->setRootIsDecorated(false);
 
-    if(rootItem != 0)
-        this->expandItem(rootItem);
-
     connect(this, SIGNAL(itemClicked(QTreeWidgetItem*,int)), SLOT(slotItemClick(QTreeWidgetItem*,int)) );
 }
+
 void MyTreeWidget::slotItemClick(QTreeWidgetItem *item, int column)
 {
-    emit signalItemClick(item);
-
     if(!item->isExpanded())
         this->expandItem(item);
     else{
-        if(item->text(column) == "Предметы:")
+        if(item->text(column) == TEXT_ROOT_LIST)
             this->collapseAll();
         this->collapseItem(item);
     }
@@ -34,7 +30,6 @@ void MyTreeWidget::slotItemClick(QTreeWidgetItem *item, int column)
 void MyTreeWidget::mousePressEvent(QMouseEvent *event)
 {
     buffItem = 0;
-    qDebug() << "!!!!!!!!!";
     QTreeView::mousePressEvent(event);
     foreach (QTreeWidgetItem* item, this->selectedItems()) {
         if(item->isSelected()){
@@ -58,11 +53,12 @@ void MyTreeWidget::mouseReleaseEvent(QMouseEvent *event)
     qDebug() << "startY="<<startY;
     qDebug() << "stopY="<<stopY;
 
-    if(stopY == -1){
+    if( ((startY - 20) < stopY && stopY < (startY + 20)) || stopY == -1){
         if(buffItem != 0){
             if(buffItem->text(0) == TEXT_ROOT_LIST){
                 this->collapseAll();
-                this->expandItem(rootItem);
+//                this->expandItem(rootItem);
+                this->itemClicked(buffItem,0);
             }
             else{
                 this->setCurrentItem(buffItem);

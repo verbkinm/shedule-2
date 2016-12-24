@@ -1,4 +1,5 @@
 #include "sheduleright.h"
+#include "generalsettings.h"
 
 #include <QStyleOption>
 #include <QEvent>
@@ -14,7 +15,7 @@ SheduleRight::SheduleRight(QWidget *parent) : QWidget(parent)
     pLayout->setContentsMargins(0,0,0,0);
     pLayout->setSpacing(0);
 
-    pHeader = new QLabel("Расписание");
+    pHeader = new QLabel(TEXT_SHEDULE_DEFAULT);
     QFont *pFont = new QFont(pHeader->font());
     pFont->setPixelSize(35);
     pFont->setBold(true);

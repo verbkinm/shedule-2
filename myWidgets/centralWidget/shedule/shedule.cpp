@@ -26,10 +26,14 @@ void Shedule::slotSheduleLeftPanelItemClick(QTreeWidgetItem *item)
     QString lesson  = "\0";
     QString teacher = "\0";
 
-    if(item->text(0) != TEXT_ROOT_LIST)
+    if(item->text(0) != TEXT_ROOT_LIST){
         if(item->parent()->text(0) != TEXT_ROOT_LIST)
             lesson = item->parent()->text(0);
-    teacher = item->text(0);
+            teacher = item->text(0);
+    }
+    else{
+        lesson = TEXT_SHEDULE_DEFAULT;
+    }
 
     while( (lesson.length() + teacher.length()) > 70){
         if(lesson.length() > teacher.length())

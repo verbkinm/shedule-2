@@ -1,5 +1,5 @@
-//#include "widget.h"
-#include "myWidgets/centralWidget/shedule/shedule.h"
+#include "widget.h"
+//#include "myWidgets/centralWidget/shedule/shedule.h"
 #include <QApplication>
 #include <QFile>
 
@@ -13,10 +13,10 @@ int main(int argc, char *argv[])
     file.close();
     a.setStyleSheet(strCSS);
 
-    Shedule w;
-//    Widget w;
-//    w.showFullScreen();
-    w.show();
+//    Shedule w;
+    Widget w;
+    w.showFullScreen();
+//    w.show();
 
     return a.exec();
 }
