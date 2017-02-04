@@ -35,7 +35,7 @@ void Shedule::slotSheduleLeftPanelItemClick(QTreeWidgetItem *item)
         lesson = TEXT_SHEDULE_DEFAULT;
     }
 
-    while( (lesson.length() + teacher.length()) > 70){
+    while( (lesson.length() + teacher.length()) > STRING_LENGHT_SHEDULE_RIGHT_HEADER){
         if(lesson.length() > teacher.length())
             lesson = lesson.mid(0, lesson.length() - 3) + "~:\0";
         if(lesson.length() < teacher.length())
@@ -43,9 +43,6 @@ void Shedule::slotSheduleLeftPanelItemClick(QTreeWidgetItem *item)
     }
 
     str = lesson + " " + teacher;
-    pRightWidget->setHeaderText(str);
-
-
     pRightWidget->setHeaderText(str);
 }
 bool Shedule::event(QEvent *event)

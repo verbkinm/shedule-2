@@ -28,7 +28,7 @@ SheduleLeftPanel::SheduleLeftPanel(QWidget *parent) : QWidget(parent)
     pItemRoot->setText(0, TEXT_ROOT_LIST);
 
     QFont *pFont = new QFont(pItemRoot->font(0));
-    pFont->setPixelSize(50);
+    pFont->setPixelSize(FONT_SHEDULE_LEFT_PANEL_TREE_ROOT);
     pFont->setBold(true);
     pItemRoot->setFont(0,*pFont);
 
@@ -67,7 +67,7 @@ void SheduleLeftPanel::traverseNode(const QDomNode& node)
 {
 
     QFont *pFont = new QFont(pItemRoot->font(0));
-    pFont->setPixelSize(30);
+    pFont->setPixelSize(FONT_SHEDULE_LEFT_PANEL_TREE_TRAVERS_NODE);
     pFont->setBold(true);
 
     pItemRoot->setTextAlignment(0,Qt::AlignHCenter);

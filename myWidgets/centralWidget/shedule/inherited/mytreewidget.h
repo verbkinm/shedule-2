@@ -10,12 +10,12 @@ public:
     MyTreeWidget();
 
     QTreeWidgetItem* rootItem;
+    QScrollBar* sb;
 
 private:
-    int startX, startY, stopY;
-    bool pressed;
+    int startY, stopY;
 
-//    bool event(QEvent *event);
+    bool event(QEvent *event);
     QTreeWidgetItem* buffItem;
     void mouseReleaseEvent(QMouseEvent* event);
     void mousePressEvent(QMouseEvent* event);
@@ -25,7 +25,6 @@ signals:
     void signalItemClick(QTreeWidgetItem*);
 private slots:
     void slotItemClick(QTreeWidgetItem* item, int column);
-
 };
 
 #endif // MYTREEWIDGET_H

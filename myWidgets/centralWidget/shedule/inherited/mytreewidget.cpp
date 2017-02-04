@@ -6,17 +6,19 @@
 #include <QMouseEvent>
 #include <QDebug>
 #include <QModelIndex>
+#include <QScrollBar>
 
-MyTreeWidget::MyTreeWidget() : QTreeWidget(), pressed(false), stopY(-1), rootItem(0)
+MyTreeWidget::MyTreeWidget() : QTreeWidget(),startY(-1), stopY(-1), rootItem(0)
 {
     this->setAnimated(true);
     this->setHeaderHidden(true);
     this->setExpandsOnDoubleClick(false);
     this->setRootIsDecorated(false);
+    sb = this->verticalScrollBar();
+    sb->setVisible(false);
 
     connect(this, SIGNAL(itemClicked(QTreeWidgetItem*,int)), SLOT(slotItemClick(QTreeWidgetItem*,int)) );
 }
-
 void MyTreeWidget::slotItemClick(QTreeWidgetItem *item, int column)
 {
     if(!item->isExpanded())
@@ -45,6 +47,14 @@ void MyTreeWidget::mouseMoveEvent(QMouseEvent *event)
     qDebug() << QCursor::pos();
     stopY=QCursor::pos().y();
 
+    sb->setVisible(true);
+    if(startY < stopY){
+        sb->setValue(sb->value() - 1);
+
+    }
+    if(startY > stopY)
+        sb->setValue(sb->value() + 1);
+
     if (!event->buttons().testFlag(Qt::LeftButton))
         QTreeView::mouseMoveEvent(event);
 }
@@ -57,7 +67,6 @@ void MyTreeWidget::mouseReleaseEvent(QMouseEvent *event)
         if(buffItem != 0){
             if(buffItem->text(0) == TEXT_ROOT_LIST){
                 this->collapseAll();
-//                this->expandItem(rootItem);
                 this->itemClicked(buffItem,0);
             }
             else{
@@ -68,14 +77,17 @@ void MyTreeWidget::mouseReleaseEvent(QMouseEvent *event)
     }
     startY  = -1;
     stopY   = -1;
+
+    sb->setVisible(false);
 //    QTreeView::mouseReleaseEvent(event);
 }
 
-//bool MyTreeWidget::event(QEvent *event)
-//{
-////    if(event->type() == QEvent::Paint)
-////        return QWidget::event(event);
-
-//    qDebug() << this->objectName() << event->type();
-//    return QWidget::event(event);
-//}*/
+bool MyTreeWidget::event(QEvent *event)
+{
+    if(event->type() == QEvent::Show){
+        this->collapseAll();
+        this->itemClicked(rootItem,0);
+    }
+//    qDebug() << event->type();
+    return QTreeView::event(event);
+}

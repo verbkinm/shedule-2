@@ -1,6 +1,7 @@
 #include "sheduleright.h"
 #include "generalsettings.h"
 
+//#include "libxml2/libxml/HTMLparser.h"
 #include <QStyleOption>
 #include <QEvent>
 #include <QDebug>
@@ -17,7 +18,7 @@ SheduleRight::SheduleRight(QWidget *parent) : QWidget(parent)
 
     pHeader = new QLabel(TEXT_SHEDULE_DEFAULT);
     QFont *pFont = new QFont(pHeader->font());
-    pFont->setPixelSize(35);
+    pFont->setPixelSize(FONT_SHEDULE_RIGHT_HEADER);
     pFont->setBold(true);
     pHeader->setFont(*pFont);
     pHeader->setAlignment(Qt::AlignCenter);
