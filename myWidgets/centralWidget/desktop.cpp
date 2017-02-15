@@ -25,7 +25,7 @@ Desktop::Desktop(QWidget *parent) : QWidget(parent)
 void Desktop::setUnits()
 {
     for(int i = 0; i < LABEL_COUNTS; i++)
-        pLabelShedule[i] = new LabelWorkSpace(this->size(), labelText[i], images[i]);
+        pLabelShedule[i] = new LabelWorkSpace(labelText[i], images[i]);
 
     for(int i = 0, label = 0; i < LABEL_COUNTS_ROWS; i++)
         for(int j = 0; j < LABEL_COUNTS / LABEL_COUNTS_ROWS; j++, label++)

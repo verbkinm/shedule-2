@@ -47,7 +47,7 @@ bool SheduleRight::event(QEvent *event)
         setUnits();
         resized = 1;
     }
-
+    return QWidget::event(event);
 }
 
 void SheduleRight::paintEvent(QPaintEvent *)

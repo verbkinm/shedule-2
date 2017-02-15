@@ -6,20 +6,20 @@
 class MyTreeWidget : public QTreeWidget
 {
     Q_OBJECT
-public:
-    MyTreeWidget();
-
-    QTreeWidgetItem* rootItem;
-    QScrollBar* sb;
-
 private:
     int startY, stopY;
 
     bool event(QEvent *event);
     QTreeWidgetItem* buffItem;
-    void mouseReleaseEvent(QMouseEvent* event);
+    void mouseReleaseEvent(QMouseEvent*);
     void mousePressEvent(QMouseEvent* event);
     void mouseMoveEvent(QMouseEvent* event);
+
+public:
+    MyTreeWidget();
+
+    QTreeWidgetItem* rootItem;
+    QScrollBar* sb;
 
 signals:
     void signalItemClick(QTreeWidgetItem*);

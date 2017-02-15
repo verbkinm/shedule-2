@@ -15,8 +15,8 @@ int main(int argc, char *argv[])
 
 //    Shedule w;
     Widget w;
-    w.showFullScreen();
-//    w.show();
+//    w.showFullScreen();
+    w.showMaximized();
 
     return a.exec();
 }

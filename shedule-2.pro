@@ -41,8 +41,6 @@ HEADERS  += widget.h \
     myWidgets/centralWidget/shedule/shedule.h \
     myWidgets/centralWidget/shedule/sheduleleftpanel.h \
     myWidgets/centralWidget/shedule/sheduleright.h \
-    myWidgets/centralWidget/shedule/treewidgetitem/treewidgetitem.h \
-    myWidgets/centralWidget/shedule/treewidgetitem.h \
     myWidgets/centralWidget/shedule/shedulerighttablewidget.h \
     myWidgets/centralWidget/shedule/inherited/mytreewidget.h
 

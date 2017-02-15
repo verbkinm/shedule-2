@@ -12,7 +12,7 @@ class LabelWorkSpace : public QLabel
 {
     Q_OBJECT
 public:
-    LabelWorkSpace(QSize centralWidget, QString text = 0, QString pixLabel = 0, QLabel *parent = 0);
+    LabelWorkSpace(QString text = 0, QString pixLabel = 0, QLabel *parent = 0);
     ~LabelWorkSpace();
 
     void applySize(QSize size);

@@ -42,7 +42,7 @@ void PushButton::mouseMoveEvent(QMouseEvent *event)
 }
 bool PushButton::event(QEvent *event)
 {
-  if(this->isEnabled() && event->type() == QEvent::MouseButtonPress || event->type() == QEvent::MouseButtonDblClick ){
+  if( (this->isEnabled()) && (event->type() == QEvent::MouseButtonPress || event->type() == QEvent::MouseButtonDblClick) ){
       pressed = true;
       this->setPixmap(pix_push_resized);
       return true;

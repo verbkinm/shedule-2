@@ -8,7 +8,7 @@
 
 static int resized = 0;
 
-LabelWorkSpace::LabelWorkSpace(QSize centralWidget, QString text, QString pixLabel, QLabel *parent) : QLabel(parent), pressed(false)
+LabelWorkSpace::LabelWorkSpace(QString text, QString pixLabel, QLabel *parent) : QLabel(parent), pressed(false)
 {
     pix_buff = new QPixmap(":/img/glass");
     pix_push_buff = new QPixmap(":/img/glass_push");

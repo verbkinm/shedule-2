@@ -15,7 +15,7 @@ MyTreeWidget::MyTreeWidget() : QTreeWidget(),startY(-1), stopY(-1), rootItem(0)
     this->setExpandsOnDoubleClick(false);
     this->setRootIsDecorated(false);
     sb = this->verticalScrollBar();
-    sb->setVisible(false);
+//    sb->setVisible(false);
 
     connect(this, SIGNAL(itemClicked(QTreeWidgetItem*,int)), SLOT(slotItemClick(QTreeWidgetItem*,int)) );
 }
@@ -58,7 +58,7 @@ void MyTreeWidget::mouseMoveEvent(QMouseEvent *event)
     if (!event->buttons().testFlag(Qt::LeftButton))
         QTreeView::mouseMoveEvent(event);
 }
-void MyTreeWidget::mouseReleaseEvent(QMouseEvent *event)
+void MyTreeWidget::mouseReleaseEvent(QMouseEvent*)
 {
     qDebug() << "startY="<<startY;
     qDebug() << "stopY="<<stopY;
@@ -78,8 +78,8 @@ void MyTreeWidget::mouseReleaseEvent(QMouseEvent *event)
     startY  = -1;
     stopY   = -1;
 
-    sb->setVisible(false);
-//    QTreeView::mouseReleaseEvent(event);
+//    sb->setVisible(false);
+//    QTreeView::mouseReleaseEvent(event); // нужно закоментировать, чтобы списки разворачивались
 }
 
 bool MyTreeWidget::event(QEvent *event)
