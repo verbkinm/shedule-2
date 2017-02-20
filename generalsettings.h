@@ -1,6 +1,14 @@
 #ifndef GENERALSETTINGS
 #define GENERALSETTINGS
 
+#if defined (Q_OS_WIN)
+    #define PATH_SPLITER "\\"
+#elif  defined (Q_OS_LINUX)
+    #define PATH_SPLITER "/"
+#elif  defined (Q_OS_FREEBSD)
+    #define PATH_SPLITER "/"
+#endif
+
 #define LABEL_COUNTS 8
 #define LABEL_COUNTS_ROWS 2
 

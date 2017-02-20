@@ -26,7 +26,8 @@ SOURCES += main.cpp\
     myWidgets/centralWidget/shedule/sheduleleftpanel.cpp \
     myWidgets/centralWidget/shedule/sheduleright.cpp \
     myWidgets/centralWidget/shedule/shedulerighttablewidget.cpp \
-    myWidgets/centralWidget/shedule/inherited/mytreewidget.cpp
+    myWidgets/centralWidget/shedule/inherited/mytreewidget.cpp \
+    myWidgets/centralWidget/shedule/cell.cpp
 
 HEADERS  += widget.h \
     footer.h \
@@ -42,7 +43,8 @@ HEADERS  += widget.h \
     myWidgets/centralWidget/shedule/sheduleleftpanel.h \
     myWidgets/centralWidget/shedule/sheduleright.h \
     myWidgets/centralWidget/shedule/shedulerighttablewidget.h \
-    myWidgets/centralWidget/shedule/inherited/mytreewidget.h
+    myWidgets/centralWidget/shedule/inherited/mytreewidget.h \
+    myWidgets/centralWidget/shedule/cell.h
 
 #INCLUDEPATH += ./
 

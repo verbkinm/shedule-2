@@ -1,7 +1,7 @@
 #include "mytreewidget.h"
 #include "generalsettings.h"
 
-#include <QDebug>
+//#include <QDebug>
 #include <QEvent>
 #include <QMouseEvent>
 #include <QDebug>
@@ -36,7 +36,7 @@ void MyTreeWidget::mousePressEvent(QMouseEvent *event)
     foreach (QTreeWidgetItem* item, this->selectedItems()) {
         if(item->isSelected()){
             buffItem = item;
-            qDebug() << buffItem->text(0);
+//            qDebug() << buffItem->text(0);
             item->setSelected(false);
             startY = QCursor::pos().y();
         }
@@ -44,7 +44,7 @@ void MyTreeWidget::mousePressEvent(QMouseEvent *event)
 }
 void MyTreeWidget::mouseMoveEvent(QMouseEvent *event)
 {
-    qDebug() << QCursor::pos();
+//    qDebug() << QCursor::pos();
     stopY=QCursor::pos().y();
 
     sb->setVisible(true);
@@ -60,8 +60,8 @@ void MyTreeWidget::mouseMoveEvent(QMouseEvent *event)
 }
 void MyTreeWidget::mouseReleaseEvent(QMouseEvent*)
 {
-    qDebug() << "startY="<<startY;
-    qDebug() << "stopY="<<stopY;
+//    qDebug() << "startY="<<startY;
+//    qDebug() << "stopY="<<stopY;
 
     if( ((startY - 20) < stopY && stopY < (startY + 20)) || stopY == -1){
         if(buffItem != 0){

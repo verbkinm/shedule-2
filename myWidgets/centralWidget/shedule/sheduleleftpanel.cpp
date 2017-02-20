@@ -10,8 +10,7 @@
 #include <QScrollArea>
 #include <QAbstractScrollArea>
 #include <QScrollBar>
-#include <QObject>
-#include <QDebug>
+//#include <QDebug>
 #include <QMouseEvent>
 
 static int resized = 0;
@@ -65,7 +64,6 @@ void SheduleLeftPanel::readFileLessons()
 }
 void SheduleLeftPanel::traverseNode(const QDomNode& node)
 {
-
     QFont *pFont = new QFont(pItemRoot->font(0));
     pFont->setPixelSize(FONT_SHEDULE_LEFT_PANEL_TREE_TRAVERS_NODE);
     pFont->setBold(true);
