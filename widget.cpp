@@ -1,4 +1,5 @@
 #include "widget.h"
+#include "generalsettings.h"
 
 #include <QDesktopWidget>
 //#include <QDebug>
@@ -19,8 +20,8 @@ Widget::Widget(QWidget *parent)
     footer = new Footer;
 
 
-    header->setFixedHeight(heightDesktop / 100 * 15);
-    footer->setFixedHeight(heightDesktop / 100 * 15);
+    header->setFixedHeight(heightDesktop / 100 * SIZE_IN_PERCENT_HEADER);
+    footer->setFixedHeight(heightDesktop / 100 * SIZE_IN_PERCENT_FOOTER);
 
     center->setMaximumHeight(heightDesktop - (header->height() + footer->height()) );
 

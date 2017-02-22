@@ -10,7 +10,7 @@
 #include <QScrollArea>
 #include <QAbstractScrollArea>
 #include <QScrollBar>
-//#include <QDebug>
+#include <QDebug>
 #include <QMouseEvent>
 
 static int resized = 0;
@@ -30,9 +30,9 @@ SheduleLeftPanel::SheduleLeftPanel(QWidget *parent) : QWidget(parent)
     pFont->setPixelSize(FONT_SHEDULE_LEFT_PANEL_TREE_ROOT);
     pFont->setBold(true);
     pItemRoot->setFont(0,*pFont);
+    delete pFont;
 
     pItemLesson = 0;
-
     pItemTeacher = 0;
 
     pLayout->addWidget(pListLessons);
@@ -40,6 +40,8 @@ SheduleLeftPanel::SheduleLeftPanel(QWidget *parent) : QWidget(parent)
 
     this->setContentsMargins(0,0,0,0);
     this->setLayout(pLayout);
+
+//    this->setFixedWidth(300);
 
     connect(pListLessons, SIGNAL(itemClicked(QTreeWidgetItem*,int)), this ,SIGNAL(signalItemClick(QTreeWidgetItem*))  );
 }
@@ -95,7 +97,7 @@ void SheduleLeftPanel::traverseNode(const QDomNode& node)
 }
 void SheduleLeftPanel::setUnits()
 {
-    this->setFixedSize(float(pParent->width()) / 100 * 25, pParent->height());
+    this->setFixedSize(float(pParent->width()) / 100 * 15, pParent->height());
     readFileLessons();
     pListLessons->expandItem(pItemRoot);
 }

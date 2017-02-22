@@ -29,7 +29,7 @@ void Shedule::slotSheduleLeftPanelItemClick(QTreeWidgetItem *item)
     if(item->text(0) != TEXT_ROOT_LIST){
         if(item->parent()->text(0) != TEXT_ROOT_LIST)
             lesson = item->parent()->text(0);
-            teacher = item->text(0);
+        teacher = item->text(0);
     }
     else{
         lesson = TEXT_SHEDULE_DEFAULT;

@@ -54,8 +54,6 @@ LabelWorkSpace{
 LabelWorkSpace > QLabel{
 	color: black;
 }
-
-
 QTreeView::item {
 min-height: 20px;
 min-width: 40px;
@@ -70,7 +68,7 @@ image: url(:/img/expand);
 QTreeView::branch:!has-children{
 image: url(:/img/expand1);
 }
-QTreeWidget {
+SheduleLeftPanel > QTreeWidget {
     background-color: rgba(255, 255, 255, 0%);
     border: 3px none black;
 }

@@ -5,6 +5,9 @@
 
 #include <QWidget>
 #include <QDomDocument>
+#include <QStandardItemModel>
+#include <QTableWidget>
+#include <QVBoxLayout>
 
 class SheduleRightTableWidget : public QWidget
 {
@@ -16,10 +19,18 @@ private:
     int numberOfCollum;
     int numberOfClass;
     QString *pArrClassLiter; //number and literal
+    QString *pArrLessonTime;
     QString *allFile;
     Cell **tableShedule;
 
+    QTableWidget *pTableWidget;
+    QTableWidgetItem *pTableWidgetItem;
+
+    QVBoxLayout *pLayout;
+
     void structuring(QDomDocument *pDomDoc);
+
+    void paintEvent(QPaintEvent * );
 public:
     QDomDocument *pDomDoc;
 

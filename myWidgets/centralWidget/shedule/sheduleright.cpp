@@ -30,6 +30,7 @@ SheduleRight::SheduleRight(QWidget *parent) : QWidget(parent)
     pLayout->addWidget(pSheduleRightTableWidget);
 
     this->setLayout(pLayout);
+//    this->setFixedWidth(800);
 }
 void SheduleRight::setHeaderText(QString str){
     pHeader->setText(str);

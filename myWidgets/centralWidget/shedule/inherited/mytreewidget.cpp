@@ -16,7 +16,6 @@ MyTreeWidget::MyTreeWidget() : QTreeWidget(),startY(-1), stopY(-1), rootItem(0)
     this->setRootIsDecorated(false);
     sb = this->verticalScrollBar();
 //    sb->setVisible(false);
-
     connect(this, SIGNAL(itemClicked(QTreeWidgetItem*,int)), SLOT(slotItemClick(QTreeWidgetItem*,int)) );
 }
 void MyTreeWidget::slotItemClick(QTreeWidgetItem *item, int column)
