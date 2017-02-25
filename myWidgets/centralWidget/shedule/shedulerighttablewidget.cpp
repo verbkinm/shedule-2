@@ -7,7 +7,6 @@
 #include <QDir>
 #include <QMessageBox>
 #include <QHeaderView>
-#include <QDebug>
 
 SheduleRightTableWidget::SheduleRightTableWidget(QWidget *parent) : QWidget(parent)
 {
@@ -18,7 +17,6 @@ SheduleRightTableWidget::SheduleRightTableWidget(QWidget *parent) : QWidget(pare
         QMessageBox msgBox;
         msgBox.setText(QString("Невозможно открыть файл: " + QDir::currentPath() + PATH_SPLITER + QFileInfo(file).fileName()) );
         msgBox.exec();
-//        qDebug() << "Невозможно открыть файл" << QDir::currentPath() + PATH_SPLITER + QFileInfo(file).fileName();
         exit(1);
     }
     allFile = new QString(file.readAll());
@@ -80,11 +78,23 @@ SheduleRightTableWidget::SheduleRightTableWidget(QWidget *parent) : QWidget(pare
     for (int i = 0; i < numberOfLesson + 1; ++i)
         for (int ii = 0; ii < numberOfCollum; ++ii) {
             QFont pFont(pTableWidget->item(i, ii)->font());
-            pFont.setPixelSize(10);
+            pFont.setPixelSize(FONT_SIZE_TABLE_SHEDULE);
             pTableWidget->item(i, ii)->setFont(pFont);
         }
     pTableWidget->resizeColumnsToContents();
     pTableWidget->resizeRowsToContents();
+
+//FIXED SIZE COLUMN 0,1
+    pTableWidget->setColumnWidth(0, 30);
+    for (int i = 1; i < numberOfLesson + 1; ++i) {
+        QString str = pTableWidget->item(i,1)->text();
+        str.replace("-", "\n-\n");
+        str.remove(" ");
+        pTableWidget->item(i, 1)->setText(str);
+        pTableWidget->item(i, 1)->setTextAlignment(Qt::AlignCenter);
+    }
+    pTableWidget->setColumnWidth(1, 40);
+
 
     pLayout->addWidget(pTableWidget);
     this->setLayout(pLayout);
@@ -121,7 +131,6 @@ void SheduleRightTableWidget::structuring(QDomDocument *pDomDoc)
                 teachers << nodeList.at(ii).toElement().text();
                 tableShedule[i][j].setTeachers(teachers);
             }
-
             QStringList roomCabinets;
             nodeList =              root.childNodes().at(i+1).childNodes().at(j+2).firstChild().childNodes().at(1).childNodes();
             for (int ii = 0; ii < nodeList.size(); ++ii) {
@@ -130,12 +139,6 @@ void SheduleRightTableWidget::structuring(QDomDocument *pDomDoc)
             }
         }
     }
-//    for (int i = 0; i < numberOfLesson; ++i) {
-//        for (int j = 0; j < numberOfClass; ++j) {
-//            qDebug() << i+1 << pArrClassLiter[j] /*<< tableShedule[i][j].getHeader()*/ << tableShedule[i][j].getnameOfLesson() << \
-//                        tableShedule[i][j].getTeachers() << tableShedule[i][j].getRoomCabinets();
-//        }
-//    }
 }
 void SheduleRightTableWidget::paintEvent(QPaintEvent *)
 {

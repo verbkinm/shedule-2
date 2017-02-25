@@ -12,7 +12,7 @@ class Shedule : public QWidget
 {
     Q_OBJECT
 public:
-    explicit Shedule(QWidget *parent = 0);
+    Shedule(QWidget *parent = 0);
 
     QHBoxLayout *pLayout;
 
@@ -20,7 +20,7 @@ public:
     SheduleRight *pRightWidget;
 
 private:
-    bool event(QEvent *event);
+
 signals:
 
 public slots:

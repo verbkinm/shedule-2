@@ -12,16 +12,17 @@ Header::Header(QWidget *parent) : QWidget(parent)
     pLyceumText = new QLabel;
 
     pLayout = new QHBoxLayout;
-    pLayout->addStretch(1);
+    pLayout->addStretch(2);
     pLayout->addWidget(pOwlLabel);
-    pLayout->addStretch(10);
+    pLayout->addStretch(20);
     pLayout->addWidget(pLyceumText);
+    pLayout->addStretch(2);
 
     this->setLayout(pLayout);
 }
 void Header::applySize()
 {
-    currentSize = this->height() / 100 * RATIO;
+    currentSize = float(this->height()) / 100 * RATIO;
     pOwlLabel->setFixedSize(QSize(currentSize, currentSize) );
 
     QPixmap* buff = new QPixmap(":/img/owl");

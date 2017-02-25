@@ -15,7 +15,7 @@ MyTreeWidget::MyTreeWidget() : QTreeWidget(),startY(-1), stopY(-1), rootItem(0)
     this->setExpandsOnDoubleClick(false);
     this->setRootIsDecorated(false);
     sb = this->verticalScrollBar();
-//    sb->setVisible(false);
+    sb->setVisible(false);
     connect(this, SIGNAL(itemClicked(QTreeWidgetItem*,int)), SLOT(slotItemClick(QTreeWidgetItem*,int)) );
 }
 void MyTreeWidget::slotItemClick(QTreeWidgetItem *item, int column)
@@ -28,7 +28,7 @@ void MyTreeWidget::slotItemClick(QTreeWidgetItem *item, int column)
         this->collapseItem(item);
     }
 }
-void MyTreeWidget::mousePressEvent(QMouseEvent *event)
+void MyTreeWidget::mousePressEvent(QMouseEvent* event)
 {
     buffItem = 0;
     QTreeView::mousePressEvent(event);
@@ -41,7 +41,7 @@ void MyTreeWidget::mousePressEvent(QMouseEvent *event)
         }
     }
 }
-void MyTreeWidget::mouseMoveEvent(QMouseEvent *event)
+void MyTreeWidget::mouseMoveEvent(QMouseEvent* event)
 {
 //    qDebug() << QCursor::pos();
     stopY=QCursor::pos().y();
@@ -77,7 +77,7 @@ void MyTreeWidget::mouseReleaseEvent(QMouseEvent*)
     startY  = -1;
     stopY   = -1;
 
-//    sb->setVisible(false);
+    sb->setVisible(false);
 //    QTreeView::mouseReleaseEvent(event); // нужно закоментировать, чтобы списки разворачивались
 }
 

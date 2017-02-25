@@ -21,6 +21,7 @@ PanelDateAndTime::PanelDateAndTime(QWidget *parent) : QWidget(parent)
 
     pLayout->addWidget(pLabelTime);
     pLayout->addWidget(pLabelDate);
+    pLayout->setMargin(0);
 
     this->setLayout(pLayout);
 

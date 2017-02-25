@@ -12,8 +12,8 @@ private:
     bool event(QEvent *event);
     QTreeWidgetItem* buffItem;
     void mouseReleaseEvent(QMouseEvent*);
-    void mousePressEvent(QMouseEvent* event);
-    void mouseMoveEvent(QMouseEvent* event);
+    void mousePressEvent(QMouseEvent*);
+    void mouseMoveEvent(QMouseEvent*);
 
 public:
     MyTreeWidget();

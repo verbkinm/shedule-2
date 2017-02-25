@@ -20,8 +20,8 @@ Widget::Widget(QWidget *parent)
     footer = new Footer;
 
 
-    header->setFixedHeight(heightDesktop / 100 * SIZE_IN_PERCENT_HEADER);
-    footer->setFixedHeight(heightDesktop / 100 * SIZE_IN_PERCENT_FOOTER);
+    header->setFixedHeight(SIZE_HEADER);
+    footer->setFixedHeight(SIZE_FOOTER);
 
     center->setMaximumHeight(heightDesktop - (header->height() + footer->height()) );
 

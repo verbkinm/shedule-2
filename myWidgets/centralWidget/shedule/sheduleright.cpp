@@ -1,10 +1,8 @@
 #include "sheduleright.h"
 #include "generalsettings.h"
 
-//#include "libxml2/libxml/HTMLparser.h"
 #include <QStyleOption>
 #include <QEvent>
-#include <QDebug>
 #include <QPainter>
 
 static int resized = 0;
@@ -21,6 +19,7 @@ SheduleRight::SheduleRight(QWidget *parent) : QWidget(parent)
     pFont->setPixelSize(FONT_SHEDULE_RIGHT_HEADER);
     pFont->setBold(true);
     pHeader->setFont(*pFont);
+    delete pFont;
     pHeader->setAlignment(Qt::AlignCenter);
     pHeader->setFixedHeight(80);
 
@@ -30,20 +29,17 @@ SheduleRight::SheduleRight(QWidget *parent) : QWidget(parent)
     pLayout->addWidget(pSheduleRightTableWidget);
 
     this->setLayout(pLayout);
-//    this->setFixedWidth(800);
 }
 void SheduleRight::setHeaderText(QString str){
     pHeader->setText(str);
 }
 void SheduleRight::setUnits()
 {
-//    qDebug() << this->size();
-    this->setFixedSize(this->size());
+//    this->setFixedSize(this->size());
 }
 
 bool SheduleRight::event(QEvent *event)
 {
-//    qDebug() << event->type();
     if(this->isVisible() && event->type() == QEvent::Resize && resized < 1){
         setUnits();
         resized = 1;

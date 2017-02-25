@@ -7,7 +7,10 @@
 #include <QTreeWidgetItem>
 #include <QFile>
 #include <QDomDocument>
+#include <QTabWidget>
+
 #include "inherited/mytreewidget.h"
+#include "inherited/verticallabel.h"
 
 class SheduleLeftPanel : public QWidget
 {
@@ -17,6 +20,7 @@ public:
 
     MyTreeWidget* pListLessons;
     QTreeWidgetItem *pItemLesson, *pItemTeacher, *pItemRoot; //список уроков и список учителей, pItemRoot - корень списка
+    VerticalLabel* pVerticalLabel;
 
 private:
     QWidget* pParent;
@@ -34,7 +38,7 @@ private:
 signals:
     void signalItemClick(QTreeWidgetItem*);
 public slots:
-
+    void slotSwitchPanel();
 };
 
 #endif // SHEDULELEFTPANEL_H

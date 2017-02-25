@@ -1,7 +1,6 @@
 #include "shedule.h"
 #include "generalsettings.h"
 
-#include <QDebug>
 #include <QEvent>
 
 Shedule::Shedule(QWidget *parent) : QWidget(parent)
@@ -14,6 +13,7 @@ Shedule::Shedule(QWidget *parent) : QWidget(parent)
     pRightWidget    = new SheduleRight;
 
     pLayout->addWidget(pLeftWidget);
+//    pLeftWidget->setVisible(false);
     pLayout->addWidget(pRightWidget);
 
     this->setLayout(pLayout);
@@ -31,9 +31,8 @@ void Shedule::slotSheduleLeftPanelItemClick(QTreeWidgetItem *item)
             lesson = item->parent()->text(0);
         teacher = item->text(0);
     }
-    else{
+    else
         lesson = TEXT_SHEDULE_DEFAULT;
-    }
 
     while( (lesson.length() + teacher.length()) > STRING_LENGHT_SHEDULE_RIGHT_HEADER){
         if(lesson.length() > teacher.length())
@@ -44,9 +43,4 @@ void Shedule::slotSheduleLeftPanelItemClick(QTreeWidgetItem *item)
 
     str = lesson + " " + teacher;
     pRightWidget->setHeaderText(str);
-}
-bool Shedule::event(QEvent *event)
-{
-//    qDebug() << this->objectName() << event->type();
-    return QWidget::event(event);
 }

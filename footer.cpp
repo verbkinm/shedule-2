@@ -31,7 +31,7 @@ Footer::Footer(QWidget *parent) : QWidget(parent)//, calendarView(false)
 }
 void Footer::applySize()
 {
-    currentSize = this->height() / 100 * RATIO;
+    currentSize = float(this->height()) / 100 * RATIO;
 
     pLayout->addWidget(buttons[2]);
     pLayout->addStretch(1);
@@ -47,7 +47,7 @@ void Footer::applySize()
         buttons[i]->setSize(QSize(currentSize, currentSize));
 
     panelDateAndTime->setFixedSize(currentSize*2, currentSize / 100 * 80);
-    panelDateAndTime->setFontSize(float(float(panelDateAndTime->height() / 100) * 120 / 2));
+    panelDateAndTime->setFontSize(12);
 }
 void Footer::paintEvent(QPaintEvent * )
 {
