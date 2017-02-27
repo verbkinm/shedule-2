@@ -13,7 +13,6 @@ Shedule::Shedule(QWidget *parent) : QWidget(parent)
     pRightWidget    = new SheduleRight;
 
     pLayout->addWidget(pLeftWidget);
-//    pLeftWidget->setVisible(false);
     pLayout->addWidget(pRightWidget);
 
     this->setLayout(pLayout);

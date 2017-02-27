@@ -23,6 +23,7 @@ public:
 
 signals:
     void signalItemClick(QTreeWidgetItem*);
+    void signalItemRootClick();
 private slots:
     void slotItemClick(QTreeWidgetItem* item, int column);
 };

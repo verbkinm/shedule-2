@@ -38,7 +38,8 @@ private:
 signals:
     void signalItemClick(QTreeWidgetItem*);
 public slots:
-    void slotSwitchPanel();
+    void slotSwitchPanelToListLesson();
+    void slotSwitchPanelToMini();
 };
 
 #endif // SHEDULELEFTPANEL_H

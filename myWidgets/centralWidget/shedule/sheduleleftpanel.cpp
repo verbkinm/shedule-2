@@ -13,15 +13,15 @@
 #include <QDebug>
 #include <QMouseEvent>
 
-static int resized = 0;
-
 SheduleLeftPanel::SheduleLeftPanel(QWidget *parent) : QWidget(parent)
 {
     pParent = parent;
     pLayout = new QVBoxLayout;
+    pLayout->setMargin(0);
 
     pListLessons = new MyTreeWidget;
-
+    pListLessons->hide();
+    pListLessons->setFixedWidth(LEFT_PANEL_TREE_WIDTH);
     pItemRoot = new QTreeWidgetItem(pListLessons);
     pListLessons->rootItem = pItemRoot;
     pItemRoot->setText(0, TEXT_ROOT_LIST);
@@ -31,6 +31,8 @@ SheduleLeftPanel::SheduleLeftPanel(QWidget *parent) : QWidget(parent)
     pFont->setBold(true);
     pItemRoot->setFont(0,*pFont);
     delete pFont;
+    readFileLessons();
+    this->pListLessons->expandItem(pItemRoot);
 
     pItemLesson = 0;
     pItemTeacher = 0;
@@ -38,17 +40,14 @@ SheduleLeftPanel::SheduleLeftPanel(QWidget *parent) : QWidget(parent)
     pVerticalLabel = new VerticalLabel(TEXT_VERTICAL_LABEL_LESSONS);
 
     pLayout->addWidget(pVerticalLabel);
-    pListLessons->hide();
-    pListLessons->setFixedWidth(LEFT_PANEL_TREE_WIDTH);
     pLayout->addWidget(pListLessons);
-
-
 
     this->setContentsMargins(0,0,0,0);
     this->setLayout(pLayout);
 
-    connect(pListLessons, SIGNAL(itemClicked(QTreeWidgetItem*,int)), this ,SIGNAL(signalItemClick(QTreeWidgetItem*))  );
-    connect(pVerticalLabel, SIGNAL(pressed(bool)), SLOT(slotSwitchPanel()) );
+    connect(pListLessons,   SIGNAL(itemClicked(QTreeWidgetItem*,int)), SIGNAL(signalItemClick(QTreeWidgetItem*))  );
+    connect(pVerticalLabel, SIGNAL(signalClicked()), SLOT(slotSwitchPanelToListLesson()) );
+//    connect(pListLessons,   SIGNAL(signalItemRootClick()), SLOT(slotSwitchPanelToListLesson()) );// SLOT(slotSwitchPanelToMini()) );
 }
 void SheduleLeftPanel::readFileLessons()
 {
@@ -114,14 +113,29 @@ void SheduleLeftPanel::paintEvent(QPaintEvent *)
 }
 bool SheduleLeftPanel::event(QEvent *event)
 {
-    if(event->type() == QEvent::Resize && resized < 1){
-        this->setUnits();
-        resized = 1;
+//    if(event->type() == QEvent::Resize && resized < 1){
+//        this->setUnits();
+//        resized = 1;
+//    }
+    if(event->type() == QEvent::Show){
+//        pListLessons->hide();
+//        pVerticalLabel->setVisible(true);
+        qDebug() << "show";
     }
     return QWidget::event(event);
 }
-void SheduleLeftPanel::slotSwitchPanel()
+void SheduleLeftPanel::slotSwitchPanelToListLesson()
 {
-    pVerticalLabel->setVisible(false);
-    pListLessons->setVisible(true);
+    pListLessons->setVisible(!pListLessons->isVisible());
+    pVerticalLabel->setVisible(!pVerticalLabel->isVisible());
+    qDebug() << "pListLessons" << pListLessons->isVisible();
+    qDebug() << "pVerticalLabel" << pVerticalLabel->isVisible();
+//    this->setFixedWidth(this->width());
+}
+void SheduleLeftPanel::slotSwitchPanelToMini()
+{
+    pVerticalLabel->setVisible(true);
+    pListLessons->setVisible(false);
+//    this->adjustSize();
+//    this->setFixedWidth(this->width());
 }

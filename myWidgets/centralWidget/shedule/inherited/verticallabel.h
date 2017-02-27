@@ -14,13 +14,11 @@ public:
 
 private:
     void mouseReleaseEvent(QMouseEvent*);
-    void mousePressEvent(QMouseEvent*);
 
     void paintEvent(QPaintEvent *);
 
 signals:
-    void pressed();
-    void released();
+    void signalClicked();
 };
 
 #endif // VERTICALLABEL_H

@@ -14,11 +14,11 @@ VerticalLabel::VerticalLabel(QString text)
     font.setPixelSize(FONT_SHEDULE_LEFT_PANEL_TREE_TRAVERS_NODE);
     font.setBold(true);
     this->setFont(font);
-    this->setFixedWidth(25);
+    this->setFixedWidth(VERTICAL_LABEL_WIDTH);
 }
 void VerticalLabel::paintEvent(QPaintEvent*)
 {
-    this->setFixedWidth(25);
+    this->setFixedWidth(VERTICAL_LABEL_WIDTH);
     QPainter p(this);
     QTransform old = p.transform();
     p.translate(15,this->height()/2);
@@ -26,14 +26,8 @@ void VerticalLabel::paintEvent(QPaintEvent*)
     p.drawText(0,0, text);
     p.setTransform(old);
 }
-void VerticalLabel::mousePressEvent(QMouseEvent*)
-{
-    qDebug() << "press";
-    emit pressed();
-}
 void VerticalLabel::mouseReleaseEvent(QMouseEvent*)
 {
-    qDebug() << "release";
-    emit released();
+    emit signalClicked();
 }
 

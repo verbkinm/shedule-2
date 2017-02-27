@@ -12,7 +12,6 @@
 //widget
 #define SIZE_HEADER 50
 #define SIZE_FOOTER 50
-
 //labelworkspace
 #define LABEL_COUNTS 8
 #define LABEL_COUNTS_ROWS 2
@@ -21,7 +20,6 @@
 
 #define FONT_SIZE 14 //24
 #define FONT_PUSH_SIZE FONT_SIZE - 1
-
 //sheduleleftpanel
 #define FONT_SHEDULE_LEFT_PANEL_TREE_ROOT 20
 #define FONT_SHEDULE_LEFT_PANEL_TREE_TRAVERS_NODE 10
@@ -36,6 +34,7 @@
 #define TEXT_SHEDULE_DEFAULT "Расписание:"
 //shedule
 #define LEFT_PANEL_TREE_WIDTH 170
-
+//verticallabel
+#define VERTICAL_LABEL_WIDTH 25
 #endif // GENERALSETTINGS
 
