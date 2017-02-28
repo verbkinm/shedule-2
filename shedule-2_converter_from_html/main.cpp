@@ -1,9 +1,8 @@
 #include <QCoreApplication>
-#include <QFile>
 #include <QFileInfo>
-#include <QDebug>
 #include <QTextCodec>
 #include <QDomDocument>
+#include <stdio.h>
 
 void clearTag(QString *string, int *positionString, int indexStart, int indexEnd)
 {
@@ -28,15 +27,15 @@ int main(int argc, char *argv[])
     QCoreApplication a(argc, argv);
 
     if(argc < 2){
-        qDebug() << "error: not specified the file name";
+        printf("error: not specified the file name");
         exit(1);
     }
     QFile *pFile = new QFile(argv[1]);
     if(!pFile->open(QIODevice::ReadOnly) ){
-        qDebug() << "Невозможно открыть файл";
+        printf("error: cannot open file");
         exit(1);
     }
-
+    printf("creating %s file...\n", qPrintable(QFileInfo(*pFile).canonicalPath() + "/out.xml"));
     QByteArray html = pFile->readAll();
     QTextCodec* defaultTextCodec = QTextCodec::codecForName("Windows-1251");
     QString unicode = defaultTextCodec->toUnicode(html);
@@ -87,7 +86,6 @@ int main(int argc, char *argv[])
     QDomDocument domDoc;
     domDoc.setContent(allFile);
     QDomElement root = domDoc.documentElement();
-    qDebug() << root.nodeName();
     QDomNodeList nodeList = root.childNodes();
     QDomNode firstCell, secondCell; //empty TD tag in first TR, and TD with rowspan(day of week)
     firstCell   = nodeList.at(0).firstChild();
@@ -95,16 +93,13 @@ int main(int argc, char *argv[])
     nodeList.at(0).removeChild(firstCell);
     nodeList.at(1).removeChild(secondCell);
 
-    for (int i = 0; i < nodeList.size(); ++i) {
-        qDebug() << nodeList.at(i).nodeName() << nodeList.at(i).childNodes().size();
-    }
-
     QFile pFileXmlOut(QFileInfo(*pFile).path() + "/out.xml");
     pFileXmlOut.open(QIODevice::WriteOnly | QIODevice::Text);
     pFileXmlOut.write(domDoc.toByteArray());
     pFileXmlOut.close();
     pFile->close();
 
+    printf("OK!\n");
     exit(0);
     return a.exec();
 }
