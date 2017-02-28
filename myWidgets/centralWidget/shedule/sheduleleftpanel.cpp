@@ -47,7 +47,7 @@ SheduleLeftPanel::SheduleLeftPanel(QWidget *parent) : QWidget(parent)
 
     connect(pListLessons,   SIGNAL(itemClicked(QTreeWidgetItem*,int)), SIGNAL(signalItemClick(QTreeWidgetItem*))  );
     connect(pVerticalLabel, SIGNAL(signalClicked()), SLOT(slotSwitchPanelToListLesson()) );
-//    connect(pListLessons,   SIGNAL(signalItemRootClick()), SLOT(slotSwitchPanelToListLesson()) );// SLOT(slotSwitchPanelToMini()) );
+    connect(pListLessons,   SIGNAL(signalItemRootClick()), SLOT(slotSwitchPanelToListLesson()) );// SLOT(slotSwitchPanelToMini()) );
 }
 void SheduleLeftPanel::readFileLessons()
 {
