@@ -3,7 +3,6 @@
 
 #include <QWidget>
 #include <QHBoxLayout>
-#include <QListWidget>
 
 #include "sheduleleftpanel.h"
 #include "sheduleright.h"

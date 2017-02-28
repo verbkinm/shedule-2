@@ -2,7 +2,6 @@
 //#include "myWidgets/centralWidget/shedule/shedule.h"
 #include <QApplication>
 #include <QFile>
-#include "myWidgets/centralWidget/shedule/shedule.h"
 
 int main(int argc, char *argv[])
 {
@@ -15,10 +14,10 @@ int main(int argc, char *argv[])
     a.setStyleSheet(strCSS);
 
 //    Shedule w;
-//    Widget w;
-    Shedule w;
+    Widget w;
 //    w.showFullScreen();
     w.showMaximized();
+//    w.show();
 
     return a.exec();
 }

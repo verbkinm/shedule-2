@@ -1,8 +1,6 @@
 #include "shedule.h"
 #include "generalsettings.h"
 
-#include <QEvent>
-
 Shedule::Shedule(QWidget *parent) : QWidget(parent)
 {
     pLayout         = new QHBoxLayout;
@@ -19,6 +17,7 @@ Shedule::Shedule(QWidget *parent) : QWidget(parent)
 
     connect(pLeftWidget, SIGNAL(signalItemClick(QTreeWidgetItem*)), SLOT(slotSheduleLeftPanelItemClick(QTreeWidgetItem*)) );
 }
+
 void Shedule::slotSheduleLeftPanelItemClick(QTreeWidgetItem *item)
 {
     QString str     = "\0";

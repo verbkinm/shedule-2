@@ -12,7 +12,7 @@ static bool _expanded = false;
 
 MyTreeWidget::MyTreeWidget() : QTreeWidget(),startY(-1), stopY(-1), rootItem(0)
 {
-    this->setAnimated(true);
+//    this->setAnimated(true);
     this->setHeaderHidden(true);
     this->setExpandsOnDoubleClick(false);
     this->setRootIsDecorated(false);
@@ -25,13 +25,15 @@ void MyTreeWidget::slotItemClick(QTreeWidgetItem *item, int column)
     if(item->text(column) == TEXT_ROOT_LIST && _expanded == true){
         emit signalItemRootClick();
         _expanded = false;
+        qDebug() << "tree" << this->isVisible();
+        return;
     }
 
     if(!item->isExpanded())
         this->expandItem(item);
     else{
-        if(item->text(column) == TEXT_ROOT_LIST)
-            emit signalItemRootClick();
+//        if(item->text(column) == TEXT_ROOT_LIST)
+//            emit signalItemRootClick();
         this->collapseItem(item);
     }
 }
@@ -70,7 +72,7 @@ void MyTreeWidget::mouseReleaseEvent(QMouseEvent*)
     if( ((startY - 20) < stopY && stopY < (startY + 20)) || stopY == -1){
         if(buffItem != 0){
             if(buffItem->text(0) == TEXT_ROOT_LIST){
-                this->collapseAll();
+//                this->collapseAll();
                 this->itemClicked(buffItem,0);
             }
             else{

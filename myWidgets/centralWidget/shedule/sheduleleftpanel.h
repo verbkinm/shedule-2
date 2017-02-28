@@ -1,9 +1,7 @@
 #ifndef SHEDULELEFTPANEL_H
 #define SHEDULELEFTPANEL_H
 
-#include <QWidget>
 #include <QVBoxLayout>
-#include <QTreeWidget>
 #include <QTreeWidgetItem>
 #include <QFile>
 #include <QDomDocument>
@@ -37,9 +35,10 @@ private:
 
 signals:
     void signalItemClick(QTreeWidgetItem*);
+    void signalTest();
 public slots:
     void slotSwitchPanelToListLesson();
-    void slotSwitchPanelToMini();
+//    void slotSwitchPanelToMini();
 };
 
 #endif // SHEDULELEFTPANEL_H
