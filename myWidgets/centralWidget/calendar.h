@@ -9,6 +9,7 @@ class Calendar : public QCalendarWidget
     Q_OBJECT
 public:
     Calendar();
+    ~Calendar();
 };
 
 #endif // CALENDAR_H

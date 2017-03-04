@@ -4,7 +4,7 @@
 #include <QVBoxLayout>
 #include <QTreeWidgetItem>
 #include <QFile>
-#include <QDomDocument>
+//#include <QDomDocument>
 #include <QTabWidget>
 
 #include "inherited/mytreewidget.h"
@@ -14,21 +14,25 @@ class SheduleLeftPanel : public QWidget
 {
     Q_OBJECT
 public:
-    SheduleLeftPanel(QWidget *parent);
+    SheduleLeftPanel(QWidget *parent = 0);
+    ~SheduleLeftPanel();
 
     MyTreeWidget* pListLessons;
-    QTreeWidgetItem *pItemLesson, *pItemTeacher, *pItemRoot; //список уроков и список учителей, pItemRoot - корень списка
+//    QTreeWidgetItem *pItemLesson, *pItemTeacher, *pItemRoot; //список уроков и список учителей, pItemRoot - корень списка
     VerticalLabel* pVerticalLabel;
 
 private:
-    QWidget* pParent;
     QVBoxLayout* pLayout;
-    int startX, startY;
 
     void setUnits();
+    void createListLesson();
+    void deleteListLesson();
+
+    void createVerticalLabel();
+    void deleteVerticalLabel();
 
     void readFileLessons();
-    void traverseNode(const QDomNode& node);
+//    void traverseNode(const QDomNode& node);
 
     bool event(QEvent *event);
     void paintEvent(QPaintEvent * );

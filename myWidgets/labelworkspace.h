@@ -16,7 +16,7 @@ public:
     ~LabelWorkSpace();
 
     void applySize(QSize size);
-//    virtual void paintEvent(QPaintEvent * );
+
 
 signals:
   void signalClick();
@@ -35,11 +35,10 @@ private:
 
     QRect rect;
 
-    void setUnits();
 
     bool event(QEvent *event);
     virtual void mouseMoveEvent(QMouseEvent *event);
-//    void paintEvent(QPaintEvent *);
+
 };
 
 #endif // LABELWORKSPACE_H

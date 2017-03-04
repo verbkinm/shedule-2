@@ -6,8 +6,6 @@
 #include <QVBoxLayout>
 #include <QRect>
 
-static int resized = 0;
-
 LabelWorkSpace::LabelWorkSpace(QString text, QString pixLabel, QLabel *parent) : QLabel(parent), pressed(false)
 {
     pix_buff = new QPixmap(":/img/glass");
@@ -21,41 +19,7 @@ LabelWorkSpace::LabelWorkSpace(QString text, QString pixLabel, QLabel *parent) :
 }
 void LabelWorkSpace::applySize(QSize size)
 {
-//    qDebug() << "!!!!!!!!!!!!!!!!!!! - " << size;
-
-    float width;
-//    switch (LABEL_COUNTS) {
-//    case 1:
-//        width = size.width() / LABEL_COUNTS * LABEL_COUNTS_ROWS - MARGIN_DESKTOP;
-//        break;
-//    case 2:
-
-//        break;
-//    case 3:
-
-//        break;
-//    case 4:
-
-//        break;
-//    case 5:
-
-//        break;
-//    case 6:
-
-//        break;
-//    case 7:
-
-//        break;
-//    case 8:
-
-//        break;
-//    case 9:
-//        width = size.width() / LABEL_COUNTS * LABEL_COUNTS_ROWS - (size.width() / 100 * 20);
-//        break;
-//    default:
-        width = size.width() / LABEL_COUNTS * LABEL_COUNTS_ROWS - MARGIN_DESKTOP;
-//        break;
-//    }
+    float width = size.width() / LABEL_COUNTS * LABEL_COUNTS_ROWS - MARGIN_DESKTOP;
     float height;
     switch (LABEL_COUNTS_ROWS) {
     case 1:
@@ -78,22 +42,12 @@ void LabelWorkSpace::applySize(QSize size)
     pix_resized = new QPixmap(pix_buff->scaled(width, height, Qt::KeepAspectRatio,Qt::SmoothTransformation) );
     pix_push_resized = new QPixmap(pix_push_buff->scaled(width, height - (height / 100 * 2),Qt::KeepAspectRatio,Qt::SmoothTransformation) );
     this->setPixmap(*pix_resized);
-//    int height, width;
-//    height = privSize.height() / 100 * 10;
-//    width  = privSize.width()  / 100 * 10;
-//    pix_resized = pix_buff->scaled(width, height, Qt::IgnoreAspectRatio);
-//    pix_push_resized = pix_push_buff->scaled(width, height, Qt::IgnoreAspectRatio);
-
-//    this->setPixmap(pix_resized);
-
-//    delete pix_buff;
     pL = new QLabel;
     label = new QPixmap(buff->scaled(pix_resized->width(), pix_resized->height() - height / 100 * 50, Qt::KeepAspectRatio,Qt::SmoothTransformation) );
     label_push = new QPixmap(buff->scaled(pix_push_resized->width(), pix_push_resized->height() - height / 100 * 50, Qt::KeepAspectRatio,Qt::SmoothTransformation) );
     delete buff;
     pL->setPixmap(*label);
 
-//    pL->move(width / 2 - label->width() / 4, height / 2 - label->height() / 2);
     pL->setAlignment(Qt::AlignCenter);
 
     QVBoxLayout* l = new QVBoxLayout;
@@ -122,17 +76,6 @@ void LabelWorkSpace::applySize(QSize size)
     int y2 = this->geometry().y()+this->height();
     rect.setCoords(x1,y1,x2,y2);
 }
-void LabelWorkSpace::setUnits()
-{
-//    label = new QPixmap(*buff);//->scaled(this->size(), Qt::KeepAspectRatio) );
-////    label_push = new QPixmap(label->scaled(currentWidth-10, currentHeight-10, Qt::KeepAspectRatio) );
-////    delete buff;
-//    pL->setPixmap(*label);
-
-////    pL->move(10, 10);
-//    qDebug() << "pL " << pL->pos();
-}
-
 void LabelWorkSpace::mouseMoveEvent(QMouseEvent *event)
 {
   int x = event->pos().x() - 50;
@@ -180,11 +123,6 @@ bool LabelWorkSpace::event(QEvent *event)
           return true;
       }
   }
-  if(this->isVisible() && event->type() == QEvent::Resize && resized < 1){
-//      qDebug() << " center->size " << this->size();
-      setUnits();
-      resized = 1;
-  }
     return QLabel::event(event);
 }
 //void LabelWorkSpace::paintEvent(QPaintEvent *)
@@ -196,6 +134,14 @@ bool LabelWorkSpace::event(QEvent *event)
 //}
 LabelWorkSpace::~LabelWorkSpace()
 {
-
+    delete pix_buff;
+    delete pix_push_buff;
+    delete pix_resized;
+    delete pix_push_resized;
+    delete pL;
+    delete label;
+    delete label_push;
+    delete font;
+    delete font_push;
 }
 

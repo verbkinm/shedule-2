@@ -2,6 +2,7 @@
 #define MYTREEWIDGET_H
 
 #include <QTreeWidget>
+#include <QDomDocument>
 
 class MyTreeWidget : public QTreeWidget
 {
@@ -9,17 +10,22 @@ class MyTreeWidget : public QTreeWidget
 private:
     int startY, stopY;
 
-    bool event(QEvent *event);
     QTreeWidgetItem* buffItem;
+
     void mouseReleaseEvent(QMouseEvent*);
     void mousePressEvent(QMouseEvent*);
     void mouseMoveEvent(QMouseEvent*);
+    bool event(QEvent *event);
 
 public:
     MyTreeWidget();
+    ~MyTreeWidget();
 
-    QTreeWidgetItem* rootItem;
+    QTreeWidgetItem *pItemLesson, *pItemTeacher, *pItemRoot;
     QScrollBar* sb;
+
+    void traverseNode(const QDomNode& node);
+
 
 signals:
     void signalItemClick(QTreeWidgetItem*);

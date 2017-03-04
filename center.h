@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include <QVBoxLayout>
+
 #include "myWidgets/centralWidget/desktop.h"
 #include "myWidgets/centralWidget/calendar.h"
 #include "myWidgets/centralWidget/shedule/shedule.h"
@@ -24,6 +25,10 @@ private:
     Calendar *pCalendar;
 
     Shedule *pShedule;
+
+    QObject *activeWidget;
+    QWidget *pParent;
+    void disableButtonCurrentWidget(QObject *activeWidget);
 
 signals:
 

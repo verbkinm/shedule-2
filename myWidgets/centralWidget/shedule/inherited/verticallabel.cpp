@@ -29,4 +29,7 @@ void VerticalLabel::mouseReleaseEvent(QMouseEvent*)
 {
     emit signalClicked();
 }
-
+VerticalLabel::~VerticalLabel()
+{
+    qDebug() << "verticalLabel destruktor";
+}

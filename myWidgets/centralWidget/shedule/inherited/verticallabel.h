@@ -11,6 +11,7 @@ public:
     QString text;
 
     VerticalLabel(QString text = 0);
+    ~VerticalLabel();
 
 private:
     void mouseReleaseEvent(QMouseEvent*);

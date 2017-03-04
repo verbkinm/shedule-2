@@ -1,9 +1,10 @@
 #include "desktop.h"
+#include "generalsettings.h"
 
 #include <QStyleOption>
 #include <QPainter>
 #include <QLabel>
-//#include <QDebug>
+#include <QDebug>
 
 static int resized = 0;
 
@@ -21,6 +22,7 @@ Desktop::Desktop(QWidget *parent) : QWidget(parent)
     labelText[2] = "ФОТОАЛЬБОМ";
 
     this->setLayout(pLayout);
+    this->setObjectName(OBJECT_NAME_DESKTOP);
 }
 void Desktop::setUnits()
 {
@@ -31,29 +33,21 @@ void Desktop::setUnits()
         for(int j = 0; j < LABEL_COUNTS / LABEL_COUNTS_ROWS; j++, label++)
             pLayout->addWidget(pLabelShedule[label],i,j);
 
-    for (int var = 0; var < LABEL_COUNTS; ++var) {
+    for (int var = 0; var < LABEL_COUNTS; ++var)
         pLabelShedule[var]->applySize(this->size() );
-//        qDebug() << "size " << this->size();
-    }
 
-    for (int var = 3; var < LABEL_COUNTS; ++var) {
+    for (int var = 3; var < LABEL_COUNTS; ++var)
         pLabelShedule[var]->setDisabled(true);
-    }
 
     connect(pLabelShedule[0], SIGNAL(signalClick()), SIGNAL(signalLabel_0_Click()) );
-//    qDebug() << " setUnits";
 }
 
 bool Desktop::event(QEvent *event)
 {
-//    qDebug() << event << this->size();
     if(this->isVisible() && event->type() == QEvent::Resize && resized < 1){
-//        qDebug() << " center->size " << this->size();
         setUnits();
         resized = 1;
     }
-
-
 
     return QWidget::event(event);
 }
@@ -67,5 +61,6 @@ void Desktop::paintEvent(QPaintEvent * )
 }
 Desktop::~Desktop()
 {
-
+    resized = 0;
+    qDebug() << "desktop destruktor";
 }

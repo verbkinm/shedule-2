@@ -13,8 +13,15 @@
 #define SIZE_HEADER 50
 #define SIZE_FOOTER 50
 //labelworkspace
-#define LABEL_COUNTS 8
+#define LABEL_COUNTS 6
 #define LABEL_COUNTS_ROWS 2
+
+//calendar
+#define OBJECT_NAME_CALENDAR "Calendar"
+//desktop
+#define OBJECT_NAME_DESKTOP "Desktop"
+//shedule
+#define OBJECT_NAME_SHEDULE "Shedule"
 
 #define MARGIN_DESKTOP 50
 

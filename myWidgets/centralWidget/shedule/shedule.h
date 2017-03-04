@@ -12,6 +12,7 @@ class Shedule : public QWidget
     Q_OBJECT
 public:
     Shedule(QWidget *parent = 0);
+    ~Shedule();
 
     QHBoxLayout *pLayout;
 

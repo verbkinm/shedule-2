@@ -10,44 +10,56 @@
 #include <QDebug>
 #include <QMouseEvent>
 
+#define OBJECT_NAME_VERTICAL_LABEL "pVerticalLabel"
+#define OBJECT_NAME_LIST_LESSON "pListLessons"
+
 SheduleLeftPanel::SheduleLeftPanel(QWidget *parent) : QWidget(parent)
 {
-    pParent = parent;
     pLayout = new QVBoxLayout;
     pLayout->setMargin(0);
 
-    pListLessons = new MyTreeWidget;
-    pListLessons->setObjectName("pListLessons");
-    pListLessons->hide();
-    pListLessons->setFixedWidth(LEFT_PANEL_TREE_WIDTH);
-    pItemRoot = new QTreeWidgetItem(pListLessons);
-    pListLessons->rootItem = pItemRoot;
-    pItemRoot->setText(0, TEXT_ROOT_LIST);
+    createVerticalLabel();
 
-    QFont *pFont = new QFont(pItemRoot->font(0));
-    pFont->setPixelSize(FONT_SHEDULE_LEFT_PANEL_TREE_ROOT);
-    pFont->setBold(true);
-    pItemRoot->setFont(0,*pFont);
-    delete pFont;
-    readFileLessons();
-//    this->pListLessons->expandItem(pItemRoot);
-
-    pItemLesson = 0;
-    pItemTeacher = 0;
-
-    pVerticalLabel = new VerticalLabel(TEXT_VERTICAL_LABEL_LESSONS);
-    pVerticalLabel->setObjectName("pVerticalLabel");
-
-    pLayout->addWidget(pVerticalLabel); //0
-    pLayout->addWidget(pListLessons); //1
-
-    this->setMaximumWidth(pListLessons->width());
     this->setContentsMargins(0,0,0,0);
     this->setLayout(pLayout);
+}
+void SheduleLeftPanel::createVerticalLabel()
+{
+    pVerticalLabel = new VerticalLabel(TEXT_VERTICAL_LABEL_LESSONS);
+    pVerticalLabel->setObjectName(OBJECT_NAME_VERTICAL_LABEL);
+    pLayout->addWidget(pVerticalLabel);
+    connect(pVerticalLabel, SIGNAL(signalClicked()),  this, SLOT(slotSwitchPanelToListLesson()) );
+}
+void SheduleLeftPanel::deleteVerticalLabel()
+{
+    disconnect(pVerticalLabel, SIGNAL(signalClicked()), this, SLOT(slotSwitchPanelToListLesson()) );
+    delete pVerticalLabel;
+}
 
-//    connect(pListLessons,   SIGNAL(itemClicked(QTreeWidgetItem*,int)), SIGNAL(signalItemClick(QTreeWidgetItem*))  );
-    connect(pVerticalLabel, SIGNAL(signalClicked()),        SLOT(slotSwitchPanelToListLesson()) );
+void SheduleLeftPanel::createListLesson()
+{
+    pListLessons = new MyTreeWidget;
+    pListLessons->setObjectName(OBJECT_NAME_LIST_LESSON);
+    pListLessons->setFixedWidth(LEFT_PANEL_TREE_WIDTH);
+    pListLessons->pItemRoot = new QTreeWidgetItem(pListLessons);
+    pListLessons->pItemRoot->setText(0, TEXT_ROOT_LIST);
+    readFileLessons();
+    QFont font = pListLessons->pItemRoot->font(0);
+    font.setPixelSize(FONT_SHEDULE_LEFT_PANEL_TREE_ROOT);
+    font.setBold(true);
+    pListLessons->pItemRoot->setFont(0,font);
+    pListLessons->expandItem(pListLessons->pItemRoot);
+    pListLessons->pItemLesson = 0;
+    pListLessons->pItemTeacher = 0;
+    pLayout->addWidget(pListLessons);
+    this->setMaximumWidth(pListLessons->width());
+
     connect(pListLessons,   SIGNAL(signalItemRootClick()),  SLOT(slotSwitchPanelToListLesson()) );
+}
+void SheduleLeftPanel::deleteListLesson()
+{
+    disconnect(pListLessons, SIGNAL(signalItemRootClick()), this, SLOT(slotSwitchPanelToListLesson()) );
+    delete pListLessons;
 }
 void SheduleLeftPanel::readFileLessons()
 {
@@ -64,41 +76,11 @@ void SheduleLeftPanel::readFileLessons()
     }
     if(domDoc.setContent(pFile)) {
         QDomElement domElement= domDoc.documentElement();
-        traverseNode(domElement);
+        pListLessons->traverseNode(domElement);
     }
     pFile->close();
 }
-void SheduleLeftPanel::traverseNode(const QDomNode& node)
-{
-    QFont *pFont = new QFont(pItemRoot->font(0));
-    pFont->setPixelSize(FONT_SHEDULE_LEFT_PANEL_TREE_TRAVERS_NODE);
-    pFont->setBold(true);
 
-    pItemRoot->setTextAlignment(0,Qt::AlignHCenter);
-
-   QDomNode domNode = node.firstChild();
-   while(!domNode.isNull()) {
-       if(domNode.isElement()) {
-          QDomElement domElement = domNode.toElement();
-          if(!domElement.isNull()) {
-              if(domElement.tagName() == "lesson") {
-                  pItemLesson = new QTreeWidgetItem(pItemRoot);
-                  pItemLesson->setFont(0,*pFont);
-                  pItemLesson->setText(0, domElement.attribute("name", ""));
-              }
-              else {
-                  pItemTeacher = new QTreeWidgetItem(pItemLesson);
-                  pItemTeacher->setFont(0,*pFont);
-                  pItemTeacher->setText(0, domElement.text() );
-                  pItemTeacher->setIcon(0,QPixmap(":/img/empty_button"));
-             }
-          }
-       }
-       traverseNode(domNode);
-       domNode = domNode.nextSibling();
-    }
-   delete pFont;
-}
 void SheduleLeftPanel::setUnits()
 {
 //    readFileLessons();
@@ -113,6 +95,7 @@ void SheduleLeftPanel::paintEvent(QPaintEvent *)
 }
 bool SheduleLeftPanel::event(QEvent *event)
 {
+//    qDebug() << event->type();
 //    if(event->type() == QEvent::Resize && resized < 1){
 //        this->setUnits();
 //        resized = 1;
@@ -121,16 +104,18 @@ bool SheduleLeftPanel::event(QEvent *event)
 }
 void SheduleLeftPanel::slotSwitchPanelToListLesson()
 {
-    QObject *sender = this->sender();
-    qDebug() << "sender name " << sender->objectName();
-    qDebug() << pVerticalLabel->isVisible();
-    pListLessons->setVisible(!pListLessons->isVisible());
-    pVerticalLabel->setVisible(!pVerticalLabel->isVisible());
-
+    QObject *object = this->sender();
+    if(object->objectName() == OBJECT_NAME_LIST_LESSON){
+        deleteListLesson();
+        createVerticalLabel();
+        return;
+    }
+    if(object->objectName() == OBJECT_NAME_VERTICAL_LABEL){
+        deleteVerticalLabel();
+        createListLesson();
+    }
 }
-//void SheduleLeftPanel::slotSwitchPanelToMini()
-//{
-//    pVerticalLabel->setVisible(true);
-//    pListLessons->setVisible(false);
-
-//}
+SheduleLeftPanel::~SheduleLeftPanel()
+{
+    qDebug() << "sheduleLeftPanel destruktor";
+}

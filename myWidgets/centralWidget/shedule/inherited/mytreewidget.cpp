@@ -10,22 +10,53 @@
 
 static bool _expanded = false;
 
-MyTreeWidget::MyTreeWidget() : QTreeWidget(),startY(-1), stopY(-1), rootItem(0)
+MyTreeWidget::MyTreeWidget() : QTreeWidget(),startY(-1), stopY(-1),pItemRoot(0)/*, rootItem(0)*/
 {
-//    this->setAnimated(true);
+    this->setAnimated(true);
     this->setHeaderHidden(true);
     this->setExpandsOnDoubleClick(false);
     this->setRootIsDecorated(false);
+
     sb = this->verticalScrollBar();
-    sb->setVisible(false);
     connect(this, SIGNAL(itemClicked(QTreeWidgetItem*,int)), SLOT(slotItemClick(QTreeWidgetItem*,int)) );
+
+    sb->setObjectName("sb");
+}
+void MyTreeWidget::traverseNode(const QDomNode& node)
+{
+    QFont font = pItemRoot->font(0);
+    font.setPixelSize(FONT_SHEDULE_LEFT_PANEL_TREE_TRAVERS_NODE);
+    font.setBold(true);
+
+    pItemRoot->setTextAlignment(0,Qt::AlignHCenter);
+
+   QDomNode domNode = node.firstChild();
+   while(!domNode.isNull()) {
+       if(domNode.isElement()) {
+          QDomElement domElement = domNode.toElement();
+          if(!domElement.isNull()) {
+              if(domElement.tagName() == "lesson") {
+                  pItemLesson = new QTreeWidgetItem(pItemRoot);
+                  pItemLesson->setFont(0,font);
+                  pItemLesson->setText(0, domElement.attribute("name", ""));
+              }
+              else {
+                  pItemTeacher = new QTreeWidgetItem(pItemLesson);
+                  pItemTeacher->setFont(0,font);
+                  pItemTeacher->setText(0, domElement.text() );
+                  pItemTeacher->setIcon(0,QPixmap(":/img/empty_button"));
+             }
+          }
+       }
+       traverseNode(domNode);
+       domNode = domNode.nextSibling();
+    }
 }
 void MyTreeWidget::slotItemClick(QTreeWidgetItem *item, int column)
 {
-    if(item->text(column) == TEXT_ROOT_LIST && _expanded == true){
+    if(item->text(column) == TEXT_ROOT_LIST){
         emit signalItemRootClick();
         _expanded = false;
-        qDebug() << "tree" << this->isVisible();
         return;
     }
 
@@ -84,16 +115,21 @@ void MyTreeWidget::mouseReleaseEvent(QMouseEvent*)
     startY  = -1;
     stopY   = -1;
 
-    sb->setVisible(false);
+//    sb->setVisible(false);
 //    QTreeView::mouseReleaseEvent(event); // нужно закоментировать, чтобы списки разворачивались
 }
 
 bool MyTreeWidget::event(QEvent *event)
 {
-    if(event->type() == QEvent::Show){
-        this->collapseAll();
-        this->itemClicked(rootItem,0);
-        _expanded = true;
-    }
+//    if(event->type() == QEvent::Show){
+//        this->collapseAll();
+//        this->itemClicked(rootItem,0);
+//        _expanded = true;
+//    }
     return QTreeView::event(event);
+}
+MyTreeWidget::~MyTreeWidget()
+{
+    this->clear();
+    qDebug() << "mytreewidget destruktor";
 }

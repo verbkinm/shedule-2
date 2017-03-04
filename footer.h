@@ -15,6 +15,7 @@ public:
     ~Footer();
 
     void applySize();
+    void disableButtonCurrentWidget(QObject *activeWidget);
 
 private:
     int length;

@@ -16,9 +16,8 @@ Widget::Widget(QWidget *parent)
     pL->setSpacing(0);
 
     header = new Header;
-    center = new Center;
     footer = new Footer;
-
+    center = new Center(this);
 
     header->setFixedHeight(SIZE_HEADER);
     footer->setFixedHeight(SIZE_FOOTER);
@@ -34,16 +33,22 @@ Widget::Widget(QWidget *parent)
 
     this->setLayout(pL);
 
-    connect(footer, SIGNAL(signalPushHome()), SLOT(slotVeiwHome()) ); // home
-    connect(footer, SIGNAL(signalPushDateAndTime()), SLOT(slotVeiwCalendar()) ); // calendar
-    connect(footer, SIGNAL(signalPushShedule()), SLOT(slotVeiwShedule()) ); // shedule
+    connect(footer, SIGNAL(signalPushHome()),           SLOT(slotVeiwHome()) );     // home
+    connect(footer, SIGNAL(signalPushDateAndTime()),    SLOT(slotVeiwCalendar()) ); // calendar
+    connect(footer, SIGNAL(signalPushShedule()),        SLOT(slotVeiwShedule()) );  // shedule
 }
 void Widget::slotVeiwHome()
-{center->slotViewHome();}
+{
+    center->slotViewHome();
+}
 void Widget::slotVeiwCalendar()
-{center->slotViewCalendar();}
+{
+    center->slotViewCalendar();
+}
 void Widget::slotVeiwShedule()
-{center->slotViewShedule();}
+{
+    center->slotViewShedule();
+}
 Widget::~Widget()
 {
 
