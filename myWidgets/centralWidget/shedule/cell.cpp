@@ -13,7 +13,6 @@ Cell::Cell() : QObject()
 {
 
 }
-
 void Cell::setHeader(QString header)
 {this->header = header;}
 void Cell::setNameOfLesson(QString nameOfLesson)

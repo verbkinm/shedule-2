@@ -17,6 +17,7 @@ private:
 
     int numberOfLesson;
     int numberOfCollum;
+    int numberOfRow;
     int numberOfClass;
     QString *pArrClassLiter; //number and literal
     QString *pArrLessonTime;

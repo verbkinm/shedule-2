@@ -19,7 +19,29 @@ SheduleLeftPanel::SheduleLeftPanel(QWidget *parent) : QWidget(parent)
     pLayout = new QVBoxLayout;
     pLayout->setMargin(0);
 
-    createVerticalLabel();
+    //VERTICAL_LABEL
+    pVerticalLabel = new VerticalLabel(TEXT_VERTICAL_LABEL_LESSONS);
+    pVerticalLabel->setObjectName(OBJECT_NAME_VERTICAL_LABEL);
+    pLayout->addWidget(pVerticalLabel);
+    connect(pVerticalLabel, SIGNAL(signalClicked()),  this, SLOT(slotSwitchPanelToListLesson()) );
+    //LIST_LESSON
+    pListLessons = new MyTreeWidget;
+    pListLessons->setObjectName(OBJECT_NAME_LIST_LESSON);
+    pListLessons->setFixedWidth(LEFT_PANEL_TREE_WIDTH);
+    pListLessons->pItemRoot = new QTreeWidgetItem(pListLessons);
+    pListLessons->pItemRoot->setText(0, TEXT_ROOT_LIST);
+    readFileLessons();
+    QFont font = pListLessons->pItemRoot->font(0);
+    font.setPixelSize(FONT_SHEDULE_LEFT_PANEL_TREE_ROOT);
+    font.setBold(true);
+    pListLessons->pItemRoot->setFont(0,font);
+    pListLessons->expandItem(pListLessons->pItemRoot);
+    pListLessons->pItemLesson = 0;
+    pListLessons->pItemTeacher = 0;
+    pLayout->addWidget(pListLessons);
+    pListLessons->hide();
+    connect(pListLessons,   SIGNAL(signalItemRootClick()),  SLOT(slotSwitchPanelToListLesson()) );
+    connect(pListLessons,   SIGNAL(itemClicked(QTreeWidgetItem*, int)),  this, SIGNAL(signalItemClick(QTreeWidgetItem*, int)) );
 
     this->setContentsMargins(0,0,0,0);
     this->setLayout(pLayout);
@@ -94,13 +116,20 @@ void SheduleLeftPanel::slotSwitchPanelToListLesson()
 {
     QObject *object = this->sender();
     if(object->objectName() == OBJECT_NAME_LIST_LESSON){
-        deleteListLesson();
-        createVerticalLabel();
+        pListLessons->hide();
+        pVerticalLabel->setVisible(true);
+//        deleteListLesson();
+//        createVerticalLabel();
         return;
     }
     if(object->objectName() == OBJECT_NAME_VERTICAL_LABEL){
-        deleteVerticalLabel();
-        createListLesson();
+        pVerticalLabel->hide();
+        pListLessons->setVisible(true);
+        pListLessons->collapseAll();
+        pListLessons->expandItem(pListLessons->pItemRoot);
+        this->setMaximumWidth(pListLessons->width());
+//        deleteVerticalLabel();
+//        createListLesson();
     }
 }
 //EVENTS

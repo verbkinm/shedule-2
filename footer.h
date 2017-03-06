@@ -36,6 +36,7 @@ signals:
 
 public slots:
     void slotStyleApply();
+    void slotInDevelopment();
 };
 
 #endif // FOOTER_H

@@ -32,6 +32,8 @@ private:
 
 signals:
     void signalLabel_0_Click();
+    void signalLabel_1_Click();
+    void signalLabel_2_Click();
 
 public slots:
 };

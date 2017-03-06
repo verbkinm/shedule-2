@@ -1,6 +1,7 @@
 #include "footer.h"
 #include "generalsettings.h"
 
+#include <QMessageBox>
 #include <QDebug>
 #include <QStyleOption>
 #include <QPainter>
@@ -8,6 +9,7 @@
 
 #define RATIO 80
 
+//CONSTRUKTOR
 Footer::Footer(QWidget *parent) : QWidget(parent)//, calendarView(false)
 {
     length = sizeof(buttons)/sizeof(buttons[0]);
@@ -24,11 +26,14 @@ Footer::Footer(QWidget *parent) : QWidget(parent)//, calendarView(false)
 
     this->setLayout(pLayout);
 
+    connect(buttons[0], SIGNAL(signalClick()),  SLOT(slotInDevelopment()) );
+    connect(buttons[1], SIGNAL(signalClick()),  SIGNAL(signalPushShedule()) );
     connect(buttons[2], SIGNAL(signalClick()),  SLOT(slotStyleApply()) ); // временно
     connect(buttons[2], SIGNAL(signalClick()),  SIGNAL(signalPushHome()) );
-    connect(buttons[1], SIGNAL(signalClick()),  SIGNAL(signalPushShedule()) );
     connect(panelDateAndTime, SIGNAL(signalClick()), SIGNAL(signalPushDateAndTime()) );
+    connect(buttons[3], SIGNAL(signalClick()),  SLOT(slotInDevelopment()) );
 }
+//FUNCTIONS
 void Footer::disableButtonCurrentWidget(QObject *activeWidget)
 {
     int size = sizeof(buttons) / sizeof(buttons[0]);
@@ -62,13 +67,7 @@ void Footer::applySize()
     panelDateAndTime->setFixedSize(currentSize*2, currentSize / 100 * 80);
     panelDateAndTime->setFontSize(12);
 }
-void Footer::paintEvent(QPaintEvent * )
-{
-    QStyleOption opt;
-    opt.init(this);
-    QPainter p(this);
-    style()->drawPrimitive(QStyle::PE_Widget, &opt, &p, this);
-}
+//SLOTS
 void Footer::slotStyleApply()
 {
     QFile file("/home/verbkinm/myProg/shedule-2/style.qss");
@@ -77,8 +76,30 @@ void Footer::slotStyleApply()
     file.close();
     qApp->setStyleSheet(strCSS);
 }
-
+void Footer::slotInDevelopment()
+{
+    QMessageBox msgBox;
+    msgBox.setWindowFlags(Qt::FramelessWindowHint);
+    msgBox.setIcon(QMessageBox::Warning);
+    msgBox.setText("В разработке!");
+    msgBox.exec();
+}
+//EVENTS
+void Footer::paintEvent(QPaintEvent * )
+{
+    QStyleOption opt;
+    opt.init(this);
+    QPainter p(this);
+    style()->drawPrimitive(QStyle::PE_Widget, &opt, &p, this);
+}
+//DECONSTRUKTOR
 Footer::~Footer()
 {
     delete panelDateAndTime;
+    delete buttons[0];
+    delete buttons[1];
+    delete buttons[2];
+    delete buttons[3];
+    delete pLayout;
+
 }

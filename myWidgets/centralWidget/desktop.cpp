@@ -40,6 +40,8 @@ void Desktop::setUnits()
         pLabelShedule[var]->setDisabled(true);
 
     connect(pLabelShedule[0], SIGNAL(signalClick()), SIGNAL(signalLabel_0_Click()) );
+    connect(pLabelShedule[1], SIGNAL(signalClick()), SIGNAL(signalLabel_1_Click()) );
+    connect(pLabelShedule[2], SIGNAL(signalClick()), SIGNAL(signalLabel_2_Click()) );
 }
 
 bool Desktop::event(QEvent *event)

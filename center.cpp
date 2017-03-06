@@ -3,6 +3,7 @@
 
 #include <QStyleOption>
 #include <QPainter>
+#include <QMessageBox>
 
 //CONSTRUKTOR
 Center::Center(QWidget *parent) : QWidget(parent)
@@ -24,6 +25,8 @@ Center::Center(QWidget *parent) : QWidget(parent)
     this->setLayout(pLayout);
 
     connect(pHome, SIGNAL(signalLabel_0_Click()), SLOT(slotViewShedule()) );
+    connect(pHome, SIGNAL(signalLabel_1_Click()), SLOT(slotInDevelopment()) );
+    connect(pHome, SIGNAL(signalLabel_2_Click()), SLOT(slotInDevelopment()) );
 }
 //FUNCTIONS
 void Center::disableButtonCurrentWidget(QObject *activeWidget)
@@ -33,6 +36,14 @@ void Center::disableButtonCurrentWidget(QObject *activeWidget)
         widget->footer->disableButtonCurrentWidget(activeWidget);
 }
 //SLOTS
+void Center::slotInDevelopment()
+{
+    QMessageBox msgBox;
+    msgBox.setWindowFlags(Qt::FramelessWindowHint);
+    msgBox.setIcon(QMessageBox::Warning);
+    msgBox.setText("В разработке!");
+    msgBox.exec();
+}
 void Center::slotViewHome()
 {
     for(int i = 0; i < pLayout->count(); i++)

@@ -59,7 +59,7 @@ void LabelWorkSpace::applySize(QSize size)
     pLText = new QLabel(textLabel);
 
     font = new QFont(pLText->font());
-    font->setPixelSize(FONT_SIZE);
+    font->setPixelSize(FONT_SIZE_LABEL_WORK_SPACE);
     font_push = new QFont(pLText->font());
     font_push->setPixelSize(FONT_PUSH_SIZE);
 

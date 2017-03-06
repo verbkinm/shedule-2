@@ -45,3 +45,6 @@ myWidgets/centralWidget/shedule/inherited/verticallabel.h \
 #INCLUDEPATH += ./
 
 RESOURCES += src.qrc
+
+FORMS += \
+    indevelopment.ui

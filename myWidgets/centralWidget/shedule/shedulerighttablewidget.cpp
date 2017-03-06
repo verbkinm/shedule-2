@@ -8,6 +8,7 @@
 #include <QMessageBox>
 #include <QHeaderView>
 
+//CONSTRUKTOR
 SheduleRightTableWidget::SheduleRightTableWidget(QWidget *parent) : QWidget(parent)
 {
     pLayout = new QVBoxLayout;
@@ -25,11 +26,11 @@ SheduleRightTableWidget::SheduleRightTableWidget(QWidget *parent) : QWidget(pare
     pDomDoc = new QDomDocument;
     pDomDoc->setContent(*allFile);
 
-//create DOMDOC
+    //create DOMDOC
     structuring(pDomDoc);
     delete allFile; //???
 
-    pTableWidget      = new QTableWidget(numberOfLesson+1,numberOfCollum);
+    pTableWidget = new QTableWidget(numberOfRow,numberOfCollum);
     pTableWidget->horizontalHeader()->hide();
     pTableWidget->verticalHeader()->hide();
 
@@ -37,24 +38,24 @@ SheduleRightTableWidget::SheduleRightTableWidget(QWidget *parent) : QWidget(pare
     pTableWidget->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
     pTableWidget->setEditTriggers(0);
 
-//CREATE QTABLEITEMS IN QTABLEWIDGET
-    for (int row = 0; row < numberOfLesson + 1; ++row)
+    //CREATE QTABLE_ITEMS IN QTABLE_WIDGET
+    for (int row = 0; row < numberOfRow; ++row)
         for (int column = 0; column < numberOfCollum; ++column) {
             pTableWidgetItem = new QTableWidgetItem;
             pTableWidget->setItem(row, column, pTableWidgetItem);
         }
     pTableWidget->item(0, 0)->setText("№");
     pTableWidget->item(0, 1)->setText("Время");
-//LESSON TIME AND NUMBER OF LESSONS
-    for (int i = 1; i < numberOfLesson+1; ++i){
+    //LESSON TIME AND NUMBER OF LESSONS
+    for (int i = 1; i < numberOfRow; ++i){
         pTableWidget->item(i, 0)->setText(QString::number(i) );
         pTableWidget->item(i, 1)->setText(pArrLessonTime[i - 1]);
     }
-//NAME OF CLASS
+    //NAME OF CLASS
     for (int i = 2; i < numberOfClass + 2; ++i)
         pTableWidget->item(0, i)->setText(tableShedule[0][i - 2].getHeader() );
-//FILLING CELLS
-    for (int i = 1; i < numberOfLesson + 1; ++i)
+    //FILLING CELLS
+    for (int i = 1; i < numberOfRow; ++i)
         for (int ii = 2; ii < numberOfClass + 2; ++ii){
             pTableWidget->item(i, ii)->setText(tableShedule[i -1][ii - 2].getnameOfLesson() );
             QString currentText = pTableWidget->item(i, ii)->text();
@@ -68,14 +69,14 @@ SheduleRightTableWidget::SheduleRightTableWidget(QWidget *parent) : QWidget(pare
             }
             pTableWidget->item(i, ii)->setText(currentText);
         }
-//ALIGN FIRST ROW
+    //ALIGN FIRST ROW
     for (int i = 0; i < numberOfCollum; ++i)
         pTableWidget->item(0, i)->setTextAlignment(Qt::AlignCenter);
-//ALIGN FIRST COLUMN
-    for (int i = 1; i < numberOfLesson + 1; ++i)
+    //ALIGN FIRST COLUMN
+    for (int i = 1; i < numberOfRow; ++i)
         pTableWidget->item(i, 0)->setTextAlignment(Qt::AlignCenter);
-//SET FONT TABLE
-    for (int i = 0; i < numberOfLesson + 1; ++i)
+    //SET FONT TABLE
+    for (int i = 0; i < numberOfRow; ++i)
         for (int ii = 0; ii < numberOfCollum; ++ii) {
             QFont pFont(pTableWidget->item(i, ii)->font());
             pFont.setPixelSize(FONT_SIZE_TABLE_SHEDULE);
@@ -84,9 +85,9 @@ SheduleRightTableWidget::SheduleRightTableWidget(QWidget *parent) : QWidget(pare
     pTableWidget->resizeColumnsToContents();
     pTableWidget->resizeRowsToContents();
 
-//FIXED SIZE COLUMN 0,1
+    //FIXED SIZE COLUMN 0,1
     pTableWidget->setColumnWidth(0, 30);
-    for (int i = 1; i < numberOfLesson + 1; ++i) {
+    for (int i = 1; i < numberOfRow; ++i) {
         QString str = pTableWidget->item(i,1)->text();
         str.replace("-", "\n-\n");
         str.remove(" ");
@@ -94,16 +95,36 @@ SheduleRightTableWidget::SheduleRightTableWidget(QWidget *parent) : QWidget(pare
         pTableWidget->item(i, 1)->setTextAlignment(Qt::AlignCenter);
     }
     pTableWidget->setColumnWidth(1, 40);
-
+    //SET BOLD FONT AND BACKGROUND FOR 0-COLUMN
+    for (int i = 0; i < numberOfCollum; ++i) {
+        QFont font = pTableWidget->item(0, 1)->font();
+        font.setBold(true);
+        pTableWidget->item(0, i)->setFont(font);
+        pTableWidget->item(0, i)->setBackgroundColor(QColor(228,228,228));
+    }
+    //SET BOLD FONT AND BACKGROUND FOR 0-ROW
+    for (int i = 1; i < numberOfRow; ++i)
+        for (int ii = 0; ii < 2; ++ii) {
+            QFont font = pTableWidget->item(i, ii)->font();
+            font.setBold(true);
+            pTableWidget->item(i, ii)->setFont(font);
+            pTableWidget->item(i, ii)->setBackgroundColor(QColor(228,228,228));
+        }
+    //SET BACKGOUND COLOR FOR I-ROW
+    for (int i = 2; i < numberOfRow; i += 2)
+        for (int ii = 2; ii < numberOfCollum; ++ii) {
+            pTableWidget->item(i, ii)->setBackgroundColor(QColor(246,246,246));
+        }
 
     pLayout->addWidget(pTableWidget);
     this->setLayout(pLayout);
 }
-
+//FUNCTIONS
 void SheduleRightTableWidget::structuring(QDomDocument *pDomDoc)
 {
     root            = pDomDoc->firstChild(); //<table>
     numberOfLesson  = root.childNodes().size() - 1;
+    numberOfRow     = root.childNodes().size();
     numberOfCollum  = root.firstChild().childNodes().size();
     numberOfClass   = numberOfCollum - 2;
     pArrClassLiter  = new QString[numberOfClass];
@@ -140,6 +161,8 @@ void SheduleRightTableWidget::structuring(QDomDocument *pDomDoc)
         }
     }
 }
+//SLOTS
+//EVENTS
 void SheduleRightTableWidget::paintEvent(QPaintEvent *)
 {
     QStyleOption opt;
@@ -147,3 +170,4 @@ void SheduleRightTableWidget::paintEvent(QPaintEvent *)
     QPainter p(this);
     style()->drawPrimitive(QStyle::PE_Widget, &opt, &p, this);
 }
+//DECONSTRUKTOR

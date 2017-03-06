@@ -35,6 +35,8 @@ public slots:
     void slotViewHome();
     void slotViewCalendar();
     void slotViewShedule();
+
+    void slotInDevelopment();
 };
 
 #endif // CENTER_H
