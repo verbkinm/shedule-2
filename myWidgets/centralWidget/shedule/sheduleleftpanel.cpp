@@ -13,6 +13,7 @@
 #define OBJECT_NAME_VERTICAL_LABEL "pVerticalLabel"
 #define OBJECT_NAME_LIST_LESSON "pListLessons"
 
+//CONSTRUKTOR
 SheduleLeftPanel::SheduleLeftPanel(QWidget *parent) : QWidget(parent)
 {
     pLayout = new QVBoxLayout;
@@ -23,6 +24,7 @@ SheduleLeftPanel::SheduleLeftPanel(QWidget *parent) : QWidget(parent)
     this->setContentsMargins(0,0,0,0);
     this->setLayout(pLayout);
 }
+//FUNCTIONS
 void SheduleLeftPanel::createVerticalLabel()
 {
     pVerticalLabel = new VerticalLabel(TEXT_VERTICAL_LABEL_LESSONS);
@@ -32,7 +34,7 @@ void SheduleLeftPanel::createVerticalLabel()
 }
 void SheduleLeftPanel::deleteVerticalLabel()
 {
-    disconnect(pVerticalLabel, SIGNAL(signalClicked()), this, SLOT(slotSwitchPanelToListLesson()) );
+//    disconnect(pVerticalLabel, SIGNAL(signalClicked()), this, SLOT(slotSwitchPanelToListLesson()) );
     delete pVerticalLabel;
 }
 
@@ -55,10 +57,11 @@ void SheduleLeftPanel::createListLesson()
     this->setMaximumWidth(pListLessons->width());
 
     connect(pListLessons,   SIGNAL(signalItemRootClick()),  SLOT(slotSwitchPanelToListLesson()) );
+    connect(pListLessons,   SIGNAL(itemClicked(QTreeWidgetItem*, int)),  this, SIGNAL(signalItemClick(QTreeWidgetItem*, int)) );
 }
 void SheduleLeftPanel::deleteListLesson()
 {
-    disconnect(pListLessons, SIGNAL(signalItemRootClick()), this, SLOT(slotSwitchPanelToListLesson()) );
+//    disconnect(pListLessons, SIGNAL(signalItemRootClick()), this, SLOT(slotSwitchPanelToListLesson()) );
     delete pListLessons;
 }
 void SheduleLeftPanel::readFileLessons()
@@ -86,6 +89,21 @@ void SheduleLeftPanel::setUnits()
 //    readFileLessons();
 //    pListLessons->expandItem(pItemRoot);
 }
+//SLOTS
+void SheduleLeftPanel::slotSwitchPanelToListLesson()
+{
+    QObject *object = this->sender();
+    if(object->objectName() == OBJECT_NAME_LIST_LESSON){
+        deleteListLesson();
+        createVerticalLabel();
+        return;
+    }
+    if(object->objectName() == OBJECT_NAME_VERTICAL_LABEL){
+        deleteVerticalLabel();
+        createListLesson();
+    }
+}
+//EVENTS
 void SheduleLeftPanel::paintEvent(QPaintEvent *)
 {
     QStyleOption opt;
@@ -102,19 +120,7 @@ bool SheduleLeftPanel::event(QEvent *event)
 //    }
     return QWidget::event(event);
 }
-void SheduleLeftPanel::slotSwitchPanelToListLesson()
-{
-    QObject *object = this->sender();
-    if(object->objectName() == OBJECT_NAME_LIST_LESSON){
-        deleteListLesson();
-        createVerticalLabel();
-        return;
-    }
-    if(object->objectName() == OBJECT_NAME_VERTICAL_LABEL){
-        deleteVerticalLabel();
-        createListLesson();
-    }
-}
+//DECONSTRUKTOR
 SheduleLeftPanel::~SheduleLeftPanel()
 {
     qDebug() << "sheduleLeftPanel destruktor";

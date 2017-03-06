@@ -24,7 +24,7 @@ private:
 signals:
 
 public slots:
-    void slotSheduleLeftPanelItemClick(QTreeWidgetItem*);
+    void slotSheduleLeftPanelItemClick(QTreeWidgetItem*, int);
 };
 
 #endif // SHEDULE_H

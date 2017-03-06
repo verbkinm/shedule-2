@@ -27,7 +27,6 @@ private:
     Shedule *pShedule;
 
     QObject *activeWidget;
-    QWidget *pParent;
     void disableButtonCurrentWidget(QObject *activeWidget);
 
 signals:

@@ -3,6 +3,7 @@
 
 #include <QDebug>
 
+//CONSTRUKTOR
 Shedule::Shedule(QWidget *parent) : QWidget(parent)
 {
     pLayout         = new QHBoxLayout;
@@ -18,19 +19,19 @@ Shedule::Shedule(QWidget *parent) : QWidget(parent)
     this->setLayout(pLayout);
     this->setObjectName(OBJECT_NAME_SHEDULE);
 
-    connect(pLeftWidget, SIGNAL(signalItemClick(QTreeWidgetItem*)), SLOT(slotSheduleLeftPanelItemClick(QTreeWidgetItem*)) );
+    connect(pLeftWidget, SIGNAL(signalItemClick(QTreeWidgetItem*, int)), SLOT(slotSheduleLeftPanelItemClick(QTreeWidgetItem*, int)) );
 }
-
-void Shedule::slotSheduleLeftPanelItemClick(QTreeWidgetItem *item)
+//SLOTS
+void Shedule::slotSheduleLeftPanelItemClick(QTreeWidgetItem *item, int column)
 {
     QString str     = "\0";
     QString lesson  = "\0";
     QString teacher = "\0";
 
-    if(item->text(0) != TEXT_ROOT_LIST){
-        if(item->parent()->text(0) != TEXT_ROOT_LIST)
-            lesson = item->parent()->text(0);
-        teacher = item->text(0);
+    if(item->text(column) != TEXT_ROOT_LIST){
+        if(item->parent()->text(column) != TEXT_ROOT_LIST)
+            lesson = item->parent()->text(column);
+        teacher = item->text(column);
     }
     else
         lesson = TEXT_SHEDULE_DEFAULT;
@@ -45,6 +46,7 @@ void Shedule::slotSheduleLeftPanelItemClick(QTreeWidgetItem *item)
     str = lesson + " " + teacher;
     pRightWidget->setHeaderText(str);
 }
+//DECONSTRUKTOR
 Shedule::~Shedule()
 {
     qDebug() << "shedule destruktor";

@@ -18,7 +18,6 @@ public:
     ~SheduleLeftPanel();
 
     MyTreeWidget* pListLessons;
-//    QTreeWidgetItem *pItemLesson, *pItemTeacher, *pItemRoot; //список уроков и список учителей, pItemRoot - корень списка
     VerticalLabel* pVerticalLabel;
 
 private:
@@ -32,14 +31,13 @@ private:
     void deleteVerticalLabel();
 
     void readFileLessons();
-//    void traverseNode(const QDomNode& node);
 
     bool event(QEvent *event);
     void paintEvent(QPaintEvent * );
 
 signals:
-    void signalItemClick(QTreeWidgetItem*);
-    void signalTest();
+    void signalItemClick(QTreeWidgetItem*, int);
+
 public slots:
     void slotSwitchPanelToListLesson();
 //    void slotSwitchPanelToMini();

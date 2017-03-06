@@ -15,6 +15,7 @@ Footer::Footer(QWidget *parent) : QWidget(parent)//, calendarView(false)
     buttons[0] = new PushButton(":/img/news", ":/img/news_push");
     buttons[1] = new PushButton(":/img/shedule", ":/img/shedule_push");
     buttons[2] = new PushButton(":/img/home", ":/img/home_push");
+    buttons[2]->setDisabled(true);
     buttons[3] = new PushButton(":/img/help", ":/img/help_push");
 
     pLayout = new QHBoxLayout;

@@ -10,6 +10,7 @@
 
 static bool _expanded = false;
 
+//CONSTRUKTOR
 MyTreeWidget::MyTreeWidget() : QTreeWidget(),startY(-1), stopY(-1),pItemRoot(0)/*, rootItem(0)*/
 {
     this->setAnimated(true);
@@ -22,6 +23,7 @@ MyTreeWidget::MyTreeWidget() : QTreeWidget(),startY(-1), stopY(-1),pItemRoot(0)/
 
     sb->setObjectName("sb");
 }
+//FUNCTIONS
 void MyTreeWidget::traverseNode(const QDomNode& node)
 {
     QFont font = pItemRoot->font(0);
@@ -52,6 +54,7 @@ void MyTreeWidget::traverseNode(const QDomNode& node)
        domNode = domNode.nextSibling();
     }
 }
+//SLOTS
 void MyTreeWidget::slotItemClick(QTreeWidgetItem *item, int column)
 {
     if(item->text(column) == TEXT_ROOT_LIST){
@@ -68,6 +71,7 @@ void MyTreeWidget::slotItemClick(QTreeWidgetItem *item, int column)
         this->collapseItem(item);
     }
 }
+//EVENTS
 void MyTreeWidget::mousePressEvent(QMouseEvent* event)
 {
     buffItem = 0;

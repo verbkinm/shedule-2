@@ -4,30 +4,60 @@
 #include <QStyleOption>
 #include <QPainter>
 
+//CONSTRUKTOR
 Center::Center(QWidget *parent) : QWidget(parent)
 {
-    pParent = parent;
-
     pHome = new Desktop;
-    activeWidget = pHome;
+
+    pCalendar = new Calendar;
+    pCalendar->setVisible(false);
+
+    pShedule = new Shedule;
+    pShedule->setVisible(false);
 
     pLayout = new QVBoxLayout;
     pLayout->setContentsMargins(0,0,0,0);
-
     pLayout->addWidget(pHome);
+    pLayout->addWidget(pCalendar);
+    pLayout->addWidget(pShedule);
 
     this->setLayout(pLayout);
 
     connect(pHome, SIGNAL(signalLabel_0_Click()), SLOT(slotViewShedule()) );
-    disableButtonCurrentWidget(activeWidget);
 }
+//FUNCTIONS
 void Center::disableButtonCurrentWidget(QObject *activeWidget)
 {
-    Widget *widget = qobject_cast<Widget*>(pParent);
+    Widget *widget = qobject_cast<Widget*>(parent());
     if(widget != 0)
         widget->footer->disableButtonCurrentWidget(activeWidget);
 }
-
+//SLOTS
+void Center::slotViewHome()
+{
+    for(int i = 0; i < pLayout->count(); i++)
+        pLayout->itemAt(i)->widget()->hide();
+    pHome->setVisible(true);
+    activeWidget = pHome;
+    disableButtonCurrentWidget(activeWidget);
+}
+void Center::slotViewCalendar()
+{
+    for(int i = 0; i < pLayout->count(); i++)
+        pLayout->itemAt(i)->widget()->hide();
+    pCalendar->setVisible(true);
+    activeWidget = pCalendar;
+    disableButtonCurrentWidget(activeWidget);
+}
+void Center::slotViewShedule()
+{
+    for(int i = 0; i < pLayout->count(); i++)
+        pLayout->itemAt(i)->widget()->hide();
+    pShedule->setVisible(true);
+    activeWidget = pShedule;
+    disableButtonCurrentWidget(activeWidget);
+}
+//EVENTS
 void Center::paintEvent(QPaintEvent * )
 {
     QStyleOption opt;
@@ -35,34 +65,7 @@ void Center::paintEvent(QPaintEvent * )
     QPainter p(this);
     style()->drawPrimitive(QStyle::PE_Widget, &opt, &p, this);
 }
-void Center::slotViewHome()
-{
-    delete activeWidget;
-    pHome = new Desktop;
-    activeWidget = pHome;
-    pLayout->addWidget(pHome);
-    pHome->showMaximized();
-    pHome->setUnits();
-    connect(pHome, SIGNAL(signalLabel_0_Click()), SLOT(slotViewShedule()) );
-    disableButtonCurrentWidget(activeWidget);
-}
-void Center::slotViewCalendar()
-{
-    delete activeWidget;
-    pCalendar = new Calendar;
-    activeWidget = pCalendar;
-    pLayout->addWidget(pCalendar);
-    disableButtonCurrentWidget(activeWidget);
-}
-void Center::slotViewShedule()
-{
-    delete activeWidget;
-    pShedule = new Shedule;
-    activeWidget = pShedule;
-    pLayout->addWidget(pShedule);
-    disableButtonCurrentWidget(activeWidget);
-}
-
+//DESTRUKTOR
 Center::~Center()
 {
 

@@ -41,7 +41,7 @@
   <td>
    <table>
     <tr>
-     <td>Русский язык</td>
+     <td>Математика</td>
      <td>Степанова Л.А.</td>
     </tr>
     <tr>
@@ -52,7 +52,7 @@
   <td>
    <table>
     <tr>
-     <td>Литературное Чтение</td>
+     <td>Социокультурные истоки</td>
      <td>Малинина С.А.</td>
     </tr>
     <tr>
@@ -63,7 +63,7 @@
   <td>
    <table>
     <tr>
-     <td>Русский язык</td>
+     <td>Окружающий мир</td>
      <td>Симонова Л.Н.</td>
     </tr>
     <tr>
@@ -74,26 +74,36 @@
   <td>
    <table>
     <tr>
-     <td>музыка</td>
-     <td>Буторина О.В</td>
+     <td>Окружающий мир</td>
+     <td>Гайсина Ф.З.</td>
     </tr>
     <tr>
-     <td>348</td>
+     <td>116</td>
     </tr>
    </table>
   </td>
   <td>
    <table>
     <tr>
-     <td>Математика</td>
-     <td>Старшова Л.П.</td>
+     <td>Физкультура</td>
+     <td>Рослякова М.В.</td>
     </tr>
     <tr>
-     <td>209</td>
+     <td>старый спортзал</td>
     </tr>
    </table>
   </td>
-  <td/>
+  <td>
+   <table>
+    <tr>
+     <td>Русский язык</td>
+     <td>Комаренко Н.А.</td>
+    </tr>
+    <tr>
+     <td>302</td>
+    </tr>
+   </table>
+  </td>
   <td>
    <table>
     <tr>
@@ -108,7 +118,7 @@
   <td>
    <table>
     <tr>
-     <td>шахматы</td>
+     <td>Окружающий мир</td>
      <td>Ярикова Н.И.</td>
     </tr>
     <tr>
@@ -119,18 +129,21 @@
   <td>
    <table>
     <tr>
-     <td>шахматы</td>
-     <td>Подольская Ю.Ю.</td>
+     <td>Английский язык</td>
+     <td>Садюкова Н.С.:1</td>
+     <td>/</td>
+     <td>Мокшина Я.В.:2</td>
     </tr>
     <tr>
-     <td>219</td>
+     <td>303</td>
+     <td>305</td>
     </tr>
    </table>
   </td>
   <td>
    <table>
     <tr>
-     <td>Литературное Чтение</td>
+     <td>Русский язык</td>
      <td>Хватова Л.В.</td>
     </tr>
     <tr>
@@ -152,22 +165,22 @@
   <td>
    <table>
     <tr>
-     <td>Физкультура</td>
-     <td>Руди А.И.</td>
+     <td>Русский язык</td>
+     <td>Потапова И.Г.</td>
     </tr>
     <tr>
-     <td>площадка</td>
+     <td>217</td>
     </tr>
    </table>
   </td>
   <td>
    <table>
     <tr>
-     <td>История</td>
-     <td>Павленко П.В.</td>
+     <td>музыка</td>
+     <td>Савченко О.Б.</td>
     </tr>
     <tr>
-     <td>244</td>
+     <td>348</td>
     </tr>
    </table>
   </td>
@@ -181,29 +194,7 @@
     </tr>
     <tr>
      <td>304</td>
-     <td>303</td>
-    </tr>
-   </table>
-  </td>
-  <td>
-   <table>
-    <tr>
-     <td>Биология</td>
-     <td>Зайцева Л.В.</td>
-    </tr>
-    <tr>
-     <td>443</td>
-    </tr>
-   </table>
-  </td>
-  <td>
-   <table>
-    <tr>
-     <td>музыка</td>
-     <td>Савченко О.Б.</td>
-    </tr>
-    <tr>
-     <td>442</td>
+     <td>309</td>
     </tr>
    </table>
   </td>
@@ -222,28 +213,6 @@
    <table>
     <tr>
      <td>Русский язык</td>
-     <td>Ганжа Н.К.</td>
-    </tr>
-    <tr>
-     <td>450</td>
-    </tr>
-   </table>
-  </td>
-  <td>
-   <table>
-    <tr>
-     <td>Литература</td>
-     <td>Лаптева Е.С.</td>
-    </tr>
-    <tr>
-     <td>445</td>
-    </tr>
-   </table>
-  </td>
-  <td>
-   <table>
-    <tr>
-     <td>Русский язык</td>
      <td>Ягодарова С.Э</td>
     </tr>
     <tr>
@@ -254,11 +223,55 @@
   <td>
    <table>
     <tr>
-     <td>География</td>
-     <td>Кузьмина В.В.</td>
+     <td>Физкультура</td>
+     <td>Шкаликов В.А.</td>
     </tr>
     <tr>
-     <td>342</td>
+     <td>новый спортзал</td>
+    </tr>
+   </table>
+  </td>
+  <td>
+   <table>
+    <tr>
+     <td>Русский язык</td>
+     <td>Ганжа Н.К.</td>
+    </tr>
+    <tr>
+     <td>450</td>
+    </tr>
+   </table>
+  </td>
+  <td>
+   <table>
+    <tr>
+     <td>Русский язык</td>
+     <td>Лаптева Е.С.</td>
+    </tr>
+    <tr>
+     <td>445</td>
+    </tr>
+   </table>
+  </td>
+  <td>
+   <table>
+    <tr>
+     <td>История</td>
+     <td>Павленко П.В.</td>
+    </tr>
+    <tr>
+     <td>440</td>
+    </tr>
+   </table>
+  </td>
+  <td>
+   <table>
+    <tr>
+     <td>Биология</td>
+     <td>Грибовская Г.К.</td>
+    </tr>
+    <tr>
+     <td>447</td>
     </tr>
    </table>
   </td>
@@ -276,11 +289,58 @@
   <td>
    <table>
     <tr>
-     <td>Физкультура</td>
-     <td>Таран Ю.И.</td>
+     <td>Биология</td>
+     <td>Зайцева Л.В.</td>
     </tr>
     <tr>
-     <td>старый спортзал</td>
+     <td>443</td>
+    </tr>
+   </table>
+  </td>
+  <td>
+   <table>
+    <tr>
+     <td>Информатика</td>
+     <td>Бугрова О.В.:1</td>
+     <td>/</td>
+     <td>Заломина Е.Ю.:2</td>
+    </tr>
+    <tr>
+     <td>244</td>
+     <td>242</td>
+    </tr>
+   </table>
+  </td>
+  <td>
+   <table>
+    <tr>
+     <td>ИЗО</td>
+     <td>Гардер И.А.</td>
+    </tr>
+    <tr>
+     <td>442</td>
+    </tr>
+   </table>
+  </td>
+  <td>
+   <table>
+    <tr>
+     <td>Русский язык</td>
+     <td>Коссе Н.Н.</td>
+    </tr>
+    <tr>
+     <td>245</td>
+    </tr>
+   </table>
+  </td>
+  <td>
+   <table>
+    <tr>
+     <td>География</td>
+     <td>Кузьмина В.В.</td>
+    </tr>
+    <tr>
+     <td>342</td>
     </tr>
    </table>
   </td>
@@ -298,21 +358,7 @@
   <td>
    <table>
     <tr>
-     <td>Английский язык</td>
-     <td>Мокшина Я.В.:1</td>
-     <td>/</td>
-     <td>Седова Р.С.:2</td>
-    </tr>
-    <tr>
-     <td>305</td>
-     <td>309</td>
-    </tr>
-   </table>
-  </td>
-  <td>
-   <table>
-    <tr>
-     <td>Алгебра</td>
+     <td>Геометрия</td>
      <td>Фирсенков С.Е.</td>
     </tr>
     <tr>
@@ -323,11 +369,346 @@
   <td>
    <table>
     <tr>
-     <td>Химия</td>
+     <td>Физика</td>
+     <td>Таирова С.Е.</td>
+    </tr>
+    <tr>
+     <td>347</td>
+    </tr>
+   </table>
+  </td>
+  <td>
+   <table>
+    <tr>
+     <td>Профессиональная подготовка</td>
+     <td>Новиков Д.Н.:1</td>
+     <td>/</td>
+     <td>Хусейнов Р.В.:2</td>
+    </tr>
+    <tr>
+     <td>215</td>
+     <td>202 колледж</td>
+    </tr>
+   </table>
+  </td>
+  <td>
+   <table>
+    <tr>
+     <td>Геометрия</td>
+     <td>Кадргулов Р.Р.</td>
+    </tr>
+    <tr>
+     <td>345</td>
+    </tr>
+   </table>
+  </td>
+ </tr>
+ <tr>
+  <td>2</td>
+  <td>09:30 - 10:10</td>
+  <td>
+   <table>
+    <tr>
+     <td>Литературное Чтение</td>
+     <td>Степанова Л.А.</td>
+    </tr>
+    <tr>
+     <td>147</td>
+    </tr>
+   </table>
+  </td>
+  <td>
+   <table>
+    <tr>
+     <td>Русский язык</td>
+     <td>Малинина С.А.</td>
+    </tr>
+    <tr>
+     <td>118</td>
+    </tr>
+   </table>
+  </td>
+  <td>
+   <table>
+    <tr>
+     <td>Математика</td>
+     <td>Симонова Л.Н.</td>
+    </tr>
+    <tr>
+     <td>117</td>
+    </tr>
+   </table>
+  </td>
+  <td>
+   <table>
+    <tr>
+     <td>Русский язык</td>
+     <td>Гайсина Ф.З.</td>
+    </tr>
+    <tr>
+     <td>116</td>
+    </tr>
+   </table>
+  </td>
+  <td>
+   <table>
+    <tr>
+     <td>Социокультурные истоки</td>
+     <td>Старшова Л.П.</td>
+    </tr>
+    <tr>
+     <td>209</td>
+    </tr>
+   </table>
+  </td>
+  <td>
+   <table>
+    <tr>
+     <td>Английский язык</td>
+     <td>Садюкова Н.С.:1</td>
+     <td>/</td>
+     <td>Журавская М.В.:2</td>
+    </tr>
+    <tr>
+     <td>303</td>
+     <td>304</td>
+    </tr>
+   </table>
+  </td>
+  <td>
+   <table>
+    <tr>
+     <td>ИЗО</td>
+     <td>Гардер И.А.</td>
+    </tr>
+    <tr>
+     <td>442</td>
+    </tr>
+   </table>
+  </td>
+  <td>
+   <table>
+    <tr>
+     <td>Математика</td>
+     <td>Ярикова Н.И.</td>
+    </tr>
+    <tr>
+     <td>340</td>
+    </tr>
+   </table>
+  </td>
+  <td>
+   <table>
+    <tr>
+     <td>Математика</td>
+     <td>Подольская Ю.Ю.</td>
+    </tr>
+    <tr>
+     <td>219</td>
+    </tr>
+   </table>
+  </td>
+  <td>
+   <table>
+    <tr>
+     <td>музыка</td>
+     <td>Савченко О.Б.</td>
+    </tr>
+    <tr>
+     <td>348</td>
+    </tr>
+   </table>
+  </td>
+  <td>
+   <table>
+    <tr>
+     <td>Математика</td>
+     <td>Терехина Т.Л.</td>
+    </tr>
+    <tr>
+     <td>113</td>
+    </tr>
+   </table>
+  </td>
+  <td>
+   <table>
+    <tr>
+     <td>Математика</td>
+     <td>Потапова И.Г.</td>
+    </tr>
+    <tr>
+     <td>217</td>
+    </tr>
+   </table>
+  </td>
+  <td>
+   <table>
+    <tr>
+     <td>Обществознание</td>
+     <td>Шепилов Р.М.</td>
+    </tr>
+    <tr>
+     <td>216</td>
+    </tr>
+   </table>
+  </td>
+  <td>
+   <table>
+    <tr>
+     <td>Физкультура</td>
+     <td>Рослякова М.В.</td>
+    </tr>
+    <tr>
+     <td>новый спортзал</td>
+    </tr>
+   </table>
+  </td>
+  <td>
+   <table>
+    <tr>
+     <td>История</td>
+     <td>Павленко П.В.</td>
+    </tr>
+    <tr>
+     <td>245</td>
+    </tr>
+   </table>
+  </td>
+  <td>
+   <table>
+    <tr>
+     <td>Математика</td>
+     <td>Делянова С.В.</td>
+    </tr>
+    <tr>
+     <td>306</td>
+    </tr>
+   </table>
+  </td>
+  <td>
+   <table>
+    <tr>
+     <td>Литература</td>
+     <td>Ягодарова С.Э</td>
+    </tr>
+    <tr>
+     <td>343</td>
+    </tr>
+   </table>
+  </td>
+  <td>
+   <table>
+    <tr>
+     <td>ОУИПД</td>
+     <td>Окишева И.В.</td>
+    </tr>
+    <tr>
+     <td>450</td>
+    </tr>
+   </table>
+  </td>
+  <td>
+   <table>
+    <tr>
+     <td>Математика</td>
+     <td>Фалалеева Л.А.</td>
+    </tr>
+    <tr>
+     <td>307</td>
+    </tr>
+   </table>
+  </td>
+  <td>
+   <table>
+    <tr>
+     <td>Биология</td>
      <td>Грибовская Г.К.</td>
     </tr>
     <tr>
      <td>447</td>
+    </tr>
+   </table>
+  </td>
+  <td>
+   <table>
+    <tr>
+     <td>Физкультура</td>
+     <td>Таран Ю.И.</td>
+    </tr>
+    <tr>
+     <td>старый спортзал</td>
+    </tr>
+   </table>
+  </td>
+  <td>
+   <table>
+    <tr>
+     <td>Русский язык</td>
+     <td>Лаптева Е.С.</td>
+    </tr>
+    <tr>
+     <td>445</td>
+    </tr>
+   </table>
+  </td>
+  <td>
+   <table>
+    <tr>
+     <td>Русский язык</td>
+     <td>Платонова С.Ю.</td>
+    </tr>
+    <tr>
+     <td>342</td>
+    </tr>
+   </table>
+  </td>
+  <td>
+   <table>
+    <tr>
+     <td>Информатика</td>
+     <td>Бугрова О.В.:1</td>
+     <td>/</td>
+     <td>Заломина Е.Ю.:2</td>
+    </tr>
+    <tr>
+     <td>244</td>
+     <td>242</td>
+    </tr>
+   </table>
+  </td>
+  <td>
+   <table>
+    <tr>
+     <td>Биология</td>
+     <td>Зайцева Л.В.</td>
+    </tr>
+    <tr>
+     <td>443</td>
+    </tr>
+   </table>
+  </td>
+  <td>
+   <table>
+    <tr>
+     <td>Геометрия</td>
+     <td>Фирсенков С.Е.</td>
+    </tr>
+    <tr>
+     <td>308</td>
+    </tr>
+   </table>
+  </td>
+  <td>
+   <table>
+    <tr>
+     <td>Английский язык</td>
+     <td>Мокшина Я.В.:1</td>
+     <td>/</td>
+     <td>Седова Р.С.:2</td>
+    </tr>
+    <tr>
+     <td>305</td>
+     <td>309</td>
     </tr>
    </table>
   </td>
@@ -356,11 +737,25 @@
   <td>
    <table>
     <tr>
-     <td>Классный Час</td>
-     <td>Балчугова А.Ю.</td>
+     <td>ОБЖ</td>
+     <td>Назаренко А.В.</td>
     </tr>
     <tr>
-     <td>245</td>
+     <td>142</td>
+    </tr>
+   </table>
+  </td>
+  <td>
+   <table>
+    <tr>
+     <td>Профессиональная подготовка</td>
+     <td>Новиков Д.Н.:1</td>
+     <td>/</td>
+     <td>Хусейнов Р.В.:2</td>
+    </tr>
+    <tr>
+     <td>215</td>
+     <td>202 колледж</td>
     </tr>
    </table>
   </td>
@@ -375,28 +770,14 @@
     </tr>
    </table>
   </td>
-  <td>
-   <table>
-    <tr>
-     <td>Информатика</td>
-     <td>Заломина Е.Ю.:1</td>
-     <td>/</td>
-     <td>Ермакова Н.И.:2</td>
-    </tr>
-    <tr>
-     <td>242</td>
-     <td>241</td>
-    </tr>
-   </table>
-  </td>
  </tr>
  <tr>
-  <td>2</td>
-  <td>09:30 - 10:10</td>
+  <td>3</td>
+  <td>10:30 - 11:10</td>
   <td>
    <table>
     <tr>
-     <td>Математика</td>
+     <td>Русский язык</td>
      <td>Степанова Л.А.</td>
     </tr>
     <tr>
@@ -407,29 +788,29 @@
   <td>
    <table>
     <tr>
+     <td>Физкультура</td>
+     <td>Руди А.И.</td>
+    </tr>
+    <tr>
+     <td>новый спортзал</td>
+    </tr>
+   </table>
+  </td>
+  <td>
+   <table>
+    <tr>
+     <td>Труд</td>
+     <td>Симонова Л.Н.</td>
+    </tr>
+    <tr>
+     <td>117</td>
+    </tr>
+   </table>
+  </td>
+  <td>
+   <table>
+    <tr>
      <td>Математика</td>
-     <td>Малинина С.А.</td>
-    </tr>
-    <tr>
-     <td>118</td>
-    </tr>
-   </table>
-  </td>
-  <td>
-   <table>
-    <tr>
-     <td>музыка</td>
-     <td>Буторина О.В</td>
-    </tr>
-    <tr>
-     <td>348</td>
-    </tr>
-   </table>
-  </td>
-  <td>
-   <table>
-    <tr>
-     <td>Русский язык</td>
      <td>Гайсина Ф.З.</td>
     </tr>
     <tr>
@@ -440,19 +821,29 @@
   <td>
    <table>
     <tr>
-     <td>Окружающий мир</td>
-     <td>Старшова Л.П.</td>
+     <td>ИЗО</td>
+     <td>Гардер И.А.</td>
     </tr>
     <tr>
-     <td>209</td>
+     <td>442</td>
     </tr>
    </table>
   </td>
-  <td/>
   <td>
    <table>
     <tr>
-     <td>шахматы</td>
+     <td>Литературное Чтение</td>
+     <td>Комаренко Н.А.</td>
+    </tr>
+    <tr>
+     <td>302</td>
+    </tr>
+   </table>
+  </td>
+  <td>
+   <table>
+    <tr>
+     <td>Математика</td>
      <td>Петролай А.С.</td>
     </tr>
     <tr>
@@ -463,18 +854,18 @@
   <td>
    <table>
     <tr>
-     <td>Труд</td>
-     <td>Ярикова Н.И.</td>
+     <td>Физкультура</td>
+     <td>Рослякова М.В.</td>
     </tr>
     <tr>
-     <td>340</td>
+     <td>старый спортзал</td>
     </tr>
    </table>
   </td>
   <td>
    <table>
     <tr>
-     <td>Литературное Чтение</td>
+     <td>Русский язык</td>
      <td>Подольская Ю.Ю.</td>
     </tr>
     <tr>
@@ -496,6 +887,17 @@
   <td>
    <table>
     <tr>
+     <td>музыка</td>
+     <td>Савченко О.Б.</td>
+    </tr>
+    <tr>
+     <td>348</td>
+    </tr>
+   </table>
+  </td>
+  <td>
+   <table>
+    <tr>
      <td>Английский язык</td>
      <td>Садюкова Н.С.:1</td>
      <td>/</td>
@@ -510,29 +912,18 @@
   <td>
    <table>
     <tr>
-     <td>Физкультура</td>
-     <td>Руди А.И.</td>
+     <td>Математика</td>
+     <td>Кадргулов Р.Р.</td>
     </tr>
     <tr>
-     <td>площадка</td>
-    </tr>
-   </table>
-  </td>
-  <td>
-   <table>
-    <tr>
-     <td>ИЗО</td>
-     <td>Гардер И.А.</td>
-    </tr>
-    <tr>
-     <td>442</td>
+     <td>345</td>
     </tr>
    </table>
   </td>
   <td>
    <table>
     <tr>
-     <td>Русский язык</td>
+     <td>Литература</td>
      <td>Луценко Г.И.</td>
     </tr>
     <tr>
@@ -543,11 +934,33 @@
   <td>
    <table>
     <tr>
-     <td>Классный Час</td>
-     <td>Зайцева Л.В.</td>
+     <td>Литература</td>
+     <td>Лаптева Е.С.</td>
     </tr>
     <tr>
-     <td>245</td>
+     <td>445</td>
+    </tr>
+   </table>
+  </td>
+  <td>
+   <table>
+    <tr>
+     <td>Физкультура</td>
+     <td>Шкаликов В.А.</td>
+    </tr>
+    <tr>
+     <td>площадка</td>
+    </tr>
+   </table>
+  </td>
+  <td>
+   <table>
+    <tr>
+     <td>Математика</td>
+     <td>Фалалеева Л.А.</td>
+    </tr>
+    <tr>
+     <td>307</td>
     </tr>
    </table>
   </td>
@@ -565,7 +978,18 @@
   <td>
    <table>
     <tr>
-     <td>Русский язык</td>
+     <td>Биология</td>
+     <td>Зайцева Л.В.</td>
+    </tr>
+    <tr>
+     <td>443</td>
+    </tr>
+   </table>
+  </td>
+  <td>
+   <table>
+    <tr>
+     <td>Литература</td>
      <td>Ягодарова С.Э</td>
     </tr>
     <tr>
@@ -576,10 +1000,13 @@
   <td>
    <table>
     <tr>
-     <td>музыка</td>
-     <td>Савченко О.Б.</td>
+     <td>Информатика</td>
+     <td>Балчугова А.Ю.:1</td>
+     <td>/</td>
+     <td>Бугрова О.В.:2</td>
     </tr>
     <tr>
+     <td>245</td>
      <td>244</td>
     </tr>
    </table>
@@ -587,51 +1014,18 @@
   <td>
    <table>
     <tr>
-     <td>Русский язык</td>
-     <td>Лаптева Е.С.</td>
+     <td>Биология</td>
+     <td>Грибовская Г.К.</td>
     </tr>
     <tr>
-     <td>445</td>
-    </tr>
-   </table>
-  </td>
-  <td>
-   <table>
-    <tr>
-     <td>География</td>
-     <td>Кузьмина В.В.</td>
-    </tr>
-    <tr>
-     <td>342</td>
+     <td>447</td>
     </tr>
    </table>
   </td>
   <td>
    <table>
     <tr>
-     <td>Физика</td>
-     <td>Кадргулов Р.Р.</td>
-    </tr>
-    <tr>
-     <td>345</td>
-    </tr>
-   </table>
-  </td>
-  <td>
-   <table>
-    <tr>
-     <td>Физкультура</td>
-     <td>Таран Ю.И.</td>
-    </tr>
-    <tr>
-     <td>старый спортзал</td>
-    </tr>
-   </table>
-  </td>
-  <td>
-   <table>
-    <tr>
-     <td>Физика</td>
+     <td>Геометрия</td>
      <td>Таирова С.Е.</td>
     </tr>
     <tr>
@@ -642,36 +1036,33 @@
   <td>
    <table>
     <tr>
-     <td>Английский язык</td>
-     <td>Мокшина Я.В.:1</td>
-     <td>/</td>
-     <td>Седова Р.С.:2</td>
+     <td>Русский язык</td>
+     <td>Платонова С.Ю.</td>
     </tr>
     <tr>
-     <td>305</td>
-     <td>309</td>
+     <td>342</td>
     </tr>
    </table>
   </td>
   <td>
    <table>
     <tr>
-     <td>Геометрия</td>
-     <td>Фалалеева Л.А.</td>
+     <td>ОБЖ</td>
+     <td>Назаренко А.В.</td>
     </tr>
     <tr>
-     <td>307</td>
+     <td>142</td>
     </tr>
    </table>
   </td>
   <td>
    <table>
     <tr>
-     <td>Геометрия</td>
-     <td>Фирсенков С.Е.</td>
+     <td>История</td>
+     <td>Павленко П.В.</td>
     </tr>
     <tr>
-     <td>308</td>
+     <td>библиотека</td>
     </tr>
    </table>
   </td>
@@ -689,33 +1080,14 @@
   <td>
    <table>
     <tr>
-     <td>История</td>
-     <td>Павленко П.В.</td>
+     <td>Английский язык</td>
+     <td>Мокшина Я.В.:1</td>
+     <td>/</td>
+     <td>Седова Р.С.:2</td>
     </tr>
     <tr>
-     <td>142</td>
-    </tr>
-   </table>
-  </td>
-  <td>
-   <table>
-    <tr>
-     <td>Химия</td>
-     <td>Грибовская Г.К.</td>
-    </tr>
-    <tr>
-     <td>447</td>
-    </tr>
-   </table>
-  </td>
-  <td>
-   <table>
-    <tr>
-     <td>Биология</td>
-     <td>Лукина Е.А.</td>
-    </tr>
-    <tr>
-     <td>443</td>
+     <td>305</td>
+     <td>309</td>
     </tr>
    </table>
   </td>
@@ -744,14 +1116,39 @@
     </tr>
    </table>
   </td>
- </tr>
- <tr>
-  <td>3</td>
-  <td>10:30 - 11:10</td>
   <td>
    <table>
     <tr>
-     <td>Социокультурные истоки</td>
+     <td>Алгебра</td>
+     <td>Фирсенков С.Е.</td>
+    </tr>
+    <tr>
+     <td>308</td>
+    </tr>
+   </table>
+  </td>
+  <td>
+   <table>
+    <tr>
+     <td>Профессиональная подготовка</td>
+     <td>Новиков Д.Н.:1</td>
+     <td>/</td>
+     <td>Хусейнов Р.В.:2</td>
+    </tr>
+    <tr>
+     <td>215</td>
+     <td>202 колледж</td>
+    </tr>
+   </table>
+  </td>
+ </tr>
+ <tr>
+  <td>4</td>
+  <td>11:30 - 12:10</td>
+  <td>
+   <table>
+    <tr>
+     <td>Труд</td>
      <td>Степанова Л.А.</td>
     </tr>
     <tr>
@@ -762,18 +1159,18 @@
   <td>
    <table>
     <tr>
-     <td>музыка</td>
-     <td>Буторина О.В</td>
+     <td>Окружающий мир</td>
+     <td>Малинина С.А.</td>
     </tr>
     <tr>
-     <td>348</td>
+     <td>118</td>
     </tr>
    </table>
   </td>
   <td>
    <table>
     <tr>
-     <td>Литературное Чтение</td>
+     <td>Русский язык</td>
      <td>Симонова Л.Н.</td>
     </tr>
     <tr>
@@ -784,7 +1181,7 @@
   <td>
    <table>
     <tr>
-     <td>Труд</td>
+     <td>Литературное Чтение</td>
      <td>Гайсина Ф.З.</td>
     </tr>
     <tr>
@@ -803,26 +1200,25 @@
     </tr>
    </table>
   </td>
-  <td/>
   <td>
    <table>
     <tr>
-     <td>Окружающий мир</td>
-     <td>Петролай А.С.</td>
+     <td>Физкультура</td>
+     <td>Рослякова М.В.</td>
     </tr>
     <tr>
-     <td>115</td>
+     <td>новый спортзал</td>
     </tr>
    </table>
   </td>
   <td>
    <table>
     <tr>
-     <td>Русский язык</td>
-     <td>Ярикова Н.И.</td>
+     <td>Литературное Чтение</td>
+     <td>Петролай А.С.</td>
     </tr>
     <tr>
-     <td>340</td>
+     <td>115</td>
     </tr>
    </table>
   </td>
@@ -840,22 +1236,36 @@
   <td>
    <table>
     <tr>
-     <td>Окружающий мир</td>
-     <td>Хватова Л.В.</td>
+     <td>Физкультура</td>
+     <td>Руди А.И.</td>
     </tr>
     <tr>
-     <td>218</td>
+     <td>площадка</td>
     </tr>
    </table>
   </td>
   <td>
    <table>
     <tr>
-     <td>Физкультура</td>
-     <td>Руди А.И.</td>
+     <td>Английский язык</td>
+     <td>Садюкова Н.С.:1</td>
+     <td>/</td>
+     <td>Федера Т.А.:2</td>
     </tr>
     <tr>
-     <td>площадка</td>
+     <td>303</td>
+     <td>304</td>
+    </tr>
+   </table>
+  </td>
+  <td>
+   <table>
+    <tr>
+     <td>Окружающий мир</td>
+     <td>Терехина Т.Л.</td>
+    </tr>
+    <tr>
+     <td>113</td>
     </tr>
    </table>
   </td>
@@ -873,11 +1283,322 @@
   <td>
    <table>
     <tr>
-     <td>Математика</td>
+     <td>История</td>
+     <td>Павленко П.В.</td>
+    </tr>
+    <tr>
+     <td>342</td>
+    </tr>
+   </table>
+  </td>
+  <td>
+   <table>
+    <tr>
+     <td>Русский язык</td>
+     <td>Луценко Г.И.</td>
+    </tr>
+    <tr>
+     <td>440</td>
+    </tr>
+   </table>
+  </td>
+  <td>
+   <table>
+    <tr>
+     <td>Русский язык</td>
+     <td>Лаптева Е.С.</td>
+    </tr>
+    <tr>
+     <td>445</td>
+    </tr>
+   </table>
+  </td>
+  <td>
+   <table>
+    <tr>
+     <td>Физкультура</td>
+     <td>Шкаликов В.А.</td>
+    </tr>
+    <tr>
+     <td>площадка</td>
+    </tr>
+   </table>
+  </td>
+  <td>
+   <table>
+    <tr>
+     <td>Русский язык</td>
+     <td>Ягодарова С.Э</td>
+    </tr>
+    <tr>
+     <td>343</td>
+    </tr>
+   </table>
+  </td>
+  <td>
+   <table>
+    <tr>
+     <td>Литература</td>
+     <td>Ганжа Н.К.</td>
+    </tr>
+    <tr>
+     <td>450</td>
+    </tr>
+   </table>
+  </td>
+  <td>
+   <table>
+    <tr>
+     <td>Физкультура</td>
+     <td>Ленков А.И.</td>
+    </tr>
+    <tr>
+     <td>площадка</td>
+    </tr>
+   </table>
+  </td>
+  <td>
+   <table>
+    <tr>
+     <td>Физика</td>
      <td>Кадргулов Р.Р.</td>
     </tr>
     <tr>
      <td>345</td>
+    </tr>
+   </table>
+  </td>
+  <td>
+   <table>
+    <tr>
+     <td>Алгебра</td>
+     <td>Делянова С.В.</td>
+    </tr>
+    <tr>
+     <td>306</td>
+    </tr>
+   </table>
+  </td>
+  <td>
+   <table>
+    <tr>
+     <td>Информатика</td>
+     <td>Балчугова А.Ю.:1</td>
+     <td>/</td>
+     <td>Бугрова О.В.:2</td>
+    </tr>
+    <tr>
+     <td>245</td>
+     <td>244</td>
+    </tr>
+   </table>
+  </td>
+  <td>
+   <table>
+    <tr>
+     <td>музыка</td>
+     <td>Савченко О.Б.</td>
+    </tr>
+    <tr>
+     <td>348</td>
+    </tr>
+   </table>
+  </td>
+  <td>
+   <table>
+    <tr>
+     <td>Физкультура</td>
+     <td>Таран Ю.И.</td>
+    </tr>
+    <tr>
+     <td>старый спортзал</td>
+    </tr>
+   </table>
+  </td>
+  <td>
+   <table>
+    <tr>
+     <td>Английский язык</td>
+     <td>Мокшина Я.В.:1</td>
+     <td>/</td>
+     <td>Седова Р.С.:2</td>
+    </tr>
+    <tr>
+     <td>305</td>
+     <td>309</td>
+    </tr>
+   </table>
+  </td>
+  <td>
+   <table>
+    <tr>
+     <td>Алгебра</td>
+     <td>Фирсенков С.Е.</td>
+    </tr>
+    <tr>
+     <td>308</td>
+    </tr>
+   </table>
+  </td>
+  <td>
+   <table>
+    <tr>
+     <td>Алгебра</td>
+     <td>Таирова С.Е.</td>
+    </tr>
+    <tr>
+     <td>347</td>
+    </tr>
+   </table>
+  </td>
+  <td>
+   <table>
+    <tr>
+     <td>Химия</td>
+     <td>Грибовская Г.К.</td>
+    </tr>
+    <tr>
+     <td>447</td>
+    </tr>
+   </table>
+  </td>
+  <td>
+   <table>
+    <tr>
+     <td>История</td>
+     <td>Шепилов Р.М.</td>
+    </tr>
+    <tr>
+     <td>216</td>
+    </tr>
+   </table>
+  </td>
+  <td>
+   <table>
+    <tr>
+     <td>Информатика</td>
+     <td>Заломина Е.Ю.:1</td>
+     <td>/</td>
+     <td>Ермакова Н.И.:2</td>
+    </tr>
+    <tr>
+     <td>242</td>
+     <td>241</td>
+    </tr>
+   </table>
+  </td>
+  <td>
+   <table>
+    <tr>
+     <td>Биология</td>
+     <td>Зайцева Л.В.</td>
+    </tr>
+    <tr>
+     <td>443</td>
+    </tr>
+   </table>
+  </td>
+  <td>
+   <table>
+    <tr>
+     <td>Профессиональная подготовка</td>
+     <td>Новиков Д.Н.:1</td>
+     <td>/</td>
+     <td>Хусейнов Р.В.:2</td>
+    </tr>
+    <tr>
+     <td>215</td>
+     <td>202 колледж</td>
+    </tr>
+   </table>
+  </td>
+ </tr>
+ <tr>
+  <td>5</td>
+  <td>12:25 - 13:05</td>
+  <td/>
+  <td>
+   <table>
+    <tr>
+     <td>Труд</td>
+     <td>Малинина С.А.</td>
+    </tr>
+    <tr>
+     <td>118</td>
+    </tr>
+   </table>
+  </td>
+  <td>
+   <table>
+    <tr>
+     <td>ИЗО</td>
+     <td>Гардер И.А.</td>
+    </tr>
+    <tr>
+     <td>442</td>
+    </tr>
+   </table>
+  </td>
+  <td/>
+  <td/>
+  <td/>
+  <td>
+   <table>
+    <tr>
+     <td>Физкультура</td>
+     <td>Рослякова М.В.</td>
+    </tr>
+    <tr>
+     <td>новый спортзал</td>
+    </tr>
+   </table>
+  </td>
+  <td/>
+  <td>
+   <table>
+    <tr>
+     <td>Физкультура</td>
+     <td>Руди А.И.</td>
+    </tr>
+    <tr>
+     <td>площадка</td>
+    </tr>
+   </table>
+  </td>
+  <td>
+   <table>
+    <tr>
+     <td>Литературное Чтение</td>
+     <td>Хватова Л.В.</td>
+    </tr>
+    <tr>
+     <td>218</td>
+    </tr>
+   </table>
+  </td>
+  <td>
+   <table>
+    <tr>
+     <td>Английский язык</td>
+     <td>Садюкова Н.С.:1</td>
+     <td>/</td>
+     <td>Федера Т.А.:2</td>
+    </tr>
+    <tr>
+     <td>303</td>
+     <td>304</td>
+    </tr>
+   </table>
+  </td>
+  <td/>
+  <td>
+   <table>
+    <tr>
+     <td>Русский язык</td>
+     <td>Лаптева Е.С.</td>
+    </tr>
+    <tr>
+     <td>445</td>
     </tr>
    </table>
   </td>
@@ -895,7 +1616,230 @@
   <td>
    <table>
     <tr>
+     <td>Социокультурные истоки</td>
+     <td>Никулина Т.В.</td>
+    </tr>
+    <tr>
+     <td>142</td>
+    </tr>
+   </table>
+  </td>
+  <td>
+   <table>
+    <tr>
+     <td>Информатика</td>
+     <td>Балчугова А.Ю.:1</td>
+     <td>/</td>
+     <td>Бугрова О.В.:2</td>
+    </tr>
+    <tr>
+     <td>245</td>
+     <td>244</td>
+    </tr>
+   </table>
+  </td>
+  <td>
+   <table>
+    <tr>
+     <td>Биология</td>
+     <td>Зайцева Л.В.</td>
+    </tr>
+    <tr>
+     <td>443</td>
+    </tr>
+   </table>
+  </td>
+  <td>
+   <table>
+    <tr>
+     <td>История</td>
+     <td>Павленко П.В.</td>
+    </tr>
+    <tr>
+     <td>343</td>
+    </tr>
+   </table>
+  </td>
+  <td>
+   <table>
+    <tr>
+     <td>Физкультура</td>
+     <td>Ленков А.И.</td>
+    </tr>
+    <tr>
+     <td>площадка</td>
+    </tr>
+   </table>
+  </td>
+  <td>
+   <table>
+    <tr>
+     <td>музыка</td>
+     <td>Савченко О.Б.</td>
+    </tr>
+    <tr>
+     <td>348</td>
+    </tr>
+   </table>
+  </td>
+  <td>
+   <table>
+    <tr>
+     <td>Физика</td>
+     <td>Кадргулов Р.Р.</td>
+    </tr>
+    <tr>
+     <td>345</td>
+    </tr>
+   </table>
+  </td>
+  <td>
+   <table>
+    <tr>
+     <td>География</td>
+     <td>Кузьмина В.В.</td>
+    </tr>
+    <tr>
+     <td>342</td>
+    </tr>
+   </table>
+  </td>
+  <td>
+   <table>
+    <tr>
+     <td>Физкультура</td>
+     <td>Таран Ю.И.</td>
+    </tr>
+    <tr>
+     <td>старый спортзал</td>
+    </tr>
+   </table>
+  </td>
+  <td>
+   <table>
+    <tr>
+     <td>Английский язык</td>
+     <td>Мокшина Я.В.:1</td>
+     <td>/</td>
+     <td>Седова Р.С.:2</td>
+    </tr>
+    <tr>
+     <td>305</td>
+     <td>309</td>
+    </tr>
+   </table>
+  </td>
+  <td>
+   <table>
+    <tr>
+     <td>Алгебра</td>
+     <td>Фалалеева Л.А.</td>
+    </tr>
+    <tr>
+     <td>307</td>
+    </tr>
+   </table>
+  </td>
+  <td>
+   <table>
+    <tr>
+     <td>Химия</td>
+     <td>Грибовская Г.К.</td>
+    </tr>
+    <tr>
+     <td>447</td>
+    </tr>
+   </table>
+  </td>
+  <td>
+   <table>
+    <tr>
+     <td>Информатика</td>
+     <td>Заломина Е.Ю.:1</td>
+     <td>/</td>
+     <td>Ермакова Н.И.:2</td>
+    </tr>
+    <tr>
+     <td>242</td>
+     <td>241</td>
+    </tr>
+   </table>
+  </td>
+  <td>
+   <table>
+    <tr>
      <td>Русский язык</td>
+     <td>Ганжа Н.К.</td>
+    </tr>
+    <tr>
+     <td>450</td>
+    </tr>
+   </table>
+  </td>
+  <td>
+   <table>
+    <tr>
+     <td>Алгебра</td>
+     <td>Фирсенков С.Е.</td>
+    </tr>
+    <tr>
+     <td>308</td>
+    </tr>
+   </table>
+  </td>
+  <td>
+   <table>
+    <tr>
+     <td>Литература</td>
+     <td>Луценко Г.И.</td>
+    </tr>
+    <tr>
+     <td>440</td>
+    </tr>
+   </table>
+  </td>
+  <td>
+   <table>
+    <tr>
+     <td>Обществознание</td>
+     <td>Шепилов Р.М.</td>
+    </tr>
+    <tr>
+     <td>216</td>
+    </tr>
+   </table>
+  </td>
+  <td>
+   <table>
+    <tr>
+     <td>Физика</td>
+     <td>Таирова С.Е.</td>
+    </tr>
+    <tr>
+     <td>347</td>
+    </tr>
+   </table>
+  </td>
+ </tr>
+ <tr>
+  <td>6</td>
+  <td>13:15 - 13:55</td>
+  <td/>
+  <td/>
+  <td/>
+  <td/>
+  <td/>
+  <td/>
+  <td/>
+  <td/>
+  <td/>
+  <td/>
+  <td/>
+  <td/>
+  <td>
+   <table>
+    <tr>
+     <td>Литература</td>
      <td>Лаптева Е.С.</td>
     </tr>
     <tr>
@@ -903,6 +1847,18 @@
     </tr>
    </table>
   </td>
+  <td>
+   <table>
+    <tr>
+     <td>музыка</td>
+     <td>Савченко О.Б.</td>
+    </tr>
+    <tr>
+     <td>348</td>
+    </tr>
+   </table>
+  </td>
+  <td/>
   <td>
    <table>
     <tr>
@@ -934,52 +1890,34 @@
   <td>
    <table>
     <tr>
-     <td>География</td>
-     <td>Кузьмина В.В.</td>
+     <td>Информатика</td>
+     <td>Балчугова А.Ю.:1</td>
+     <td>/</td>
+     <td>Бугрова О.В.:2</td>
     </tr>
     <tr>
-     <td>342</td>
+     <td>245</td>
+     <td>244</td>
+    </tr>
+   </table>
+  </td>
+  <td/>
+  <td>
+   <table>
+    <tr>
+     <td>Социокультурные истоки</td>
+     <td>Никулина Т.В.</td>
+    </tr>
+    <tr>
+     <td>142</td>
     </tr>
    </table>
   </td>
   <td>
    <table>
     <tr>
-     <td>Математика</td>
-     <td>Фалалеева Л.А.</td>
-    </tr>
-    <tr>
-     <td>307</td>
-    </tr>
-   </table>
-  </td>
-  <td>
-   <table>
-    <tr>
-     <td>Физкультура</td>
-     <td>Таран Ю.И.</td>
-    </tr>
-    <tr>
-     <td>старый спортзал</td>
-    </tr>
-   </table>
-  </td>
-  <td>
-   <table>
-    <tr>
-     <td>Обществознание</td>
-     <td>Шепилов Р.М.</td>
-    </tr>
-    <tr>
-     <td>216</td>
-    </tr>
-   </table>
-  </td>
-  <td>
-   <table>
-    <tr>
-     <td>История</td>
-     <td>Павленко П.В.</td>
+     <td>Литература</td>
+     <td>Ягодарова С.Э</td>
     </tr>
     <tr>
      <td>343</td>
@@ -989,22 +1927,11 @@
   <td>
    <table>
     <tr>
-     <td>Алгебра</td>
-     <td>Таирова С.Е.</td>
+     <td>Физика</td>
+     <td>Кадргулов Р.Р.</td>
     </tr>
     <tr>
-     <td>347</td>
-    </tr>
-   </table>
-  </td>
-  <td>
-   <table>
-    <tr>
-     <td>Физкультура</td>
-     <td>Таран Ю.И.</td>
-    </tr>
-    <tr>
-     <td>старый спортзал</td>
+     <td>345</td>
     </tr>
    </table>
   </td>
@@ -1016,6 +1943,17 @@
     </tr>
     <tr>
      <td>447</td>
+    </tr>
+   </table>
+  </td>
+  <td>
+   <table>
+    <tr>
+     <td>Алгебра</td>
+     <td>Фирсенков С.Е.</td>
+    </tr>
+    <tr>
+     <td>308</td>
     </tr>
    </table>
   </td>
@@ -1036,22 +1974,66 @@
   <td>
    <table>
     <tr>
-     <td>Литература</td>
-     <td>Ганжа Н.К.</td>
+     <td>Физкультура</td>
+     <td>Ленков А.И.</td>
     </tr>
     <tr>
-     <td>450</td>
+     <td>старый спортзал</td>
     </tr>
    </table>
   </td>
   <td>
    <table>
     <tr>
-     <td>Физкультура</td>
-     <td>Ленков А.И.</td>
+     <td>История</td>
+     <td>Павленко П.В.</td>
     </tr>
     <tr>
-     <td>площадка</td>
+     <td>306</td>
+    </tr>
+   </table>
+  </td>
+  <td>
+   <table>
+    <tr>
+     <td>География</td>
+     <td>Кузьмина В.В.</td>
+    </tr>
+    <tr>
+     <td>342</td>
+    </tr>
+   </table>
+  </td>
+  <td>
+   <table>
+    <tr>
+     <td>Литература</td>
+     <td>Луценко Г.И.</td>
+    </tr>
+    <tr>
+     <td>440</td>
+    </tr>
+   </table>
+  </td>
+  <td>
+   <table>
+    <tr>
+     <td>Обществознание</td>
+     <td>Шепилов Р.М.</td>
+    </tr>
+    <tr>
+     <td>216</td>
+    </tr>
+   </table>
+  </td>
+  <td>
+   <table>
+    <tr>
+     <td>Физика</td>
+     <td>Таирова С.Е.</td>
+    </tr>
+    <tr>
+     <td>347</td>
     </tr>
    </table>
   </td>
@@ -1066,854 +2048,6 @@
     </tr>
    </table>
   </td>
-  <td>
-   <table>
-    <tr>
-     <td>проф. ориентация</td>
-     <td>Балчугова А.Ю.</td>
-    </tr>
-    <tr>
-     <td>245</td>
-    </tr>
-   </table>
-  </td>
-  <td>
-   <table>
-    <tr>
-     <td>Геометрия</td>
-     <td>Фирсенков С.Е.</td>
-    </tr>
-    <tr>
-     <td>308</td>
-    </tr>
-   </table>
-  </td>
-  <td>
-   <table>
-    <tr>
-     <td>Литература</td>
-     <td>Луценко Г.И.</td>
-    </tr>
-    <tr>
-     <td>440</td>
-    </tr>
-   </table>
-  </td>
- </tr>
- <tr>
-  <td>4</td>
-  <td>11:30 - 12:10</td>
-  <td>
-   <table>
-    <tr>
-     <td>Классный Час</td>
-     <td>Степанова Л.А.</td>
-    </tr>
-    <tr>
-     <td>147</td>
-    </tr>
-   </table>
-  </td>
-  <td>
-   <table>
-    <tr>
-     <td>Классный Час</td>
-     <td>Малинина С.А.</td>
-    </tr>
-    <tr>
-     <td>118</td>
-    </tr>
-   </table>
-  </td>
-  <td>
-   <table>
-    <tr>
-     <td>Классный Час</td>
-     <td>Симонова Л.Н.</td>
-    </tr>
-    <tr>
-     <td>117</td>
-    </tr>
-   </table>
-  </td>
-  <td>
-   <table>
-    <tr>
-     <td>Социокультурные истоки</td>
-     <td>Гайсина Ф.З.</td>
-    </tr>
-    <tr>
-     <td>116</td>
-    </tr>
-   </table>
-  </td>
-  <td>
-   <table>
-    <tr>
-     <td>Труд</td>
-     <td>Старшова Л.П.</td>
-    </tr>
-    <tr>
-     <td>209</td>
-    </tr>
-   </table>
-  </td>
-  <td/>
-  <td>
-   <table>
-    <tr>
-     <td>Классный Час</td>
-     <td>Петролай А.С.</td>
-    </tr>
-    <tr>
-     <td>115</td>
-    </tr>
-   </table>
-  </td>
-  <td>
-   <table>
-    <tr>
-     <td>Математика</td>
-     <td>Ярикова Н.И.</td>
-    </tr>
-    <tr>
-     <td>340</td>
-    </tr>
-   </table>
-  </td>
-  <td>
-   <table>
-    <tr>
-     <td>Физкультура</td>
-     <td>Руди А.И.</td>
-    </tr>
-    <tr>
-     <td>площадка</td>
-    </tr>
-   </table>
-  </td>
-  <td>
-   <table>
-    <tr>
-     <td>Труд</td>
-     <td>Хватова Л.В.</td>
-    </tr>
-    <tr>
-     <td>218</td>
-    </tr>
-   </table>
-  </td>
-  <td/>
-  <td>
-   <table>
-    <tr>
-     <td>Математика</td>
-     <td>Потапова И.Г.</td>
-    </tr>
-    <tr>
-     <td>217</td>
-    </tr>
-   </table>
-  </td>
-  <td>
-   <table>
-    <tr>
-     <td>Русский язык</td>
-     <td>Лаптева Е.С.</td>
-    </tr>
-    <tr>
-     <td>445</td>
-    </tr>
-   </table>
-  </td>
-  <td>
-   <table>
-    <tr>
-     <td>История</td>
-     <td>Павленко П.В.</td>
-    </tr>
-    <tr>
-     <td>443</td>
-    </tr>
-   </table>
-  </td>
-  <td>
-   <table>
-    <tr>
-     <td>Математика</td>
-     <td>Фалалеева Л.А.</td>
-    </tr>
-    <tr>
-     <td>307</td>
-    </tr>
-   </table>
-  </td>
-  <td>
-   <table>
-    <tr>
-     <td>Русский язык</td>
-     <td>Ягодарова С.Э</td>
-    </tr>
-    <tr>
-     <td>343</td>
-    </tr>
-   </table>
-  </td>
-  <td>
-   <table>
-    <tr>
-     <td>Физкультура</td>
-     <td>Шкаликов В.А.</td>
-    </tr>
-    <tr>
-     <td>площадка</td>
-    </tr>
-   </table>
-  </td>
-  <td>
-   <table>
-    <tr>
-     <td>Литература</td>
-     <td>Ганжа Н.К.</td>
-    </tr>
-    <tr>
-     <td>450</td>
-    </tr>
-   </table>
-  </td>
-  <td>
-   <table>
-    <tr>
-     <td>ИЗО</td>
-     <td>Гардер И.А.</td>
-    </tr>
-    <tr>
-     <td>442</td>
-    </tr>
-   </table>
-  </td>
-  <td>
-   <table>
-    <tr>
-     <td>Английский язык</td>
-     <td>Седова Р.С.:1</td>
-     <td>/</td>
-     <td>Журавская М.В.:2</td>
-    </tr>
-    <tr>
-     <td>309</td>
-     <td>305</td>
-    </tr>
-   </table>
-  </td>
-  <td>
-   <table>
-    <tr>
-     <td>Алгебра</td>
-     <td>Делянова С.В.</td>
-    </tr>
-    <tr>
-     <td>306</td>
-    </tr>
-   </table>
-  </td>
-  <td>
-   <table>
-    <tr>
-     <td>Английский язык</td>
-     <td>Федера Т.А.:1</td>
-     <td>/</td>
-     <td>Садюкова Н.С.:2</td>
-    </tr>
-    <tr>
-     <td>304</td>
-     <td>303</td>
-    </tr>
-   </table>
-  </td>
-  <td>
-   <table>
-    <tr>
-     <td>Обществознание</td>
-     <td>Шепилов Р.М.</td>
-    </tr>
-    <tr>
-     <td>216</td>
-    </tr>
-   </table>
-  </td>
-  <td>
-   <table>
-    <tr>
-     <td>Химия</td>
-     <td>Грибовская Г.К.</td>
-    </tr>
-    <tr>
-     <td>447</td>
-    </tr>
-   </table>
-  </td>
-  <td>
-   <table>
-    <tr>
-     <td>Физкультура</td>
-     <td>Таран Ю.И.</td>
-    </tr>
-    <tr>
-     <td>старый спортзал</td>
-    </tr>
-   </table>
-  </td>
-  <td>
-   <table>
-    <tr>
-     <td>География</td>
-     <td>Кузьмина В.В.</td>
-    </tr>
-    <tr>
-     <td>342</td>
-    </tr>
-   </table>
-  </td>
-  <td>
-   <table>
-    <tr>
-     <td>Информатика</td>
-     <td>Заломина Е.Ю.:1</td>
-     <td>/</td>
-     <td>Ермакова Н.И.:2</td>
-    </tr>
-    <tr>
-     <td>242</td>
-     <td>241</td>
-    </tr>
-   </table>
-  </td>
-  <td>
-   <table>
-    <tr>
-     <td>Физкультура</td>
-     <td>Ленков А.И.</td>
-    </tr>
-    <tr>
-     <td>площадка</td>
-    </tr>
-   </table>
-  </td>
-  <td>
-   <table>
-    <tr>
-     <td>Геометрия</td>
-     <td>Фирсенков С.Е.</td>
-    </tr>
-    <tr>
-     <td>308</td>
-    </tr>
-   </table>
-  </td>
-  <td>
-   <table>
-    <tr>
-     <td>Физика</td>
-     <td>Таирова С.Е.</td>
-    </tr>
-    <tr>
-     <td>347</td>
-    </tr>
-   </table>
-  </td>
-  <td>
-   <table>
-    <tr>
-     <td>Литература</td>
-     <td>Луценко Г.И.</td>
-    </tr>
-    <tr>
-     <td>440</td>
-    </tr>
-   </table>
-  </td>
-  <td>
-   <table>
-    <tr>
-     <td>Алгебра</td>
-     <td>Кадргулов Р.Р.</td>
-    </tr>
-    <tr>
-     <td>345</td>
-    </tr>
-   </table>
-  </td>
- </tr>
- <tr>
-  <td>5</td>
-  <td>12:25 - 13:05</td>
-  <td/>
-  <td/>
-  <td/>
-  <td/>
-  <td>
-   <table>
-    <tr>
-     <td>Классный Час</td>
-     <td>Старшова Л.П.</td>
-    </tr>
-    <tr>
-     <td>209</td>
-    </tr>
-   </table>
-  </td>
-  <td>
-   <table>
-    <tr>
-     <td>шахматы</td>
-     <td>Комаренко Н.А.</td>
-    </tr>
-    <tr>
-     <td>302</td>
-    </tr>
-   </table>
-  </td>
-  <td/>
-  <td/>
-  <td/>
-  <td/>
-  <td/>
-  <td/>
-  <td/>
-  <td>
-   <table>
-    <tr>
-     <td>ИЗО</td>
-     <td>Гардер И.А.</td>
-    </tr>
-    <tr>
-     <td>442</td>
-    </tr>
-   </table>
-  </td>
-  <td>
-   <table>
-    <tr>
-     <td>Литература</td>
-     <td>Лаптева Е.С.</td>
-    </tr>
-    <tr>
-     <td>445</td>
-    </tr>
-   </table>
-  </td>
-  <td>
-   <table>
-    <tr>
-     <td>Социокультурные истоки</td>
-     <td>Никулина Т.В.</td>
-    </tr>
-    <tr>
-     <td>343</td>
-    </tr>
-   </table>
-  </td>
-  <td>
-   <table>
-    <tr>
-     <td>Физкультура</td>
-     <td>Шкаликов В.А.</td>
-    </tr>
-    <tr>
-     <td>площадка</td>
-    </tr>
-   </table>
-  </td>
-  <td>
-   <table>
-    <tr>
-     <td>Математика</td>
-     <td>Делянова С.В.</td>
-    </tr>
-    <tr>
-     <td>306</td>
-    </tr>
-   </table>
-  </td>
-  <td>
-   <table>
-    <tr>
-     <td>Английский язык</td>
-     <td>Федера Т.А.:1</td>
-     <td>/</td>
-     <td>Журавская М.В.:2</td>
-    </tr>
-    <tr>
-     <td>304</td>
-     <td>244</td>
-    </tr>
-   </table>
-  </td>
-  <td>
-   <table>
-    <tr>
-     <td>Геометрия</td>
-     <td>Фалалеева Л.А.</td>
-    </tr>
-    <tr>
-     <td>307</td>
-    </tr>
-   </table>
-  </td>
-  <td>
-   <table>
-    <tr>
-     <td>музыка</td>
-     <td>Савченко О.Б.</td>
-    </tr>
-    <tr>
-     <td>348</td>
-    </tr>
-   </table>
-  </td>
-  <td>
-   <table>
-    <tr>
-     <td>Физика</td>
-     <td>Кадргулов Р.Р.</td>
-    </tr>
-    <tr>
-     <td>345</td>
-    </tr>
-   </table>
-  </td>
-  <td>
-   <table>
-    <tr>
-     <td>Английский язык</td>
-     <td>Мокшина Я.В.:1</td>
-     <td>/</td>
-     <td>Садюкова Н.С.:2</td>
-    </tr>
-    <tr>
-     <td>305</td>
-     <td>303</td>
-    </tr>
-   </table>
-  </td>
-  <td>
-   <table>
-    <tr>
-     <td>География</td>
-     <td>Кузьмина В.В.</td>
-    </tr>
-    <tr>
-     <td>342</td>
-    </tr>
-   </table>
-  </td>
-  <td>
-   <table>
-    <tr>
-     <td>Физика</td>
-     <td>Таирова С.Е.</td>
-    </tr>
-    <tr>
-     <td>347</td>
-    </tr>
-   </table>
-  </td>
-  <td>
-   <table>
-    <tr>
-     <td>Химия</td>
-     <td>Грибовская Г.К.</td>
-    </tr>
-    <tr>
-     <td>447</td>
-    </tr>
-   </table>
-  </td>
-  <td>
-   <table>
-    <tr>
-     <td>Информатика</td>
-     <td>Заломина Е.Ю.:1</td>
-     <td>/</td>
-     <td>Ермакова Н.И.:2</td>
-    </tr>
-    <tr>
-     <td>242</td>
-     <td>241</td>
-    </tr>
-   </table>
-  </td>
-  <td>
-   <table>
-    <tr>
-     <td>История</td>
-     <td>Павленко П.В.</td>
-    </tr>
-    <tr>
-     <td>142</td>
-    </tr>
-   </table>
-  </td>
-  <td>
-   <table>
-    <tr>
-     <td>Алгебра</td>
-     <td>Фирсенков С.Е.</td>
-    </tr>
-    <tr>
-     <td>308</td>
-    </tr>
-   </table>
-  </td>
-  <td>
-   <table>
-    <tr>
-     <td>Русский язык</td>
-     <td>Луценко Г.И.</td>
-    </tr>
-    <tr>
-     <td>440</td>
-    </tr>
-   </table>
-  </td>
-  <td>
-   <table>
-    <tr>
-     <td>История</td>
-     <td>Шепилов Р.М.</td>
-    </tr>
-    <tr>
-     <td>216</td>
-    </tr>
-   </table>
-  </td>
-  <td>
-   <table>
-    <tr>
-     <td>проф. ориентация</td>
-     <td>Лукина Е.А.</td>
-    </tr>
-    <tr>
-     <td>443</td>
-    </tr>
-   </table>
-  </td>
- </tr>
- <tr>
-  <td>6</td>
-  <td>13:15 - 13:55</td>
-  <td/>
-  <td/>
-  <td/>
-  <td/>
-  <td/>
-  <td>
-   <table>
-    <tr>
-     <td>Математика</td>
-     <td>Комаренко Н.А.</td>
-    </tr>
-    <tr>
-     <td>302</td>
-    </tr>
-   </table>
-  </td>
-  <td/>
-  <td/>
-  <td/>
-  <td/>
-  <td/>
-  <td/>
-  <td/>
-  <td/>
-  <td>
-   <table>
-    <tr>
-     <td>музыка</td>
-     <td>Савченко О.Б.</td>
-    </tr>
-    <tr>
-     <td>348</td>
-    </tr>
-   </table>
-  </td>
-  <td/>
-  <td>
-   <table>
-    <tr>
-     <td>Социокультурные истоки</td>
-     <td>Никулина Т.В.</td>
-    </tr>
-    <tr>
-     <td>306</td>
-    </tr>
-   </table>
-  </td>
-  <td>
-   <table>
-    <tr>
-     <td>Английский язык</td>
-     <td>Федера Т.А.:1</td>
-     <td>/</td>
-     <td>Журавская М.В.:2</td>
-    </tr>
-    <tr>
-     <td>304</td>
-     <td>303</td>
-    </tr>
-   </table>
-  </td>
-  <td>
-   <table>
-    <tr>
-     <td>История</td>
-     <td>Павленко П.В.</td>
-    </tr>
-    <tr>
-     <td>443</td>
-    </tr>
-   </table>
-  </td>
-  <td>
-   <table>
-    <tr>
-     <td>Физика</td>
-     <td>Кадргулов Р.Р.</td>
-    </tr>
-    <tr>
-     <td>345</td>
-    </tr>
-   </table>
-  </td>
-  <td>
-   <table>
-    <tr>
-     <td>Русский язык</td>
-     <td>Ягодарова С.Э</td>
-    </tr>
-    <tr>
-     <td>343</td>
-    </tr>
-   </table>
-  </td>
-  <td>
-   <table>
-    <tr>
-     <td>ИЗО</td>
-     <td>Гардер И.А.</td>
-    </tr>
-    <tr>
-     <td>442</td>
-    </tr>
-   </table>
-  </td>
-  <td>
-   <table>
-    <tr>
-     <td>География</td>
-     <td>Кузьмина В.В.</td>
-    </tr>
-    <tr>
-     <td>342</td>
-    </tr>
-   </table>
-  </td>
-  <td>
-   <table>
-    <tr>
-     <td>ОБЖ</td>
-     <td>Назаренко А.В.</td>
-    </tr>
-    <tr>
-     <td>142</td>
-    </tr>
-   </table>
-  </td>
-  <td>
-   <table>
-    <tr>
-     <td>Алгебра</td>
-     <td>Фалалеева Л.А.</td>
-    </tr>
-    <tr>
-     <td>307</td>
-    </tr>
-   </table>
-  </td>
-  <td>
-   <table>
-    <tr>
-     <td>Английский язык</td>
-     <td>Мокшина Я.В.:1</td>
-     <td>/</td>
-     <td>Седова Р.С.:2</td>
-    </tr>
-    <tr>
-     <td>305</td>
-     <td>309</td>
-    </tr>
-   </table>
-  </td>
-  <td>
-   <table>
-    <tr>
-     <td>Алгебра</td>
-     <td>Таирова С.Е.</td>
-    </tr>
-    <tr>
-     <td>347</td>
-    </tr>
-   </table>
-  </td>
-  <td>
-   <table>
-    <tr>
-     <td>Информатика</td>
-     <td>Заломина Е.Ю.:1</td>
-     <td>/</td>
-     <td>Ермакова Н.И.:2</td>
-    </tr>
-    <tr>
-     <td>242</td>
-     <td>241</td>
-    </tr>
-   </table>
-  </td>
-  <td>
-   <table>
-    <tr>
-     <td>Литература</td>
-     <td>Луценко Г.И.</td>
-    </tr>
-    <tr>
-     <td>440</td>
-    </tr>
-   </table>
-  </td>
-  <td/>
-  <td>
-   <table>
-    <tr>
-     <td>Алгебра</td>
-     <td>Фирсенков С.Е.</td>
-    </tr>
-    <tr>
-     <td>308</td>
-    </tr>
-   </table>
-  </td>
-  <td>
-   <table>
-    <tr>
-     <td>Обществознание</td>
-     <td>Шепилов Р.М.</td>
-    </tr>
-    <tr>
-     <td>216</td>
-    </tr>
-   </table>
-  </td>
  </tr>
  <tr>
   <td>7</td>
@@ -1923,17 +2057,6 @@
   <td/>
   <td/>
   <td/>
-  <td>
-   <table>
-    <tr>
-     <td>Труд</td>
-     <td>Комаренко Н.А.</td>
-    </tr>
-    <tr>
-     <td>302</td>
-    </tr>
-   </table>
-  </td>
   <td/>
   <td/>
   <td/>
@@ -1952,18 +2075,6 @@
   <td/>
   <td/>
   <td/>
-  <td/>
-  <td/>
-  <td/>
-  <td/>
-  <td/>
-  <td/>
-  <td/>
-  <td/>
- </tr>
- <tr>
-  <td>8</td>
-  <td>14:55 - 15:35</td>
   <td/>
   <td/>
   <td/>
@@ -1972,110 +2083,31 @@
   <td>
    <table>
     <tr>
-     <td>Классный Час</td>
-     <td>Комаренко Н.А.</td>
+     <td>Физкультура</td>
+     <td>Ленков А.И.:1</td>
+     <td>/</td>
+     <td>Шкаликов В.А.:2</td>
     </tr>
     <tr>
-     <td>302</td>
+     <td>новый спортзал</td>
+     <td>новый спортзал</td>
     </tr>
    </table>
   </td>
-  <td/>
-  <td/>
-  <td/>
-  <td/>
-  <td/>
-  <td/>
-  <td/>
-  <td/>
-  <td/>
-  <td/>
-  <td/>
-  <td/>
-  <td/>
-  <td/>
-  <td/>
-  <td/>
-  <td/>
-  <td/>
-  <td/>
-  <td/>
-  <td/>
-  <td/>
-  <td/>
-  <td/>
-  <td/>
-  <td/>
- </tr>
- <tr>
-  <td>9</td>
-  <td>15:45 - 16:30</td>
-  <td/>
-  <td/>
-  <td/>
-  <td/>
-  <td/>
-  <td/>
-  <td/>
-  <td/>
-  <td/>
-  <td/>
-  <td/>
-  <td/>
-  <td/>
-  <td/>
-  <td/>
-  <td/>
-  <td/>
-  <td/>
-  <td/>
-  <td/>
-  <td/>
-  <td/>
-  <td/>
-  <td/>
-  <td/>
-  <td/>
-  <td/>
-  <td/>
-  <td/>
-  <td/>
-  <td/>
-  <td/>
- </tr>
- <tr>
-  <td>10</td>
-  <td>16:40 - 17:25</td>
-  <td/>
-  <td/>
-  <td/>
-  <td/>
-  <td/>
-  <td/>
-  <td/>
-  <td/>
-  <td/>
-  <td/>
-  <td/>
-  <td/>
-  <td/>
-  <td/>
-  <td/>
-  <td/>
-  <td/>
-  <td/>
-  <td/>
-  <td/>
-  <td/>
-  <td/>
-  <td/>
-  <td/>
-  <td/>
-  <td/>
-  <td/>
-  <td/>
-  <td/>
-  <td/>
+  <td>
+   <table>
+    <tr>
+     <td>Физкультура</td>
+     <td>Ленков А.И.:1</td>
+     <td>/</td>
+     <td>Шкаликов В.А.:2</td>
+    </tr>
+    <tr>
+     <td>новый спортзал</td>
+     <td>новый спортзал</td>
+    </tr>
+   </table>
+  </td>
   <td/>
   <td/>
  </tr>
