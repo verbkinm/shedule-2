@@ -22,7 +22,10 @@ SOURCES += main.cpp\
     myWidgets/centralWidget/shedule/shedulerighttablewidget.cpp \
     myWidgets/centralWidget/shedule/inherited/mytreewidget.cpp \
     myWidgets/centralWidget/shedule/inherited/verticallabel.cpp \
-    myWidgets/centralWidget/shedule/cell.cpp
+    myWidgets/centralWidget/shedule/cell.cpp \
+    myWidgets/centralWidget/shedule/sheduledateswitch.cpp \
+    myWidgets/centralWidget/shedule/inherited/mylineedit.cpp \
+    myWidgets/converter_main_table_shedule.cpp
 
 HEADERS  += widget.h \
     footer.h \
@@ -40,7 +43,10 @@ HEADERS  += widget.h \
     myWidgets/centralWidget/shedule/shedulerighttablewidget.h \
     myWidgets/centralWidget/shedule/inherited/mytreewidget.h \
 myWidgets/centralWidget/shedule/inherited/verticallabel.h \
-    myWidgets/centralWidget/shedule/cell.h
+    myWidgets/centralWidget/shedule/cell.h \
+    myWidgets/centralWidget/shedule/sheduledateswitch.h \
+    myWidgets/centralWidget/shedule/inherited/mylineedit.h \
+    myWidgets/converter_main_table_shedule.h
 
 #INCLUDEPATH += ./
 

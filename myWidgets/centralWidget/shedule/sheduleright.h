@@ -2,16 +2,19 @@
 #define SHEDULERIGHT_H
 
 #include "shedulerighttablewidget.h"
+#include "sheduledateswitch.h"
 
 #include <QWidget>
 #include <QLabel>
 #include <QVBoxLayout>
+#include <QTableWidget>
 
 class SheduleRight : public QWidget
 {
     Q_OBJECT
 public:
     SheduleRight(QWidget *parent = 0);
+    ~SheduleRight();
 
     void setHeaderText(QString str);
     void setUnits();
@@ -19,10 +22,15 @@ public:
 private:
     void paintEvent(QPaintEvent * );
 
-    SheduleRightTableWidget* pSheduleRightTableWidget;
-    QVBoxLayout* pLayout;
-    QLabel* pHeader;
+    QVBoxLayout                 *pLayout, *pTab_0_Layout;
+    QLabel                      *pHeader;
+    QTabWidget                  *pTabWidget;
 
+    SheduleRightTableWidget     *pSheduleRightTableWidget;
+    SheduleDateSwitch           *pSheduleDateSwitch;
+
+    void createHeader();
+    void creatTabs();
     bool event(QEvent *event);
 
 signals:

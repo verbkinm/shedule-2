@@ -10,9 +10,11 @@ class PushButton : public QLabel
 {
   Q_OBJECT
 public:
-  PushButton(QString icon, QString icon_push);
+  PushButton(QString icon, QString icon_push, unsigned int w = 0, unsigned int h = 0);
+  PushButton(QString icon, QString icon_push, QSize size);
 
   void setSize(QSize size);
+  void setSize(int w, int h);
 
 signals:
   void signalClick();

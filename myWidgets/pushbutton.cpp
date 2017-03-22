@@ -1,10 +1,21 @@
 #include "pushbutton.h"
 //#include <QDebug>
 
-PushButton::PushButton(QString icon, QString icon_push) : QLabel(), pressed(false)
+PushButton::PushButton(QString icon, QString icon_push, unsigned int w, unsigned int h) : QLabel(), pressed(false)
 {
   pix_buff = new QPixmap(icon);
   pix_push_buff = new QPixmap(icon_push);
+
+  if(w > 0 && h > 0)
+    this->setSize(w, h);
+}
+PushButton::PushButton(QString icon, QString icon_push, QSize size)
+{
+    pix_buff        = new QPixmap(icon);
+    pix_push_buff   = new QPixmap(icon_push);
+
+    if(size.width() > 0 && size.height() > 0)
+      this->setSize(size.width(), size.height());
 }
 
 void PushButton::setSize(QSize size)
@@ -20,6 +31,11 @@ void PushButton::setSize(QSize size)
   delete pix_buff;
   delete pix_push_buff;
 }
+void PushButton::setSize(int w, int h)
+{
+    this->setSize(QSize(w, h));
+}
+
 void PushButton::mouseMoveEvent(QMouseEvent *event)
 {
   int x = event->pos().x();

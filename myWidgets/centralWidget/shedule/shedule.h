@@ -19,6 +19,8 @@ public:
     SheduleLeftPanel *pLeftWidget;
     SheduleRight *pRightWidget;
 
+    unsigned int the_number_of_classes_in_parallel[11] ; //количестов классов в параллели
+
 private:
 
 signals:

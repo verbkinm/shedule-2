@@ -59,7 +59,6 @@ void SheduleLeftPanel::deleteVerticalLabel()
 //    disconnect(pVerticalLabel, SIGNAL(signalClicked()), this, SLOT(slotSwitchPanelToListLesson()) );
     delete pVerticalLabel;
 }
-
 void SheduleLeftPanel::createListLesson()
 {
     pListLessons = new MyTreeWidget;
@@ -105,7 +104,6 @@ void SheduleLeftPanel::readFileLessons()
     }
     pFile->close();
 }
-
 void SheduleLeftPanel::setUnits()
 {
 //    readFileLessons();

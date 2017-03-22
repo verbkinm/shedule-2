@@ -2,7 +2,7 @@
 #include "generalsettings.h"
 
 #include <QDesktopWidget>
-//#include <QDebug>
+#include <QDebug>
 
 Widget::Widget(QWidget *parent)
     : QWidget(parent)

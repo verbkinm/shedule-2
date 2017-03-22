@@ -72,3 +72,6 @@ SheduleLeftPanel > QTreeWidget {
     background-color: rgba(255, 255, 255, 0%);
     border: 3px none black;
 }
+SheduleDateSwitch {
+	border: none;  
+}

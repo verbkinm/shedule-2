@@ -19,6 +19,10 @@
         <file alias="label-foto">img/label-foto.png</file>
         <file alias="collapse">img/collapse.png</file>
         <file alias="expand">img/expand.png</file>
+        <file alias="previos_button">img/previos_button.png</file>
+        <file alias="previos_button_push">img/previos_button_push.png</file>
+        <file alias="next_button">img/next_button.png</file>
+        <file alias="next_button_push">img/next_button_push.png</file>
     </qresource>
     <qresource prefix="/">
         <file>style.qss</file>
