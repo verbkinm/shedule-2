@@ -30,8 +30,8 @@ SheduleRight::SheduleRight(QWidget *parent) : QWidget(parent)
 
     this->setLayout(pLayout);
 
-    connect(pSheduleRightTableWidget, SIGNAL(signalSetDateSheduleDateSwitch()), \
-            pSheduleDateSwitch, SLOT(slotSetDateSheduleDateSwitch()) );
+//    connect(pSheduleRightTableWidget, SIGNAL(signalSetDateSheduleDateSwitch()), \
+//            pSheduleDateSwitch, SLOT(slotSetDateSheduleDateSwitch()) );
     connect(pSheduleRightTableWidget, SIGNAL(signalSetDateSheduleDateSwitch()), \
             this, SLOT(slotTest()) );
 }
@@ -76,6 +76,8 @@ void SheduleRight::creatTabs()
     pSheduleRightTableWidget = new SheduleRightTableWidget(this);
     pSheduleDateSwitch       = new SheduleDateSwitch;
     pSheduleDateSwitch->setMaximumWidth(SHEDULE_DATE_SIZE_WIDTH);
+
+    connect(pSheduleRightTableWidget, SIGNAL(signalSetTableSize()), this, SLOT(slotSetTableSize()) );
     // end first tab
 
 //FIRST TAB
@@ -84,13 +86,18 @@ void SheduleRight::creatTabs()
     pTab_0_Layout->addWidget(pSheduleRightTableWidget);
     pTab_0_Layout->addWidget(pSheduleRightTableWidget->getHorizontalScroolBar());
     pTab_0_Layout->addStretch(1);
-    pTab_0_Layout->insertWidget(4, pSheduleDateSwitch, 0, Qt::AlignCenter); // по другому не выравнивалось по середине!
-//    pTab_0_Layout->addStretch(1);
+    pTab_0_Layout->insertWidget(3, pSheduleDateSwitch, 0, Qt::AlignCenter); // по другому не выравнивалось по середине!
+    pTab_0_Layout->addStretch(1);
 
     pTabWidget->widget(0)->setLayout(pTab_0_Layout);
 }
 
 //SLOTS
+void SheduleRight::slotSetTableSize()
+{
+    pSheduleRightTableWidget->setMaximumHeightTableWidget(pTabWidget->widget(0)->size().height() );
+    pSheduleRightTableWidget->setMaximumHeightTableWidgetLeft(pTabWidget->widget(0)->size().height() );
+}
 void SheduleRight::slotTest()
 {
     qDebug() << "slot Test";

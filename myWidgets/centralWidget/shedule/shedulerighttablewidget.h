@@ -37,7 +37,8 @@ private:
 
     Converter_main_table_shedule *pConverter_main_table_shedule;
     QFileSystemWatcher *pFileSystemWatcher;
-    bool file_is_exist;
+    bool file_is_exist; //local/расписание уроков/на сегодня/сегодня.xml
+
 
     void convert_html_and_creat_xml();
     void structuring(QDomDocument *pDomDoc);
@@ -47,10 +48,13 @@ private:
     bool fileVerification(QFile *file);
 
 
+    bool event(QEvent *event);
     void paintEvent(QPaintEvent * );
 
 public:
-    QFile currentFile;
+
+
+    QString currentFile;
 
     QDomDocument *pDomDoc;
 
@@ -58,13 +62,16 @@ public:
 
     QScrollBar *getHorizontalScroolBar();
 
+    void setMaximumHeightTableWidget(int);
+    void setMaximumHeightTableWidgetLeft(int);
+
 signals:
     void signalSetDateSheduleDateSwitch();
+    void signalSetTableSize();
 public slots:
     void slotChangedFile(const QString & flName);
     void slotChangedDir (const QString & dirName);
 
-    void slotTest();
 };
 
 #endif // SHEDULERIGHTTABLEWIDGET_H

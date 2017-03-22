@@ -35,7 +35,6 @@ SheduleRightTableWidget::SheduleRightTableWidget(QWidget *parent) : QWidget(pare
 
     connect(pFileSystemWatcher, SIGNAL(fileChanged(QString)),       this, SLOT(slotChangedFile(QString)) );
     connect(pFileSystemWatcher, SIGNAL(directoryChanged(QString)),  this, SLOT(slotChangedDir (QString)) );
-    connect(pTableWidget->verticalScrollBar(), SIGNAL(valueChanged(int)), pTableWidgetLeft->verticalScrollBar(), SLOT(setValue(int)) );
 }
 //FUNCTIONS
 bool SheduleRightTableWidget::fileVerification(QFile *file)
@@ -48,22 +47,16 @@ bool SheduleRightTableWidget::fileVerification(QFile *file)
         msgBox.exec();
         return false;
     }
-    currentFile =  *file;
-    emit signalSetDateSheduleDateSwitch();
-    qDebug() << " emit signal";
+    currentFile = QFileInfo(*file).absoluteFilePath();
+//    emit signalSetDateSheduleDateSwitch();
     return true;
 }
-void SheduleRightTableWidget::slotTest()
-{
-    qDebug() << "slot test";
-}
-
 void SheduleRightTableWidget::convert_html_and_creat_xml()
 {
     pConverter_main_table_shedule = new Converter_main_table_shedule(SHARE_FILE_MAIN_SHEDULE_NAME, LOCAL_FILE_MAIN_SHEDULE_NAME,0);
     delete pConverter_main_table_shedule;
 
-    QFile file("local"+QString(PATH_SPLITER)+"расписание уроков"+PATH_SPLITER+"на сегодня"+PATH_SPLITER+"сегодня.xml");
+    QFile file(LOCAL_FILE_MAIN_SHEDULE_NAME);
     if(!file.exists()){
         QDir dir(LOCAL_ARCHIVE_PATH);
         if(dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot).size() == 0){
@@ -72,7 +65,7 @@ void SheduleRightTableWidget::convert_html_and_creat_xml()
             msgBox.setText(QString("Невозможно открыть файл: \"" + QDir::currentPath() + PATH_SPLITER + QFileInfo(file).fileName()) + \
                            "\" или нет файлов в каталоге \"" + QDir::currentPath() + PATH_SPLITER + LOCAL_ARCHIVE_PATH + "\"" );
             msgBox.exec();
-            exit(1);
+            exit(2);
         }
         bool break_all_foreach = false;
         foreach (QString str, dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot, QDir::Reversed) ) {
@@ -173,8 +166,11 @@ void SheduleRightTableWidget::createLeftTable()
     int fixedHeight = 0;
     for (int i = 0; i < numberOfRow; ++i)
         fixedHeight += pTableWidgetLeft->rowHeight(i);
-    pTableWidgetLeft->setFixedHeight(500);
-//    pTableWidgetLeft->setMaximumHeight(fixedHeight + 2);
+//    pTableWidgetLeft->setFixedHeight(500);
+    pTableWidgetLeft->setMinimumHeight(fixedHeight);
+
+    connect(pTableWidget->verticalScrollBar(), SIGNAL(valueChanged(int)), pTableWidgetLeft->verticalScrollBar(), SLOT(setValue(int)) );
+    emit signalSetDateSheduleDateSwitch();
 }
 void SheduleRightTableWidget::createRightTable()
 {
@@ -241,7 +237,9 @@ void SheduleRightTableWidget::createRightTable()
     for (int i = 0; i < numberOfRow; ++i)
         fixedHeight += pTableWidget->rowHeight(i);
 
-    pTableWidget->setMaximumHeight(fixedHeight);
+    pTableWidget->setMinimumHeight(fixedHeight);
+
+    qDebug() << currentFile;
 }
 void SheduleRightTableWidget::structuring(QDomDocument *pDomDoc)
 {
@@ -288,6 +286,14 @@ QScrollBar* SheduleRightTableWidget::getHorizontalScroolBar()
 {
     return pTableWidget->horizontalScrollBar();
 }
+void SheduleRightTableWidget::setMaximumHeightTableWidget(int height)
+{
+    pTableWidget->setMaximumHeight(height);
+}
+void SheduleRightTableWidget::setMaximumHeightTableWidgetLeft(int height)
+{
+    pTableWidgetLeft->setMaximumHeight(height);
+}
 
 //SLOTS
 void SheduleRightTableWidget::slotChangedFile(const QString &flName)
@@ -295,18 +301,21 @@ void SheduleRightTableWidget::slotChangedFile(const QString &flName)
     if(pFileSystemWatcher->addPath(SHARE_FILE_MAIN_SHEDULE_NAME)){
         file_is_exist = true;
         delete pTableWidget;
+        delete pTableWidgetLeft;
         convert_html_and_creat_xml();
+        createLeftTable();
+        pLayout->addWidget(pTableWidgetLeft, 0,0);
         pLayout->addWidget(pTableWidget, 0,1);
     }
-    else
+    else{
         file_is_exist = false;
+    }
 }
 void SheduleRightTableWidget::slotChangedDir(const QString &dirName)
 {
-    qDebug() << "dir" << dirName;
     QDir dir(SHARE_DIR_MAIN_SHEDULE_NAME);
     if(!file_is_exist){
-        foreach (QString str, dir.entryList()) {
+        foreach (QString str, dir.entryList(QDir::Files | QDir::NoDotAndDotDot)) {
             if(str == "izmenenie.html")
                 slotChangedFile(SHARE_FILE_MAIN_SHEDULE_NAME);
         }
@@ -314,6 +323,16 @@ void SheduleRightTableWidget::slotChangedDir(const QString &dirName)
 }
 
 //EVENTS
+bool SheduleRightTableWidget::event(QEvent *event)
+{
+    if(this->isVisible() && event->type() == QEvent::Resize){
+//        qDebug() << "resize" << pParent->size();
+        emit signalSetTableSize();
+//        setUnits();
+//        resized = 1;
+    }
+    return QWidget::event(event);
+}
 void SheduleRightTableWidget::paintEvent(QPaintEvent *)
 {
     QStyleOption opt;

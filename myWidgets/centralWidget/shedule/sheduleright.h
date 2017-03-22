@@ -37,6 +37,7 @@ signals:
 
 public slots:
     void slotTest();
+    void slotSetTableSize();
 };
 
 #endif // SHEDULERIGHT_H

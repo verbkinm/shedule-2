@@ -11,12 +11,12 @@ Converter_main_table_shedule::Converter_main_table_shedule(QString read_file, QS
 {
     fileHtmlIn.setFileName(read_file);
     if(!fileHtmlIn.exists()){
-        printf("Converter_main_table_shedule error: file is not exists");
+        printf("Converter_main_table_shedule error: file is not exists\n");
         return;
     }
     if(!fileHtmlIn.open(QIODevice::ReadWrite) ){
-        printf("converter_main_table_shedule error: cannot open the file %s", qPrintable(read_file));
-        exit(1);
+        printf("converter_main_table_shedule error: cannot open the file %s\n", qPrintable(read_file));
+        exit(3);
     }
     printf("converter_main_table_shedule creating %s file...\n", qPrintable(write_file));
     QByteArray html = fileHtmlIn.readAll();
@@ -24,10 +24,10 @@ Converter_main_table_shedule::Converter_main_table_shedule(QString read_file, QS
     QString unicode = defaultTextCodec->toUnicode(html);
 
     int indexStart  = unicode.indexOf("<table");
-    if(indexStart == -1){
-        printf("Converter_main_table_shedule error: file is not correct");
-        exit(1);
-    }
+//    if(indexStart == -1){
+//        printf("Converter_main_table_shedule error: file is not correct\n");
+//        exit(4);
+//    }
 
     QString buff;
 
@@ -36,10 +36,10 @@ Converter_main_table_shedule::Converter_main_table_shedule(QString read_file, QS
         buff[j] = unicode[i];
 
     int indexEnd    = buff.indexOf(">elbaT/<");
-    if(indexEnd == -1){
-        printf("Converter_main_table_shedule error: file is not correct");
-        exit(1);
-    }
+//    if(indexEnd == -1){
+//        printf("Converter_main_table_shedule error: file is not correct\n");
+//        exit(5);
+//    }
     QString allFile = unicode.mid( indexStart, unicode.size() - indexStart - indexEnd + 1 ); // from <table to </Table>
 
     bool inTag          = false;
