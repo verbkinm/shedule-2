@@ -4,6 +4,10 @@
 #include <QObject>
 #include <QFileInfo>
 
+//descripton class
+    //конвертирет файл share\расисание уроков\на сегодня\izmenenie.html в файл local\расписание уроков\на сегодня\сегодня.xml
+    //и копирует файлы в папки архивов share\расисание уроков\архив и local\расисание уроков\архив согластно дате
+    //иерархия папки архив: год\месяц\день
 class Converter_main_table_shedule : public QObject
 {
     Q_OBJECT

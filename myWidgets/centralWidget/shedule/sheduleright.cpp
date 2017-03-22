@@ -29,6 +29,11 @@ SheduleRight::SheduleRight(QWidget *parent) : QWidget(parent)
     pLayout->addWidget(pTabWidget);
 
     this->setLayout(pLayout);
+
+    connect(pSheduleRightTableWidget, SIGNAL(signalSetDateSheduleDateSwitch()), \
+            pSheduleDateSwitch, SLOT(slotSetDateSheduleDateSwitch()) );
+    connect(pSheduleRightTableWidget, SIGNAL(signalSetDateSheduleDateSwitch()), \
+            this, SLOT(slotTest()) );
 }
 //FUNCTIONS
 void SheduleRight::setHeaderText(QString str){
@@ -86,6 +91,10 @@ void SheduleRight::creatTabs()
 }
 
 //SLOTS
+void SheduleRight::slotTest()
+{
+    qDebug() << "slot Test";
+}
 
 //EVENTS
 bool SheduleRight::event(QEvent *event)

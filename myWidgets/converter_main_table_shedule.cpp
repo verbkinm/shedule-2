@@ -11,11 +11,11 @@ Converter_main_table_shedule::Converter_main_table_shedule(QString read_file, QS
 {
     fileHtmlIn.setFileName(read_file);
     if(!fileHtmlIn.exists()){
-        qDebug() << "Converter_main_table_shedule error: file not exists";
+        printf("Converter_main_table_shedule error: file is not exists");
         return;
     }
     if(!fileHtmlIn.open(QIODevice::ReadWrite) ){
-        printf("converter_main_table_shedule error: cannot open file %s", qPrintable(read_file));
+        printf("converter_main_table_shedule error: cannot open the file %s", qPrintable(read_file));
         exit(1);
     }
     printf("converter_main_table_shedule creating %s file...\n", qPrintable(write_file));
@@ -24,6 +24,11 @@ Converter_main_table_shedule::Converter_main_table_shedule(QString read_file, QS
     QString unicode = defaultTextCodec->toUnicode(html);
 
     int indexStart  = unicode.indexOf("<table");
+    if(indexStart == -1){
+        printf("Converter_main_table_shedule error: file is not correct");
+        exit(1);
+    }
+
     QString buff;
 
     int j = 0;
@@ -31,6 +36,10 @@ Converter_main_table_shedule::Converter_main_table_shedule(QString read_file, QS
         buff[j] = unicode[i];
 
     int indexEnd    = buff.indexOf(">elbaT/<");
+    if(indexEnd == -1){
+        printf("Converter_main_table_shedule error: file is not correct");
+        exit(1);
+    }
     QString allFile = unicode.mid( indexStart, unicode.size() - indexStart - indexEnd + 1 ); // from <table to </Table>
 
     bool inTag          = false;

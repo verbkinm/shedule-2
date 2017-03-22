@@ -44,10 +44,14 @@ private:
     void createLeftTable();
     void createRightTable();
 
+    bool fileVerification(QFile *file);
+
 
     void paintEvent(QPaintEvent * );
 
 public:
+    QFile currentFile;
+
     QDomDocument *pDomDoc;
 
     SheduleRightTableWidget(QWidget *parent = 0);
@@ -55,10 +59,12 @@ public:
     QScrollBar *getHorizontalScroolBar();
 
 signals:
-
+    void signalSetDateSheduleDateSwitch();
 public slots:
     void slotChangedFile(const QString & flName);
     void slotChangedDir (const QString & dirName);
+
+    void slotTest();
 };
 
 #endif // SHEDULERIGHTTABLEWIDGET_H

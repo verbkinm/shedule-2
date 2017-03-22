@@ -6,6 +6,9 @@
 #include <QPalette>
 #include <QStyleOption>
 #include <QPainter>
+#include <QFileInfo>
+
+#include <QDebug>
 
 //CONSTRUKTOR
 SheduleDateSwitch::SheduleDateSwitch(QWidget *parent) : QWidget(parent)
@@ -15,7 +18,6 @@ SheduleDateSwitch::SheduleDateSwitch(QWidget *parent) : QWidget(parent)
     pNextDay    = new PushButton(":/img/next_button", ":/img/next_button_push", size);
 
     pDate       = new MyLineEdit;
-    pDate->setText(QDate::currentDate().toString("dd-MM-yyyy"));
     pDate->setAlignment(Qt::AlignCenter);
     pDate->setReadOnly(true);
 
@@ -31,8 +33,15 @@ SheduleDateSwitch::SheduleDateSwitch(QWidget *parent) : QWidget(parent)
 //    this->setFixedWidth(SHEDULE_DATE_SIZE_WIDTH);
 }
 //FUNCTIONS
-
+void SheduleDateSwitch::setDate(QDate date)
+{
+    pDate->setText(date.toString("dd-MM-yyyy"));
+}
 //SLOTS
+void SheduleDateSwitch::slotSetDateSheduleDateSwitch()
+{
+    qDebug() << "signal - slot ";//<< QFileInfo(*file).absoluteFilePath();
+}
 
 //EVENTS
 void SheduleDateSwitch::paintEvent(QPaintEvent * )

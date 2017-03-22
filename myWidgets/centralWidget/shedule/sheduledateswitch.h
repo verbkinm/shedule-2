@@ -20,10 +20,13 @@ private:
 public:
     SheduleDateSwitch(QWidget *parent = 0);
 
+    void setDate(QDate date);
+
 signals:
     void signalPreviosDay();
     void signalNextDay();
 public slots:
+    void slotSetDateSheduleDateSwitch();
 };
 
 #endif // SHEDULEDATESWITCH_H

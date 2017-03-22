@@ -23,9 +23,9 @@ Shedule::Shedule(QWidget *parent) : QWidget(parent)
 
     connect(pLeftWidget, SIGNAL(signalItemClick(QTreeWidgetItem*, int)), SLOT(slotSheduleLeftPanelItemClick(QTreeWidgetItem*, int)) );
 
-    for (int i = 0; i < 11; ++i) {
-        qDebug() << i+1 << the_number_of_classes_in_parallel[i];
-    }
+//    for (int i = 0; i < 11; ++i) {
+//        qDebug() << i+1 << the_number_of_classes_in_parallel[i];
+//    }
 }
 //SLOTS
 void Shedule::slotSheduleLeftPanelItemClick(QTreeWidgetItem *item, int column)
