@@ -1,8 +1,7 @@
 #ifndef SHEDULERIGHT_H
 #define SHEDULERIGHT_H
 
-#include "shedulerighttablewidget.h"
-#include "sheduledateswitch.h"
+#include "firstTab/mainshedule.h"
 
 #include <QWidget>
 #include <QLabel>
@@ -22,12 +21,13 @@ public:
 private:
     void paintEvent(QPaintEvent * );
 
-    QVBoxLayout                 *pLayout, *pTab_0_Layout;
+    QVBoxLayout                 *pLayout;
     QLabel                      *pHeader;
     QTabWidget                  *pTabWidget;
 
-    SheduleRightTableWidget     *pSheduleRightTableWidget;
-    SheduleDateSwitch           *pSheduleDateSwitch;
+    MainShedule                 *pMainShedule;
+//    SheduleRightTableWidget     *pSheduleRightTableWidget;
+//    SheduleDateSwitch           *pSheduleDateSwitch;
 
     void createHeader();
     void creatTabs();

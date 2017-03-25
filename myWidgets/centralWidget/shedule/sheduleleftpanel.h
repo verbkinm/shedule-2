@@ -4,7 +4,6 @@
 #include <QVBoxLayout>
 #include <QTreeWidgetItem>
 #include <QFile>
-//#include <QDomDocument>
 #include <QTabWidget>
 
 #include "inherited/mytreewidget.h"
@@ -40,7 +39,6 @@ signals:
 
 public slots:
     void slotSwitchPanelToListLesson();
-//    void slotSwitchPanelToMini();
 };
 
 #endif // SHEDULELEFTPANEL_H

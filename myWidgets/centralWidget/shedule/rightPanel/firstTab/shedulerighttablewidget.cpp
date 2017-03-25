@@ -1,6 +1,7 @@
 #include "shedulerighttablewidget.h"
-#include "shedule.h"
+#include "../../shedule.h"
 #include "generalsettings.h"
+#include "../../../../converter_main_table_shedule.h"
 
 #include <QStyleOption>
 #include <QPainter>
@@ -16,10 +17,17 @@
 SheduleRightTableWidget::SheduleRightTableWidget(QWidget *parent) : QWidget(parent)
 {
     pFileSystemWatcher = new QFileSystemWatcher(this);
-    file_is_exist = false;
-    if(pFileSystemWatcher->addPath(SHARE_FILE_MAIN_SHEDULE_NAME))
-        file_is_exist = true;
-    pFileSystemWatcher->addPath(SHARE_DIR_MAIN_SHEDULE_NAME);
+    file_is_exist_today = false;
+    file_is_exist_yesterday = false;
+
+    if(pFileSystemWatcher->addPath(SHARE_FILE_MAIN_SHEDULE_TODAY))
+        file_is_exist_today = true;
+
+    if(pFileSystemWatcher->addPath(SHARE_FILE_MAIN_SHEDULE_YESTERDAY))
+        file_is_exist_yesterday = true;
+
+    pFileSystemWatcher->addPath(SHARE_DIR_MAIN_SHEDULE_TODAY);
+    pFileSystemWatcher->addPath(SHARE_DIR_MAIN_SHEDULE_YESTERDAY);
     pLayout = new QGridLayout;
 
     convert_html_and_creat_xml();
@@ -48,56 +56,52 @@ bool SheduleRightTableWidget::fileVerification(QFile *file)
         return false;
     }
     currentFile = QFileInfo(*file).absoluteFilePath();
-//    emit signalSetDateSheduleDateSwitch();
     return true;
 }
 void SheduleRightTableWidget::convert_html_and_creat_xml()
 {
-    pConverter_main_table_shedule = new Converter_main_table_shedule(SHARE_FILE_MAIN_SHEDULE_NAME, LOCAL_FILE_MAIN_SHEDULE_NAME,0);
-    delete pConverter_main_table_shedule;
+    Converter_main_table_shedule converterToday(SHARE_FILE_MAIN_SHEDULE_TODAY, LOCAL_FILE_MAIN_SHEDULE_TODAY,0);
+    Converter_main_table_shedule converterYesterday(SHARE_FILE_MAIN_SHEDULE_YESTERDAY, LOCAL_FILE_MAIN_SHEDULE_YESTERDAY,0);
 
-    QFile file(LOCAL_FILE_MAIN_SHEDULE_NAME);
+    QFile file(LOCAL_FILE_MAIN_SHEDULE_TODAY);
     if(!file.exists()){
-        QDir dir(LOCAL_ARCHIVE_PATH);
-        if(dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot).size() == 0){
-            QMessageBox msgBox;
-            msgBox.setIcon(QMessageBox::Critical);
-            msgBox.setText(QString("Невозможно открыть файл: \"" + QDir::currentPath() + PATH_SPLITER + QFileInfo(file).fileName()) + \
-                           "\" или нет файлов в каталоге \"" + QDir::currentPath() + PATH_SPLITER + LOCAL_ARCHIVE_PATH + "\"" );
-            msgBox.exec();
-            exit(2);
-        }
-        bool break_all_foreach = false;
-        foreach (QString str, dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot, QDir::Reversed) ) {
-            if(break_all_foreach) break;
-            qDebug() << str;
-            QDir dirYears(dir.absolutePath() + PATH_SPLITER + str);
-            foreach (QString strMonthes, dirYears.entryList(QDir::Dirs | QDir::NoDotAndDotDot, QDir::Reversed) ) {
+        file.setFileName(QString(LOCAL_FILE_MAIN_SHEDULE_YESTERDAY));
+        if(!file.exists()){
+            QDir dir(LOCAL_ARCHIVE_PATH);
+            if(dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot).size() == 0){
+                QMessageBox msgBox;
+                msgBox.setIcon(QMessageBox::Critical);
+                msgBox.setText(QString("Невозможно открыть файл: \"" + QDir::currentPath() + PATH_SPLITER + QFileInfo(file).fileName()) + \
+                               "\" или нет файлов в каталоге \"" + QDir::currentPath() + PATH_SPLITER + LOCAL_ARCHIVE_PATH + "\"" );
+                msgBox.exec();
+                exit(2);
+            }
+            bool break_all_foreach = false;
+            foreach (QString str, dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot, QDir::Reversed) ) {
                 if(break_all_foreach) break;
-                qDebug() << strMonthes;
-                QDir dirMonthes(dirYears.absolutePath() + PATH_SPLITER + strMonthes);
-                foreach (QString strDays, dirMonthes.entryList(QDir::Files | QDir::NoDotAndDotDot, QDir::Reversed)) {
+                QDir dirYears(dir.absolutePath() + PATH_SPLITER + str);
+                foreach (QString strMonthes, dirYears.entryList(QDir::Dirs | QDir::NoDotAndDotDot, QDir::Reversed) ) {
                     if(break_all_foreach) break;
-                    qDebug() << strDays;
-                    file.setFileName(dirMonthes.absolutePath() + PATH_SPLITER + strDays);
-                    if(fileVerification(&file))
-                        break_all_foreach = true;
+                    QDir dirMonthes(dirYears.absolutePath() + PATH_SPLITER + strMonthes);
+                    foreach (QString strDays, dirMonthes.entryList(QDir::Files | QDir::NoDotAndDotDot, QDir::Reversed)) {
+                        if(break_all_foreach) break;
+                        file.setFileName(dirMonthes.absolutePath() + PATH_SPLITER + strDays);
+                        if(fileVerification(&file))
+                            break_all_foreach = true;
+                    }
                 }
             }
         }
     }
     fileVerification(&file);
 
-    allTextInFile = new QString(file.readAll());
+    QString allTextInFile = file.readAll();
     file.close();
 
     pDomDoc = new QDomDocument;
-    pDomDoc->setContent(*allTextInFile);
+    pDomDoc->setContent(allTextInFile);
 
-    //create DOMDOC
     structuring(pDomDoc);
-    delete allTextInFile; //???
-
     createRightTable();
 }
 void SheduleRightTableWidget::createLeftTable()
@@ -167,10 +171,10 @@ void SheduleRightTableWidget::createLeftTable()
     for (int i = 0; i < numberOfRow; ++i)
         fixedHeight += pTableWidgetLeft->rowHeight(i);
 //    pTableWidgetLeft->setFixedHeight(500);
-    pTableWidgetLeft->setMinimumHeight(fixedHeight);
+//    pTableWidgetLeft->setMinimumHeight(fixedHeight);
 
     connect(pTableWidget->verticalScrollBar(), SIGNAL(valueChanged(int)), pTableWidgetLeft->verticalScrollBar(), SLOT(setValue(int)) );
-    emit signalSetDateSheduleDateSwitch();
+    emit signalSetDateSheduleDateSwitch(currentFile);
 }
 void SheduleRightTableWidget::createRightTable()
 {
@@ -237,9 +241,7 @@ void SheduleRightTableWidget::createRightTable()
     for (int i = 0; i < numberOfRow; ++i)
         fixedHeight += pTableWidget->rowHeight(i);
 
-    pTableWidget->setMinimumHeight(fixedHeight);
-
-    qDebug() << currentFile;
+//    pTableWidget->setMinimumHeight(fixedHeight);
 }
 void SheduleRightTableWidget::structuring(QDomDocument *pDomDoc)
 {
@@ -294,40 +296,58 @@ void SheduleRightTableWidget::setMaximumHeightTableWidgetLeft(int height)
 {
     pTableWidgetLeft->setMaximumHeight(height);
 }
-
 //SLOTS
 void SheduleRightTableWidget::slotChangedFile(const QString &flName)
 {
-    if(pFileSystemWatcher->addPath(SHARE_FILE_MAIN_SHEDULE_NAME)){
-        file_is_exist = true;
-        delete pTableWidget;
-        delete pTableWidgetLeft;
-        convert_html_and_creat_xml();
-        createLeftTable();
-        pLayout->addWidget(pTableWidgetLeft, 0,0);
-        pLayout->addWidget(pTableWidget, 0,1);
+    if(flName.indexOf("сегодня") != -1){
+        if(pFileSystemWatcher->addPath(SHARE_FILE_MAIN_SHEDULE_TODAY)){
+            file_is_exist_today = true;
+            delete pTableWidget;
+            delete pTableWidgetLeft;
+            convert_html_and_creat_xml();
+            createLeftTable();
+            pLayout->addWidget(pTableWidgetLeft, 0,0);
+            pLayout->addWidget(pTableWidget, 0,1);
+        }
+        else
+            file_is_exist_today = false;
     }
-    else{
-        file_is_exist = false;
+    if(flName.indexOf("завтра") != -1){
+        if(pFileSystemWatcher->addPath(SHARE_FILE_MAIN_SHEDULE_YESTERDAY)){
+            file_is_exist_yesterday = true;
+            Converter_main_table_shedule converterYesterday(SHARE_FILE_MAIN_SHEDULE_YESTERDAY, LOCAL_FILE_MAIN_SHEDULE_YESTERDAY,0);
+        }
+        else
+            file_is_exist_yesterday = false;
     }
 }
 void SheduleRightTableWidget::slotChangedDir(const QString &dirName)
 {
-    QDir dir(SHARE_DIR_MAIN_SHEDULE_NAME);
-    if(!file_is_exist){
-        foreach (QString str, dir.entryList(QDir::Files | QDir::NoDotAndDotDot)) {
-            if(str == "izmenenie.html")
-                slotChangedFile(SHARE_FILE_MAIN_SHEDULE_NAME);
+    if(dirName.indexOf("сегодня") != -1){
+        QDir dir(SHARE_DIR_MAIN_SHEDULE_TODAY);
+        if(!file_is_exist_today){
+            foreach (QString str, dir.entryList(QDir::Files | QDir::NoDotAndDotDot)) {
+                if(str == "izmenenie.html")
+                    slotChangedFile(SHARE_FILE_MAIN_SHEDULE_TODAY);
+            }
+        }
+    }
+    if(dirName.indexOf("завтра") != -1){
+        QDir dir(SHARE_DIR_MAIN_SHEDULE_YESTERDAY);
+        if(!file_is_exist_yesterday){
+            foreach (QString str, dir.entryList(QDir::Files | QDir::NoDotAndDotDot)) {
+                if(str == "izmenenie.html")
+                    slotChangedFile(SHARE_FILE_MAIN_SHEDULE_YESTERDAY);
+            }
         }
     }
 }
-
 //EVENTS
 bool SheduleRightTableWidget::event(QEvent *event)
 {
     if(this->isVisible() && event->type() == QEvent::Resize){
 //        qDebug() << "resize" << pParent->size();
-        emit signalSetTableSize();
+//        emit signalSetTableSize();
 //        setUnits();
 //        resized = 1;
     }
@@ -341,3 +361,14 @@ void SheduleRightTableWidget::paintEvent(QPaintEvent *)
     style()->drawPrimitive(QStyle::PE_Widget, &opt, &p, this);
 }
 //DECONSTRUKTOR
+SheduleRightTableWidget::~SheduleRightTableWidget()
+{
+    delete pFileSystemWatcher;
+    delete pDomDoc;
+    delete pTableWidgetLeft;
+    delete pTableWidgetItem;
+    delete pLayout;
+    delete [] pArrClassLiter;
+    delete [] pArrLessonTime;
+    delete [] tableShedule;
+}

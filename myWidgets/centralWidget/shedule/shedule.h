@@ -5,7 +5,7 @@
 #include <QHBoxLayout>
 
 #include "sheduleleftpanel.h"
-#include "sheduleright.h"
+#include "rightPanel/sheduleright.h"
 
 class Shedule : public QWidget
 {

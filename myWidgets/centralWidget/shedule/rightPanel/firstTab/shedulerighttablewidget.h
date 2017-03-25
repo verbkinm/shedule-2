@@ -2,7 +2,6 @@
 #define SHEDULERIGHTTABLEWIDGET_H
 
 #include "cell.h"
-#include "../../converter_main_table_shedule.h"
 
 #include <QWidget>
 #include <QDomDocument>
@@ -10,6 +9,7 @@
 #include <QTableWidget>
 #include <QGridLayout>
 #include <QFileSystemWatcher>
+#include <QFile>
 
 // description of class
     // виджет на вкладки "изменение в расписании"
@@ -26,7 +26,7 @@ private:
 
     QString *pArrClassLiter; //number and literal
     QString *pArrLessonTime;
-    QString *allTextInFile;
+//    QString *allTextInFile;
     Cell **tableShedule;
 
     QTableWidget *pTableWidget;
@@ -35,9 +35,9 @@ private:
 
     QGridLayout *pLayout;
 
-    Converter_main_table_shedule *pConverter_main_table_shedule;
     QFileSystemWatcher *pFileSystemWatcher;
-    bool file_is_exist; //local/расписание уроков/на сегодня/сегодня.xml
+    bool file_is_exist_today; //local/расписание уроков/на сегодня/сегодня.xml
+    bool file_is_exist_yesterday; //local/расписание уроков/на завтра/на завтра.xml
 
 
     void convert_html_and_creat_xml();
@@ -59,6 +59,7 @@ public:
     QDomDocument *pDomDoc;
 
     SheduleRightTableWidget(QWidget *parent = 0);
+    ~SheduleRightTableWidget();
 
     QScrollBar *getHorizontalScroolBar();
 
@@ -66,10 +67,11 @@ public:
     void setMaximumHeightTableWidgetLeft(int);
 
 signals:
-    void signalSetDateSheduleDateSwitch();
-    void signalSetTableSize();
+    void signalSetDateSheduleDateSwitch(QString);
+//    void signalSetTableSize();
+
 public slots:
-    void slotChangedFile(const QString & flName);
+    void slotChangedFile(const QString & flName); //при смене файла izmenenie.html в папке "на сегодня" пересоздается таблица
     void slotChangedDir (const QString & dirName);
 
 };

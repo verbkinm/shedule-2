@@ -5,7 +5,6 @@
 #include <QEvent>
 #include <QPainter>
 #include <QToolBox>
-#include <QScrollBar>
 #include <QHeaderView>
 
 #include <QDebug>
@@ -32,8 +31,8 @@ SheduleRight::SheduleRight(QWidget *parent) : QWidget(parent)
 
 //    connect(pSheduleRightTableWidget, SIGNAL(signalSetDateSheduleDateSwitch()), \
 //            pSheduleDateSwitch, SLOT(slotSetDateSheduleDateSwitch()) );
-    connect(pSheduleRightTableWidget, SIGNAL(signalSetDateSheduleDateSwitch()), \
-            this, SLOT(slotTest()) );
+//    connect(pSheduleRightTableWidget, SIGNAL(signalSetDateSheduleDateSwitch()), \
+//            this, SLOT(slotTest()) );
 }
 //FUNCTIONS
 void SheduleRight::setHeaderText(QString str){
@@ -60,7 +59,8 @@ void SheduleRight::creatTabs()
 //    Shedule * parent = qobject_cast<Shedule*>(this->parent());
 
     pTabWidget = new QTabWidget(this);
-    pTabWidget->addTab(new QWidget, "Изменение в расписании");
+    pMainShedule = new MainShedule;
+    pTabWidget->addTab(pMainShedule, "Изменение в расписании");
     for (int i = 1; i < 12; ++i){
         QWidget *pNewTabWidget = new QWidget;
         pTabWidget->addTab(pNewTabWidget, QString::number(i)+"-е классы");
@@ -72,35 +72,19 @@ void SheduleRight::creatTabs()
         pVBoxLayout->addWidget(pToolBox);
         pNewTabWidget->setLayout(pVBoxLayout);
     }
-    // start first tab
-    pSheduleRightTableWidget = new SheduleRightTableWidget(this);
-    pSheduleDateSwitch       = new SheduleDateSwitch;
-    pSheduleDateSwitch->setMaximumWidth(SHEDULE_DATE_SIZE_WIDTH);
-
-    connect(pSheduleRightTableWidget, SIGNAL(signalSetTableSize()), this, SLOT(slotSetTableSize()) );
-    // end first tab
-
-//FIRST TAB
-    pTab_0_Layout = new QVBoxLayout;
-    pTab_0_Layout->addStretch(1);
-    pTab_0_Layout->addWidget(pSheduleRightTableWidget);
-    pTab_0_Layout->addWidget(pSheduleRightTableWidget->getHorizontalScroolBar());
-    pTab_0_Layout->addStretch(1);
-    pTab_0_Layout->insertWidget(3, pSheduleDateSwitch, 0, Qt::AlignCenter); // по другому не выравнивалось по середине!
-    pTab_0_Layout->addStretch(1);
-
-    pTabWidget->widget(0)->setLayout(pTab_0_Layout);
 }
 
 //SLOTS
 void SheduleRight::slotSetTableSize()
 {
-    pSheduleRightTableWidget->setMaximumHeightTableWidget(pTabWidget->widget(0)->size().height() );
-    pSheduleRightTableWidget->setMaximumHeightTableWidgetLeft(pTabWidget->widget(0)->size().height() );
+//    pSheduleRightTableWidget->setMaximumHeightTableWidget    (pTabWidget->widget(0)->size().height() \
+//                                                              - pSheduleRightTableWidget->getHorizontalScroolBar()->height() \
+//                                                              - pSheduleDateSwitch->height()); // ????
+//    pSheduleRightTableWidget->setMaximumHeightTableWidgetLeft(pTabWidget->widget(0)->size().height() );
 }
 void SheduleRight::slotTest()
 {
-    qDebug() << "slot Test";
+
 }
 
 //EVENTS
@@ -122,5 +106,8 @@ void SheduleRight::paintEvent(QPaintEvent *)
 //DESTRUKTOR
 SheduleRight::~SheduleRight()
 {
-    delete pTab_0_Layout;
+    delete pHeader;
+    delete pMainShedule;
+    delete pTabWidget;
+    delete pLayout;
 }

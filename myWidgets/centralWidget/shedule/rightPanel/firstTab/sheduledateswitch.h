@@ -3,8 +3,8 @@
 
 #include <QWidget>
 #include <QHBoxLayout>
-#include "../../pushbutton.h"
-#include "inherited/mylineedit.h"
+#include "../../../../pushbutton.h"
+#include "../../inherited/mylineedit.h"
 #include <QLineEdit>
 
 class SheduleDateSwitch : public QWidget
@@ -15,16 +15,20 @@ private:
     PushButton *pPreviousDay, *pNextDay;
     MyLineEdit *pDate;
 
+    void setButtonsState();
+
     void paintEvent(QPaintEvent * );
 
 public:
     SheduleDateSwitch(QWidget *parent = 0);
+    ~SheduleDateSwitch();
 
-    void setDate(QDate date);
+    void setSheduleDateSwitch(QString);
 
 signals:
     void signalPreviosDay();
     void signalNextDay();
+
 public slots:
     void slotSetDateSheduleDateSwitch();
 };

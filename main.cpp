@@ -18,8 +18,8 @@ int main(int argc, char *argv[])
     Widget w;
 //    SheduleDateSwitch w;
 
-//    w.showFullScreen();
-    w.showMaximized();
+    w.showFullScreen();
+//    w.showMaximized();
 //    w.show();
 
     return a.exec();

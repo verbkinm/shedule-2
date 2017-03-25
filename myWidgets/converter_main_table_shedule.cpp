@@ -117,7 +117,9 @@ void Converter_main_table_shedule::removeExcess(QString *string)
 }
 void Converter_main_table_shedule::copyFilesInArchive()
 {
-    QString directory_of_the_current_date = QString::number(QDate::currentDate().year()) + QString(PATH_SPLITER) + QString::number(QDate::currentDate().month());
+    QString directory_of_the_current_date = QDate::currentDate().toString("yyyy") + \
+            QString(PATH_SPLITER) + \
+            QDate::currentDate().toString("MM");
 
     QDir dir;
     dir.mkpath(SHARE_ARCHIVE_PATH + QString(PATH_SPLITER) + directory_of_the_current_date);

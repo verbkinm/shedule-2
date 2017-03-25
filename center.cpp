@@ -58,6 +58,7 @@ void Center::slotViewCalendar()
         pLayout->itemAt(i)->widget()->hide();
     pCalendar->setVisible(true);
     activeWidget = pCalendar;
+    pCalendar->setSelectedDate(QDate::currentDate());
     disableButtonCurrentWidget(activeWidget);
 }
 void Center::slotViewShedule()

@@ -18,14 +18,15 @@ SOURCES += main.cpp\
     myWidgets/centralWidget/calendar.cpp \
     myWidgets/centralWidget/shedule/shedule.cpp \
     myWidgets/centralWidget/shedule/sheduleleftpanel.cpp \
-    myWidgets/centralWidget/shedule/sheduleright.cpp \
-    myWidgets/centralWidget/shedule/shedulerighttablewidget.cpp \
+    myWidgets/centralWidget/shedule/rightPanel/sheduleright.cpp \
+    myWidgets/centralWidget/shedule/rightPanel/firstTab/shedulerighttablewidget.cpp \
     myWidgets/centralWidget/shedule/inherited/mytreewidget.cpp \
     myWidgets/centralWidget/shedule/inherited/verticallabel.cpp \
-    myWidgets/centralWidget/shedule/cell.cpp \
-    myWidgets/centralWidget/shedule/sheduledateswitch.cpp \
+    myWidgets/centralWidget/shedule/rightPanel/firstTab/cell.cpp \
+    myWidgets/centralWidget/shedule/rightPanel/firstTab/sheduledateswitch.cpp \
     myWidgets/centralWidget/shedule/inherited/mylineedit.cpp \
-    myWidgets/converter_main_table_shedule.cpp
+    myWidgets/converter_main_table_shedule.cpp \
+    myWidgets/centralWidget/shedule/rightPanel/firstTab/mainshedule.cpp
 
 HEADERS  += widget.h \
     footer.h \
@@ -39,14 +40,15 @@ HEADERS  += widget.h \
     myWidgets/centralWidget/calendar.h \
     myWidgets/centralWidget/shedule/shedule.h \
     myWidgets/centralWidget/shedule/sheduleleftpanel.h \
-    myWidgets/centralWidget/shedule/sheduleright.h \
-    myWidgets/centralWidget/shedule/shedulerighttablewidget.h \
+    myWidgets/centralWidget/shedule/rightPanel/sheduleright.h \
+    myWidgets/centralWidget/shedule/rightPanel/firstTab/shedulerighttablewidget.h \
     myWidgets/centralWidget/shedule/inherited/mytreewidget.h \
 myWidgets/centralWidget/shedule/inherited/verticallabel.h \
-    myWidgets/centralWidget/shedule/cell.h \
-    myWidgets/centralWidget/shedule/sheduledateswitch.h \
+    myWidgets/centralWidget/shedule/rightPanel/firstTab/cell.h \
+    myWidgets/centralWidget/shedule/rightPanel/firstTab/sheduledateswitch.h \
     myWidgets/centralWidget/shedule/inherited/mylineedit.h \
-    myWidgets/converter_main_table_shedule.h
+    myWidgets/converter_main_table_shedule.h \
+    myWidgets/centralWidget/shedule/rightPanel/firstTab/mainshedule.h
 
 #INCLUDEPATH += ./
 
