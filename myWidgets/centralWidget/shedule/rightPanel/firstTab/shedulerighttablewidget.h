@@ -45,6 +45,7 @@ private:
     void createLeftTable();
     void createRightTable();
 
+
     bool fileVerification(QFile *file);
 
 
@@ -56,7 +57,7 @@ public:
 
     QString currentFile;
 
-    QDomDocument *pDomDoc;
+//    QDomDocument *pDomDoc;
 
     SheduleRightTableWidget(QWidget *parent = 0);
     ~SheduleRightTableWidget();
@@ -73,6 +74,8 @@ signals:
 public slots:
     void slotChangedFile(const QString & flName); //при смене файла izmenenie.html в папке "на сегодня" пересоздается таблица
     void slotChangedDir (const QString & dirName);
+
+    void slotrRecreateTables(QString fileName);
 
 };
 

@@ -61,7 +61,7 @@ bool SheduleRightTableWidget::fileVerification(QFile *file)
 void SheduleRightTableWidget::convert_html_and_creat_xml()
 {
     Converter_main_table_shedule converterToday(SHARE_FILE_MAIN_SHEDULE_TODAY, LOCAL_FILE_MAIN_SHEDULE_TODAY,0);
-    Converter_main_table_shedule converterYesterday(SHARE_FILE_MAIN_SHEDULE_YESTERDAY, LOCAL_FILE_MAIN_SHEDULE_YESTERDAY,0);
+//    Converter_main_table_shedule converterYesterday(SHARE_FILE_MAIN_SHEDULE_YESTERDAY, LOCAL_FILE_MAIN_SHEDULE_YESTERDAY,0);
 
     QFile file(LOCAL_FILE_MAIN_SHEDULE_TODAY);
     if(!file.exists()){
@@ -98,10 +98,11 @@ void SheduleRightTableWidget::convert_html_and_creat_xml()
     QString allTextInFile = file.readAll();
     file.close();
 
-    pDomDoc = new QDomDocument;
-    pDomDoc->setContent(allTextInFile);
+//    pDomDoc = new QDomDocument;
+    QDomDocument domDoc;
+    domDoc.setContent(allTextInFile);
 
-    structuring(pDomDoc);
+    structuring(&domDoc);
     createRightTable();
 }
 void SheduleRightTableWidget::createLeftTable()
@@ -171,7 +172,7 @@ void SheduleRightTableWidget::createLeftTable()
     for (int i = 0; i < numberOfRow; ++i)
         fixedHeight += pTableWidgetLeft->rowHeight(i);
 //    pTableWidgetLeft->setFixedHeight(500);
-//    pTableWidgetLeft->setMinimumHeight(fixedHeight);
+    pTableWidgetLeft->setMaximumHeight(fixedHeight + 2);
 
     connect(pTableWidget->verticalScrollBar(), SIGNAL(valueChanged(int)), pTableWidgetLeft->verticalScrollBar(), SLOT(setValue(int)) );
     emit signalSetDateSheduleDateSwitch(currentFile);
@@ -241,7 +242,7 @@ void SheduleRightTableWidget::createRightTable()
     for (int i = 0; i < numberOfRow; ++i)
         fixedHeight += pTableWidget->rowHeight(i);
 
-//    pTableWidget->setMinimumHeight(fixedHeight);
+    pTableWidget->setMaximumHeight(fixedHeight +2 );
 }
 void SheduleRightTableWidget::structuring(QDomDocument *pDomDoc)
 {
@@ -342,6 +343,28 @@ void SheduleRightTableWidget::slotChangedDir(const QString &dirName)
         }
     }
 }
+void SheduleRightTableWidget::slotrRecreateTables(QString fileName)
+{
+    delete pTableWidget;
+    delete pTableWidgetLeft;
+
+    QFile file(fileName);
+    fileVerification(&file);
+
+    QString allTextInFile = file.readAll();
+    file.close();
+
+    QDomDocument domDoc;
+    domDoc.setContent(allTextInFile);
+
+    structuring(&domDoc);
+
+    createRightTable();
+    createLeftTable();
+
+    pLayout->addWidget(pTableWidgetLeft, 0,0);
+    pLayout->addWidget(pTableWidget, 0,1);
+}
 //EVENTS
 bool SheduleRightTableWidget::event(QEvent *event)
 {
@@ -364,9 +387,9 @@ void SheduleRightTableWidget::paintEvent(QPaintEvent *)
 SheduleRightTableWidget::~SheduleRightTableWidget()
 {
     delete pFileSystemWatcher;
-    delete pDomDoc;
     delete pTableWidgetLeft;
-    delete pTableWidgetItem;
+    if(pTableWidgetItem != 0)
+        delete pTableWidgetItem;
     delete pLayout;
     delete [] pArrClassLiter;
     delete [] pArrLessonTime;

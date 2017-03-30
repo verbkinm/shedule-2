@@ -8,6 +8,7 @@
 #include <QStyleOption>
 #include <QPainter>
 #include <QFileInfo>
+#include <QFile>
 
 #include <QDebug>
 
@@ -31,32 +32,129 @@ SheduleDateSwitch::SheduleDateSwitch(QWidget *parent) : QWidget(parent)
 
     this->setLayout(pLayout);
 
-    connect(pPreviousDay, SIGNAL(signalClick()), SIGNAL(signalPreviosDay())  );
-    connect(pNextDay    , SIGNAL(signalClick()), SIGNAL(signalNextDay())     );
+    QFont font;
+    font = pDate->font();
+    font.setBold(true);
+    font.setPixelSize(SHEDULE_DATE_TEXT_SIZE);
+    pDate->setFont(font);
+
+    connect(pPreviousDay, SIGNAL(signalClick()), SLOT(slotPreviosDay())  );
+    connect(pNextDay    , SIGNAL(signalClick()), SLOT(slotNextDay())     );
 //    this->setFixedWidth(SHEDULE_DATE_SIZE_WIDTH);
 }
 //FUNCTIONS
 void SheduleDateSwitch::setButtonsState()
 {
-    QString currentDay, currentMonth, currentYear, currentFile;
+    QString currentDay, currentMonth, currentYear;
     QStringList list = pDate->text().split(" - ");
 
     currentDay      = list.at(0);
     currentMonth    = list.at(1);
     currentYear     = list.at(2);
-    currentFile     = currentDay.append(".xml");
 
-    QDir dirYear(LOCAL_ARCHIVE_PATH + PATH_SPLITER + currentYear );
+    if(!checkDatePrevios(currentYear, currentMonth, currentDay) )
+        pPreviousDay->setEnabled(false);
+
+    if(!checkDateNext(currentYear, currentMonth, currentDay) )
+        pNextDay->setEnabled(false);
+
+
+    qDebug() << "previosFileName" << previosFileName;
+    qDebug() << "nextFileName" << nextFileName;
+}
+bool SheduleDateSwitch::checkDatePrevios(QString year, QString month, QString day)
+{
+    if(year == SHEDULE_DATE_ARCHIVE_LIMIT_MIN)
+        return false;
+
+    QDir dirYear(LOCAL_ARCHIVE_PATH + PATH_SPLITER + year);
     if(dirYear.exists()){
-        QDir dirMonth(dirYear.absolutePath() + PATH_SPLITER + currentMonth);
+        QDir dirMonth(dirYear.absolutePath() + PATH_SPLITER + month);
         if(dirMonth.exists()){
-            foreach (QString str, dirMonth.entryList(QDir::Files | QDir::NoDotAndDotDot)) {
-                qDebug() << str;
+            if(day.toInt() < 33 && day.toInt() > 0){
+                    day = QString::number(day.toInt() - 1);
+
+                if(day.toInt() < 10 && day.toInt() > 0)
+                    day.prepend("0");
+
+                QFile file(QString(dirMonth.absolutePath() + QString(PATH_SPLITER) + day + ".xml"));
+                if(file.exists()){
+                    pPreviousDay->setEnabled(true);
+                    previosFileName = QFileInfo(file).absoluteFilePath();
+                    return true;
+                }
+                if(checkDatePrevios(year, month, day) )
+                    return true;
             }
+
+        }
+        day = "32";
+
+        if(month.toInt() < 13 && month.toInt() > 0){
+            month = QString::number(month.toInt() - 1);
+
+            if(month.toInt() < 10 && month.toInt() > 0)
+                month.prepend("0");
+            if(checkDatePrevios(year, month, day) )
+                return true;
         }
     }
-    qDebug() << currentDay << currentMonth << currentYear;
+    year = QString::number(year.toInt() - 1);
+
+    month = "12";
+
+    if(checkDatePrevios(year, month, day) )
+        return true;
+
+    return false;
 }
+bool SheduleDateSwitch::checkDateNext(QString year, QString month, QString day)
+{
+    if(year == SHEDULE_DATE_ARCHIVE_LIMIT_MAX)
+        return false;
+
+    QDir dirYear(LOCAL_ARCHIVE_PATH + PATH_SPLITER + year);
+    if(dirYear.exists()){
+        QDir dirMonth(dirYear.absolutePath() + PATH_SPLITER + month);
+        if(dirMonth.exists()){
+            if(day.toInt() < 31 && day.toInt() > -1){
+                    day = QString::number(day.toInt() + 1);
+
+                if(day.toInt() < 10 && day.toInt() > 0)
+                    day.prepend("0");
+
+                QFile file(QString(dirMonth.absolutePath() + QString(PATH_SPLITER) + day + ".xml"));
+                if(file.exists()){
+                    pNextDay->setEnabled(true);
+                    nextFileName = QFileInfo(file).absoluteFilePath();
+                    return true;
+                }
+                if(checkDateNext(year, month, day) )
+                    return true;
+            }
+
+        }
+        day = "0";
+
+        if(month.toInt() < 12 && month.toInt() > -1){
+            month = QString::number(month.toInt() + 1);
+
+            if(month.toInt() < 10 && month.toInt() > 0)
+                month.prepend("0");
+            if(checkDateNext(year, month, day) )
+                return true;
+        }
+    }
+    year = QString::number(year.toInt() + 1);
+
+    month = "0";
+
+    if(checkDateNext(year, month, day) )
+        return true;
+
+    return false;
+}
+
 void SheduleDateSwitch::setSheduleDateSwitch(QString date)
 {
     int i = -1;
@@ -75,6 +173,14 @@ void SheduleDateSwitch::setSheduleDateSwitch(QString date)
     setButtonsState();
 }
 //SLOTS
+void SheduleDateSwitch::slotPreviosDay()
+{
+    emit signalPreviosDay(previosFileName);
+}
+void SheduleDateSwitch::slotNextDay()
+{
+    emit signalNextDay(nextFileName);
+}
 void SheduleDateSwitch::slotSetDateSheduleDateSwitch()
 {
     qDebug() << "signal - slot ";//<< QFileInfo(*file).absoluteFilePath();

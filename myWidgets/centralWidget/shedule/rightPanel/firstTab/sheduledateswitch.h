@@ -15,7 +15,11 @@ private:
     PushButton *pPreviousDay, *pNextDay;
     MyLineEdit *pDate;
 
+    QString previosFileName, nextFileName;
+
     void setButtonsState();
+    bool checkDatePrevios(QString year, QString month, QString day);
+    bool checkDateNext   (QString year, QString month, QString day);
 
     void paintEvent(QPaintEvent * );
 
@@ -26,11 +30,14 @@ public:
     void setSheduleDateSwitch(QString);
 
 signals:
-    void signalPreviosDay();
-    void signalNextDay();
+    void signalPreviosDay(QString fileName);
+    void signalNextDay(QString fileName);
 
 public slots:
     void slotSetDateSheduleDateSwitch();
+
+    void slotPreviosDay();
+    void slotNextDay();
 };
 
 #endif // SHEDULEDATESWITCH_H

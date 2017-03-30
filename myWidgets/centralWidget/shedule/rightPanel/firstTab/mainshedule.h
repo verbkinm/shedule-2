@@ -18,8 +18,6 @@ private:
 public:
     MainShedule(QWidget *parent = 0);
 
-    void setSheduleDateSwitch(QString);
-
 signals:
 
 public slots:
