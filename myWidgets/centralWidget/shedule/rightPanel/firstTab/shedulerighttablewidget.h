@@ -75,7 +75,7 @@ public slots:
     void slotChangedFile(const QString & flName); //при смене файла izmenenie.html в папке "на сегодня" пересоздается таблица
     void slotChangedDir (const QString & dirName);
 
-    void slotrRecreateTables(QString fileName);
+    void slotRecreateTables(QString fileName);
 
 };
 

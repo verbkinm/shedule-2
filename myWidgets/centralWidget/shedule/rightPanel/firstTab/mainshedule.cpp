@@ -20,8 +20,8 @@ MainShedule::MainShedule(QWidget *parent) : QWidget(parent)
 
     this->setLayout(pLayout);
 
-    connect(pSheduleDateSwitch, SIGNAL(signalPreviosDay(QString)), pSheduleRightTableWidget, SLOT(slotrRecreateTables(QString)) );
-    connect(pSheduleDateSwitch, SIGNAL(signalNextDay(QString)),    pSheduleRightTableWidget, SLOT(slotrRecreateTables(QString)) );
+    connect(pSheduleDateSwitch, SIGNAL(signalPreviosDay(QString)), pSheduleRightTableWidget, SLOT(slotRecreateTables(QString)) );
+    connect(pSheduleDateSwitch, SIGNAL(signalNextDay(QString)),    pSheduleRightTableWidget, SLOT(slotRecreateTables(QString)) );
     connect(pSheduleRightTableWidget, SIGNAL(signalSetDateSheduleDateSwitch(QString)), SLOT(slotSetDate(QString)) );
 
     slotSetDate(pSheduleRightTableWidget->currentFile);

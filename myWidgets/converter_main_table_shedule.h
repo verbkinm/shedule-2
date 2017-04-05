@@ -12,14 +12,17 @@ class Converter_main_table_shedule : public QObject
 {
     Q_OBJECT
 public:
-    Converter_main_table_shedule(QString read_file, QString write_file, QObject *parent = 0);
+    Converter_main_table_shedule(QString read_file, QString write_file, bool tomorrow = false, QObject *parent = 0);
 
 private:
     QFile fileXmlOut, fileHtmlIn;
+    bool tomorrow;
 
     void clearTag(QString *string, int *positionString, int indexStart, int indexEnd);
     void removeExcess(QString *string);
     void copyFilesInArchive();
+
+    QDate checkDate(QDate day, char operations = '=');
 
 signals:
 

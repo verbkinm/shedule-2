@@ -26,12 +26,12 @@ SheduleRightTableWidget::SheduleRightTableWidget(QWidget *parent) : QWidget(pare
     if(pFileSystemWatcher->addPath(SHARE_FILE_MAIN_SHEDULE_YESTERDAY))
         file_is_exist_yesterday = true;
 
-    pFileSystemWatcher->addPath(SHARE_DIR_MAIN_SHEDULE_TODAY);
-    pFileSystemWatcher->addPath(SHARE_DIR_MAIN_SHEDULE_YESTERDAY);
+//    pFileSystemWatcher->addPath(SHARE_DIR_MAIN_SHEDULE_TODAY);
+//    pFileSystemWatcher->addPath(SHARE_DIR_MAIN_SHEDULE_YESTERDAY);
+
     pLayout = new QGridLayout;
 
     convert_html_and_creat_xml();
-
     createLeftTable();
 
     pLayout->addWidget(pTableWidgetLeft, 0,0);
@@ -60,8 +60,8 @@ bool SheduleRightTableWidget::fileVerification(QFile *file)
 }
 void SheduleRightTableWidget::convert_html_and_creat_xml()
 {
-    Converter_main_table_shedule converterToday(SHARE_FILE_MAIN_SHEDULE_TODAY, LOCAL_FILE_MAIN_SHEDULE_TODAY,0);
-//    Converter_main_table_shedule converterYesterday(SHARE_FILE_MAIN_SHEDULE_YESTERDAY, LOCAL_FILE_MAIN_SHEDULE_YESTERDAY,0);
+    Converter_main_table_shedule converterToday(SHARE_FILE_MAIN_SHEDULE_TODAY, LOCAL_FILE_MAIN_SHEDULE_TODAY);
+    Converter_main_table_shedule converterYesterday(SHARE_FILE_MAIN_SHEDULE_YESTERDAY, LOCAL_FILE_MAIN_SHEDULE_YESTERDAY, true);
 
     QFile file(LOCAL_FILE_MAIN_SHEDULE_TODAY);
     if(!file.exists()){
@@ -316,7 +316,7 @@ void SheduleRightTableWidget::slotChangedFile(const QString &flName)
     if(flName.indexOf("завтра") != -1){
         if(pFileSystemWatcher->addPath(SHARE_FILE_MAIN_SHEDULE_YESTERDAY)){
             file_is_exist_yesterday = true;
-            Converter_main_table_shedule converterYesterday(SHARE_FILE_MAIN_SHEDULE_YESTERDAY, LOCAL_FILE_MAIN_SHEDULE_YESTERDAY,0);
+            Converter_main_table_shedule converterYesterday(SHARE_FILE_MAIN_SHEDULE_YESTERDAY, LOCAL_FILE_MAIN_SHEDULE_YESTERDAY);
         }
         else
             file_is_exist_yesterday = false;
@@ -343,7 +343,7 @@ void SheduleRightTableWidget::slotChangedDir(const QString &dirName)
         }
     }
 }
-void SheduleRightTableWidget::slotrRecreateTables(QString fileName)
+void SheduleRightTableWidget::slotRecreateTables(QString fileName)
 {
     delete pTableWidget;
     delete pTableWidgetLeft;
@@ -388,10 +388,10 @@ SheduleRightTableWidget::~SheduleRightTableWidget()
 {
     delete pFileSystemWatcher;
     delete pTableWidgetLeft;
-    if(pTableWidgetItem != 0)
-        delete pTableWidgetItem;
+//    if(pTableWidgetItem != 0)
+//        delete pTableWidgetItem;
     delete pLayout;
     delete [] pArrClassLiter;
     delete [] pArrLessonTime;
-    delete [] tableShedule;
+//    delete [] tableShedule;
 }

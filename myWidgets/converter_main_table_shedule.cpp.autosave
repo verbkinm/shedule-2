@@ -26,10 +26,6 @@ Converter_main_table_shedule::Converter_main_table_shedule(QString read_file, QS
     QString unicode = defaultTextCodec->toUnicode(html);
 
     int indexStart  = unicode.indexOf("<table");
-//    if(indexStart == -1){
-//        printf("Converter_main_table_shedule error: file is not correct\n");
-//        exit(4);
-//    }
 
     QString buff;
 
@@ -38,10 +34,7 @@ Converter_main_table_shedule::Converter_main_table_shedule(QString read_file, QS
         buff[j] = unicode[i];
 
     int indexEnd    = buff.indexOf(">elbaT/<");
-//    if(indexEnd == -1){
-//        printf("Converter_main_table_shedule error: file is not correct\n");
-//        exit(5);
-//    }
+
     QString allFile = unicode.mid( indexStart, unicode.size() - indexStart - indexEnd + 1 ); // from <table to </Table>
 
     bool inTag          = false;
@@ -74,6 +67,7 @@ Converter_main_table_shedule::Converter_main_table_shedule(QString read_file, QS
     }
 
     removeExcess(&allFile);
+    
     QString xmlFormat = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
     xmlFormat.append(allFile);
 
@@ -93,6 +87,7 @@ Converter_main_table_shedule::Converter_main_table_shedule(QString read_file, QS
     fileXmlOut.write(domDoc.toByteArray());
 //COPY FILES IN ARCHIVE
     copyFilesInArchive();
+    
 //CLOSE FILES
     fileXmlOut.close();
     fileHtmlIn.close();
