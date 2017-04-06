@@ -31,6 +31,9 @@ private:
 
     QTableWidget *pTableWidget;
     QTableWidget *pTableWidgetLeft;
+    QTableWidget *pTableLeftHeader;
+    QTableWidget *pTableRightHeader;
+
     QTableWidgetItem *pTableWidgetItem;
 
     QGridLayout *pLayout;
@@ -45,24 +48,18 @@ private:
     void createLeftTable();
     void createRightTable();
 
-
-    bool fileVerification(QFile *file);
-
-
     bool event(QEvent *event);
     void paintEvent(QPaintEvent * );
 
 public:
 
-
     QString currentFile;
-
-//    QDomDocument *pDomDoc;
 
     SheduleRightTableWidget(QWidget *parent = 0);
     ~SheduleRightTableWidget();
 
     QScrollBar *getHorizontalScroolBar();
+    QScrollBar *getVerticalScroolBar();
 
     void setMaximumHeightTableWidget(int);
     void setMaximumHeightTableWidgetLeft(int);

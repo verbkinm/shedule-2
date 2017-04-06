@@ -28,11 +28,6 @@ SheduleRight::SheduleRight(QWidget *parent) : QWidget(parent)
     pLayout->addWidget(pTabWidget);
 
     this->setLayout(pLayout);
-
-//    connect(pSheduleRightTableWidget, SIGNAL(signalSetDateSheduleDateSwitch()), \
-//            pSheduleDateSwitch, SLOT(slotSetDateSheduleDateSwitch()) );
-//    connect(pSheduleRightTableWidget, SIGNAL(signalSetDateSheduleDateSwitch()), \
-//            this, SLOT(slotTest()) );
 }
 //FUNCTIONS
 void SheduleRight::setHeaderText(QString str){

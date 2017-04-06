@@ -2,6 +2,7 @@
 #include "../../shedule.h"
 #include "generalsettings.h"
 #include "../../../../converter_main_table_shedule.h"
+#include "../../../../../myClasses/myfile.h"
 
 #include <QStyleOption>
 #include <QPainter>
@@ -26,16 +27,17 @@ SheduleRightTableWidget::SheduleRightTableWidget(QWidget *parent) : QWidget(pare
     if(pFileSystemWatcher->addPath(SHARE_FILE_MAIN_SHEDULE_YESTERDAY))
         file_is_exist_yesterday = true;
 
-//    pFileSystemWatcher->addPath(SHARE_DIR_MAIN_SHEDULE_TODAY);
-//    pFileSystemWatcher->addPath(SHARE_DIR_MAIN_SHEDULE_YESTERDAY);
+    pFileSystemWatcher->addPath(SHARE_DIR_MAIN_SHEDULE_TODAY);
+    pFileSystemWatcher->addPath(SHARE_DIR_MAIN_SHEDULE_YESTERDAY);
 
     pLayout = new QGridLayout;
 
     convert_html_and_creat_xml();
     createLeftTable();
 
-    pLayout->addWidget(pTableWidgetLeft, 0,0);
-    pLayout->addWidget(pTableWidget, 0,1);
+    pLayout->addWidget(pTableRightHeader, 0,1);
+    pLayout->addWidget(pTableWidgetLeft, 1,0);
+    pLayout->addWidget(pTableWidget, 1,1);
 
     this->setLayout(pLayout);
 
@@ -45,19 +47,6 @@ SheduleRightTableWidget::SheduleRightTableWidget(QWidget *parent) : QWidget(pare
     connect(pFileSystemWatcher, SIGNAL(directoryChanged(QString)),  this, SLOT(slotChangedDir (QString)) );
 }
 //FUNCTIONS
-bool SheduleRightTableWidget::fileVerification(QFile *file)
-{
-    if(!file->isOpen() && !file->open(QIODevice::ReadOnly) ){
-        QMessageBox msgBox;
-        msgBox.setIcon(QMessageBox::Critical);
-        msgBox.setText(QString("Невозможно открыть файл: \"" + QFileInfo(*file).absoluteFilePath() ) + \
-                       "\" для чтения");
-        msgBox.exec();
-        return false;
-    }
-    currentFile = QFileInfo(*file).absoluteFilePath();
-    return true;
-}
 void SheduleRightTableWidget::convert_html_and_creat_xml()
 {
     Converter_main_table_shedule converterToday(SHARE_FILE_MAIN_SHEDULE_TODAY, LOCAL_FILE_MAIN_SHEDULE_TODAY);
@@ -86,19 +75,18 @@ void SheduleRightTableWidget::convert_html_and_creat_xml()
                     foreach (QString strDays, dirMonthes.entryList(QDir::Files | QDir::NoDotAndDotDot, QDir::Reversed)) {
                         if(break_all_foreach) break;
                         file.setFileName(dirMonthes.absolutePath() + PATH_SPLITER + strDays);
-                        if(fileVerification(&file))
+                        if(fileVerification(&file, &currentFile))
                             break_all_foreach = true;
                     }
                 }
             }
         }
     }
-    fileVerification(&file);
+    fileVerification(&file, &currentFile);
 
     QString allTextInFile = file.readAll();
     file.close();
 
-//    pDomDoc = new QDomDocument;
     QDomDocument domDoc;
     domDoc.setContent(allTextInFile);
 
@@ -124,12 +112,12 @@ void SheduleRightTableWidget::createLeftTable()
             pTableWidgetLeft->setItem(row, column, pTableWidgetItem);
             pTableWidgetItem->setTextAlignment(Qt::AlignCenter);
         }
-    pTableWidgetLeft->item(0, 0)->setText("№");
-    pTableWidgetLeft->item(0, 1)->setText("Время");
+//    pTableWidgetLeft->item(0, 0)->setText("№");
+//    pTableWidgetLeft->item(0, 1)->setText("Время");
     //LESSON TIME AND NUMBER OF LESSONS
-    for (int i = 1; i < numberOfRow; ++i){
-        pTableWidgetLeft->item(i, 0)->setText(QString::number(i) );
-        pTableWidgetLeft->item(i, 1)->setText(pArrLessonTime[i - 1]);
+    for (int i = 0; i < numberOfRow; ++i){
+        pTableWidgetLeft->item(i, 0)->setText(QString::number(i + 1) );
+        pTableWidgetLeft->item(i, 1)->setText(pArrLessonTime[i]);
     }
     //FIXED SIZE COLUMN 0,1
     pTableWidgetLeft->setColumnWidth(0, 30);
@@ -179,6 +167,15 @@ void SheduleRightTableWidget::createLeftTable()
 }
 void SheduleRightTableWidget::createRightTable()
 {
+    pTableRightHeader = new QTableWidget(1, numberOfClass);
+    pTableRightHeader->horizontalHeader()->hide();
+    pTableRightHeader->verticalHeader()->hide();
+    pTableRightHeader->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    pTableRightHeader->setSelectionMode(QAbstractItemView::NoSelection);
+    pTableRightHeader->setDragDropMode(QAbstractItemView::NoDragDrop);
+    pTableRightHeader->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    pTableRightHeader->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+
     pTableWidget = new QTableWidget(numberOfRow,numberOfClass);
     pTableWidget->horizontalHeader()->hide();
     pTableWidget->verticalHeader()->hide();
@@ -186,56 +183,68 @@ void SheduleRightTableWidget::createRightTable()
     pTableWidget->setSelectionMode(QAbstractItemView::NoSelection);
     pTableWidget->setDragDropMode(QAbstractItemView::NoDragDrop);
     pTableWidget->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    pTableWidget->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
+    pTableWidget->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
     pTableWidget->setCurrentCell(0,0);
 
-    //CREATE QTABLE_ITEMS IN QTABLE_WIDGET
+    //CREATE QTABLE_ITEMS IN pTableRightHeader
+    for (int column = 0; column < numberOfCollum; ++column) {
+        pTableWidgetItem = new QTableWidgetItem;
+        pTableRightHeader->setItem(0,column, pTableWidgetItem);
+    }
+    //CREATE QTABLE_ITEMS IN pTableWidget
     for (int row = 0; row < numberOfRow; ++row)
         for (int column = 0; column < numberOfCollum; ++column) {
             pTableWidgetItem = new QTableWidgetItem;
             pTableWidget->setItem(row, column, pTableWidgetItem);
         }
-    //NAME OF CLASS
+    //NAME OF CLASS IN pTableRightHeader
     for (int i = 0; i < numberOfClass; ++i)
-        pTableWidget->item(0, i)->setText(tableShedule[0][i].getHeader() );
-    //FILLING CELLS
-    for (int i = 1; i < numberOfRow; ++i)
+        pTableRightHeader->item(0, i)->setText(tableShedule[0][i].getHeader() );
+    //FILLING CELLS IN pTableWidget
+    for (int i = 0; i < numberOfRow; ++i)
         for (int ii = 0; ii < numberOfClass; ++ii){
-            pTableWidget->item(i, ii)->setText(tableShedule[i -1][ii].getnameOfLesson() );
+            pTableWidget->item(i, ii)->setText(tableShedule[i][ii].getnameOfLesson() );
             QString currentText = pTableWidget->item(i, ii)->text();
-            foreach (QString str, tableShedule[i -1][ii].getTeachers()) {
+            foreach (QString str, tableShedule[i][ii].getTeachers()) {
                 currentText.append("\n");
                 currentText.append(str);
             }
-            foreach (QString str, tableShedule[i -1][ii].getRoomCabinets()) {
+            foreach (QString str, tableShedule[i][ii].getRoomCabinets()) {
                 currentText.append("\n");
                 currentText.append(str);
             }
             pTableWidget->item(i, ii)->setText(currentText);
         }
-    //ALIGN FIRST ROW
-    for (int i = 0; i < numberOfClass; ++i)
-        pTableWidget->item(0, i)->setTextAlignment(Qt::AlignCenter);
-    //SET FONT TABLE
+    //SET FONT TABLE IN pTableWidget
     for (int i = 0; i < numberOfRow; ++i)
         for (int ii = 0; ii < numberOfClass; ++ii) {
             QFont pFont(pTableWidget->item(i, ii)->font());
             pFont.setPixelSize(FONT_SIZE_TABLE_SHEDULE);
             pTableWidget->item(i, ii)->setFont(pFont);
         }
-    pTableWidget->resizeColumnsToContents();
-    pTableWidget->resizeRowsToContents();
-    //SET BOLD FONT AND BACKGROUND FOR 0-COLUMN
+    //ALIGN FIRST ROW IN pTableRightHeader
+    for (int i = 0; i < numberOfClass; ++i)
+        pTableRightHeader->item(0, i)->setTextAlignment(Qt::AlignCenter);
+    //SET BOLD FONT AND BACKGROUND FOR 0-COLUMN IN pTableRightHeade
     for (int i = 0; i < numberOfClass; ++i) {
-        pTableWidgetItem = pTableWidget->item(0, i);
+        pTableWidgetItem = pTableRightHeader->item(0, i);
         QFont font = pTableWidgetItem->font();
         font.setBold(true);
         pTableWidgetItem->setFont(font);
         pTableWidgetItem->setBackgroundColor(QColor(228,228,228));
     }
+    pTableWidget->resizeColumnsToContents();
+    pTableWidget->resizeRowsToContents();
+    pTableRightHeader->resizeRowsToContents();
+
+    //SET COLUMN WIDTH IN pTableRightHeader
+    for (int column = 0; column < numberOfClass; ++column)
+        pTableRightHeader->setColumnWidth(column, pTableWidget->columnWidth(column));
+    //SET FIXED HEIGHT IN pTableRightHeader
+    pTableRightHeader->setFixedHeight(pTableRightHeader->rowHeight(0));
     //SET BACKGOUND COLOR FOR I-ROW
-    for (int i = 2; i < numberOfRow; i += 2)
+    for (int i = 1; i < numberOfRow; i += 2)
         for (int ii = 0; ii < numberOfClass; ++ii)
             pTableWidget->item(i, ii)->setBackgroundColor(QColor(246,246,246));
     int fixedHeight = 0;
@@ -248,7 +257,7 @@ void SheduleRightTableWidget::structuring(QDomDocument *pDomDoc)
 {
     root            = pDomDoc->firstChild(); //<table>
     numberOfLesson  = root.childNodes().size() - 1;
-    numberOfRow     = root.childNodes().size();
+    numberOfRow     = root.childNodes().size() - 1;
     numberOfCollum  = root.firstChild().childNodes().size();
     numberOfClass   = numberOfCollum - 2;
     pArrClassLiter  = new QString[numberOfClass];
@@ -287,7 +296,13 @@ void SheduleRightTableWidget::structuring(QDomDocument *pDomDoc)
 }
 QScrollBar* SheduleRightTableWidget::getHorizontalScroolBar()
 {
+    connect(pTableWidget->horizontalScrollBar(), SIGNAL(valueChanged(int)), pTableRightHeader->horizontalScrollBar(), SLOT(setValue(int)) );
     return pTableWidget->horizontalScrollBar();
+}
+QScrollBar* SheduleRightTableWidget::getVerticalScroolBar()
+{
+    connect(pTableWidget->verticalScrollBar(), SIGNAL(valueChanged(int)), pTableRightHeader->verticalScrollBar(), SLOT(setValue(int)) );
+    return pTableWidget->verticalScrollBar();
 }
 void SheduleRightTableWidget::setMaximumHeightTableWidget(int height)
 {
@@ -316,7 +331,12 @@ void SheduleRightTableWidget::slotChangedFile(const QString &flName)
     if(flName.indexOf("завтра") != -1){
         if(pFileSystemWatcher->addPath(SHARE_FILE_MAIN_SHEDULE_YESTERDAY)){
             file_is_exist_yesterday = true;
-            Converter_main_table_shedule converterYesterday(SHARE_FILE_MAIN_SHEDULE_YESTERDAY, LOCAL_FILE_MAIN_SHEDULE_YESTERDAY);
+            delete pTableWidget;
+            delete pTableWidgetLeft;
+            convert_html_and_creat_xml();
+            createLeftTable();
+            pLayout->addWidget(pTableWidgetLeft, 0,0);
+            pLayout->addWidget(pTableWidget, 0,1);
         }
         else
             file_is_exist_yesterday = false;
@@ -328,6 +348,7 @@ void SheduleRightTableWidget::slotChangedDir(const QString &dirName)
         QDir dir(SHARE_DIR_MAIN_SHEDULE_TODAY);
         if(!file_is_exist_today){
             foreach (QString str, dir.entryList(QDir::Files | QDir::NoDotAndDotDot)) {
+                qDebug() << str;
                 if(str == "izmenenie.html")
                     slotChangedFile(SHARE_FILE_MAIN_SHEDULE_TODAY);
             }
@@ -345,11 +366,12 @@ void SheduleRightTableWidget::slotChangedDir(const QString &dirName)
 }
 void SheduleRightTableWidget::slotRecreateTables(QString fileName)
 {
+    delete pTableRightHeader;
     delete pTableWidget;
     delete pTableWidgetLeft;
 
     QFile file(fileName);
-    fileVerification(&file);
+    fileVerification(&file, &currentFile);
 
     QString allTextInFile = file.readAll();
     file.close();
@@ -362,8 +384,9 @@ void SheduleRightTableWidget::slotRecreateTables(QString fileName)
     createRightTable();
     createLeftTable();
 
-    pLayout->addWidget(pTableWidgetLeft, 0,0);
-    pLayout->addWidget(pTableWidget, 0,1);
+    pLayout->addWidget(pTableRightHeader, 0,1);
+    pLayout->addWidget(pTableWidgetLeft, 1,0);
+    pLayout->addWidget(pTableWidget, 1,1);
 }
 //EVENTS
 bool SheduleRightTableWidget::event(QEvent *event)

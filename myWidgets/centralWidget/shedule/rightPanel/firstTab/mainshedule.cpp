@@ -30,8 +30,9 @@ MainShedule::MainShedule(QWidget *parent) : QWidget(parent)
 //SLOTS
 void MainShedule::slotSetDate(QString date)
 {
-    pSheduleDateSwitch->setSheduleDateSwitch(date);
-    pLayout->addWidget(pSheduleRightTableWidget->getHorizontalScroolBar(), 1,0);
+    pSheduleDateSwitch->setSheduleDateSwitchText(date);
+    pLayout->addWidget(pSheduleRightTableWidget->getHorizontalScroolBar(),  1,0);
+    pLayout->addWidget(pSheduleRightTableWidget->getVerticalScroolBar(),    0,1);
 }
 //EVENTS
 //DESTRUCTOR

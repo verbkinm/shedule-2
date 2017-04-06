@@ -10,7 +10,7 @@
 #include <QFileInfo>
 #include <QFile>
 
-#include <QDebug>
+//#include <QDebug>
 
 //CONSTRUKTOR
 SheduleDateSwitch::SheduleDateSwitch(QWidget *parent) : QWidget(parent)
@@ -57,10 +57,6 @@ void SheduleDateSwitch::setButtonsState()
 
     if(!checkDateNext(currentYear, currentMonth, currentDay) )
         pNextDay->setEnabled(false);
-
-
-    qDebug() << "previosFileName" << previosFileName;
-    qDebug() << "nextFileName" << nextFileName;
 }
 bool SheduleDateSwitch::checkDatePrevios(QString year, QString month, QString day)
 {
@@ -155,17 +151,18 @@ bool SheduleDateSwitch::checkDateNext(QString year, QString month, QString day)
     return false;
 }
 
-void SheduleDateSwitch::setSheduleDateSwitch(QString date)
+void SheduleDateSwitch::setSheduleDateSwitchText(QString date)
 {
     int i = -1;
+
     if(date.endsWith("сегодня.xml"))
         date = QDate::currentDate().toString("dd - MM - yyyy");
     else if(date.endsWith("завтра.xml")){
-        int day = QDate::currentDate().day() + 1;
+        int day = QDate::currentDate().day() + 1; // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         date = QString::number(day) + QDate::currentDate().toString(" - MM - yyyy");
     }
     else if( (i = date.indexOf("архив")) != -1){
-        QStringList tmp= date.mid(i).remove("архив/").remove(".xml").split("/");
+        QStringList tmp = date.mid(i).remove("архив/").remove(".xml").split("/");
         date = tmp.at(2) + " - " + tmp.at(1) + " - " + tmp.at(0);
     }
 
@@ -180,10 +177,6 @@ void SheduleDateSwitch::slotPreviosDay()
 void SheduleDateSwitch::slotNextDay()
 {
     emit signalNextDay(nextFileName);
-}
-void SheduleDateSwitch::slotSetDateSheduleDateSwitch()
-{
-    qDebug() << "signal - slot ";//<< QFileInfo(*file).absoluteFilePath();
 }
 //EVENTS
 void SheduleDateSwitch::paintEvent(QPaintEvent * )

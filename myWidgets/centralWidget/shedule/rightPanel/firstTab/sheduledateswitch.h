@@ -27,15 +27,13 @@ public:
     SheduleDateSwitch(QWidget *parent = 0);
     ~SheduleDateSwitch();
 
-    void setSheduleDateSwitch(QString);
+    void setSheduleDateSwitchText(QString);
 
 signals:
     void signalPreviosDay(QString fileName);
     void signalNextDay(QString fileName);
 
 public slots:
-    void slotSetDateSheduleDateSwitch();
-
     void slotPreviosDay();
     void slotNextDay();
 };

@@ -26,7 +26,8 @@ SOURCES += main.cpp\
     myWidgets/centralWidget/shedule/rightPanel/firstTab/sheduledateswitch.cpp \
     myWidgets/centralWidget/shedule/inherited/mylineedit.cpp \
     myWidgets/converter_main_table_shedule.cpp \
-    myWidgets/centralWidget/shedule/rightPanel/firstTab/mainshedule.cpp
+    myWidgets/centralWidget/shedule/rightPanel/firstTab/mainshedule.cpp \
+    myClasses/trackingdate.cpp
 
 HEADERS  += widget.h \
     footer.h \
@@ -48,7 +49,11 @@ myWidgets/centralWidget/shedule/inherited/verticallabel.h \
     myWidgets/centralWidget/shedule/rightPanel/firstTab/sheduledateswitch.h \
     myWidgets/centralWidget/shedule/inherited/mylineedit.h \
     myWidgets/converter_main_table_shedule.h \
-    myWidgets/centralWidget/shedule/rightPanel/firstTab/mainshedule.h
+    myWidgets/centralWidget/shedule/rightPanel/firstTab/mainshedule.h \
+    mythread.h \
+    myClasses/mythread.h \
+    myClasses/trackingdate.h \
+    myClasses/myfile.h
 
 #INCLUDEPATH += ./
 

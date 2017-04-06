@@ -1,6 +1,8 @@
 #include "widget.h"
+
 //#include "myWidgets/centralWidget/shedule/shedule.h"
 //#include "myWidgets/centralWidget/shedule/sheduledateswitch.h"
+
 #include <QApplication>
 #include <QFile>
 
@@ -18,8 +20,8 @@ int main(int argc, char *argv[])
     Widget w;
 //    SheduleDateSwitch w;
 
-    w.showFullScreen();
-//    w.showMaximized();
+//    w.showFullScreen();
+    w.showMaximized();
 //    w.show();
 
     return a.exec();

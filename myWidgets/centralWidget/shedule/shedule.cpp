@@ -1,6 +1,7 @@
 #include "shedule.h"
 #include "generalsettings.h"
 
+
 #include <QDebug>
 
 //CONSTRUKTOR
@@ -23,9 +24,17 @@ Shedule::Shedule(QWidget *parent) : QWidget(parent)
 
     connect(pLeftWidget, SIGNAL(signalItemClick(QTreeWidgetItem*, int)), SLOT(slotSheduleLeftPanelItemClick(QTreeWidgetItem*, int)) );
 
-//    for (int i = 0; i < 11; ++i) {
-//        qDebug() << i+1 << the_number_of_classes_in_parallel[i];
-//    }
+
+    //отслеживание за сменой суток(числа месяца)
+    trackingDate = new TrackingDate;
+    trackingDate->setDate();
+    thread = new myThread;
+
+    connect(thread, SIGNAL(started()), trackingDate, SLOT(start()) );
+
+    trackingDate->moveToThread(thread);
+    thread->start();
+    connect(trackingDate, SIGNAL(signalChangedDay(int)), this, SLOT(slotChangedDay(int)) );
 }
 //SLOTS
 void Shedule::slotSheduleLeftPanelItemClick(QTreeWidgetItem *item, int column)
@@ -52,6 +61,43 @@ void Shedule::slotSheduleLeftPanelItemClick(QTreeWidgetItem *item, int column)
     str = lesson + " " + teacher;
     pRightWidget->setHeaderText(str);
 }
+void Shedule::slotChangedDay(int day)
+{
+    QFile shareToday(SHARE_FILE_MAIN_SHEDULE_TODAY);
+    QFile shareYesterday(SHARE_FILE_MAIN_SHEDULE_YESTERDAY);
+
+    QFile localToday(LOCAL_FILE_MAIN_SHEDULE_TODAY);
+    QFile localYestaerday(LOCAL_FILE_MAIN_SHEDULE_YESTERDAY);
+
+    //LOCAL_FILE
+    if(!localYestaerday.remove())
+        printf("error remove file %s\n", qPrintable(LOCAL_FILE_MAIN_SHEDULE_YESTERDAY));
+    else
+        printf("file removed %s\n", qPrintable(LOCAL_FILE_MAIN_SHEDULE_YESTERDAY));
+    if(!localToday.remove())
+        printf("error remove file %s\n", qPrintable(LOCAL_FILE_MAIN_SHEDULE_TODAY));
+    else
+        printf("file removed %s\n", qPrintable(LOCAL_FILE_MAIN_SHEDULE_TODAY));
+    //SHARE_FILE
+    if(!shareToday.remove())
+        printf("error remove file %s\n", qPrintable(SHARE_FILE_MAIN_SHEDULE_TODAY));
+    else
+        printf("file removed %s\n", qPrintable(SHARE_FILE_MAIN_SHEDULE_TODAY));
+    if(shareYesterday.open(QIODevice::ReadOnly)){
+        QFile newShareToday(SHARE_FILE_MAIN_SHEDULE_TODAY);
+        if(newShareToday.open(QIODevice::WriteOnly))
+            newShareToday.write(shareYesterday.readAll());
+
+        newShareToday.close();
+        shareYesterday.close();
+        if(!shareYesterday.remove())
+            printf("error remove file %s\n", qPrintable(SHARE_FILE_MAIN_SHEDULE_YESTERDAY));
+        else
+            printf("file removed %s\n", qPrintable(SHARE_FILE_MAIN_SHEDULE_YESTERDAY));
+    }
+
+}
+
 //DECONSTRUKTOR
 Shedule::~Shedule()
 {
