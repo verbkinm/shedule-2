@@ -18,6 +18,7 @@ int main(int argc, char *argv[])
 
 //    Shedule w;
     Widget w;
+    w.setCursor(Qt::BlankCursor);
 //    SheduleDateSwitch w;
 
 //    w.showFullScreen();

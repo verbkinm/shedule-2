@@ -1,5 +1,6 @@
 #include "sheduledateswitch.h"
 #include "generalsettings.h"
+#include "myClasses/myfile.h"
 
 #include <QDate>
 #include <QDir>
@@ -26,9 +27,11 @@ SheduleDateSwitch::SheduleDateSwitch(QWidget *parent) : QWidget(parent)
     pDate->setReadOnly(true);
 
     pLayout     = new QHBoxLayout;
+    pLayout->addWidget(new QWidget);
     pLayout->addWidget(pPreviousDay);
     pLayout->addWidget(pDate);
     pLayout->addWidget(pNextDay);
+    pLayout->addWidget(new QWidget);
 
     this->setLayout(pLayout);
 
@@ -40,7 +43,8 @@ SheduleDateSwitch::SheduleDateSwitch(QWidget *parent) : QWidget(parent)
 
     connect(pPreviousDay, SIGNAL(signalClick()), SLOT(slotPreviosDay())  );
     connect(pNextDay    , SIGNAL(signalClick()), SLOT(slotNextDay())     );
-//    this->setFixedWidth(SHEDULE_DATE_SIZE_WIDTH);
+//    pDate->setFixedWidth(SHEDULE_DATE_QLINEEDIT_WIDTH);
+
 }
 //FUNCTIONS
 void SheduleDateSwitch::setButtonsState()
@@ -158,8 +162,8 @@ void SheduleDateSwitch::setSheduleDateSwitchText(QString date)
     if(date.endsWith("сегодня.xml"))
         date = QDate::currentDate().toString("dd - MM - yyyy");
     else if(date.endsWith("завтра.xml")){
-        int day = QDate::currentDate().day() + 1; // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        date = QString::number(day) + QDate::currentDate().toString(" - MM - yyyy");
+        date = MySpace::checkDate(QDate::currentDate(), '+').toString("dd") + \
+               QDate::currentDate().toString(" - MM - yyyy");
     }
     else if( (i = date.indexOf("архив")) != -1){
         QStringList tmp = date.mid(i).remove("архив/").remove(".xml").split("/");

@@ -21,7 +21,7 @@ MyTreeWidget::MyTreeWidget() : QTreeWidget(),startY(-1), stopY(-1),pItemRoot(0)/
     sb = this->verticalScrollBar();
     connect(this, SIGNAL(itemClicked(QTreeWidgetItem*,int)), SLOT(slotItemClick(QTreeWidgetItem*,int)) );
 
-    sb->setObjectName("sb");
+    sb->setFixedWidth(SCROLL_BAR_WIDTH - 5);
 }
 //FUNCTIONS
 void MyTreeWidget::traverseNode(const QDomNode& node)
@@ -86,15 +86,19 @@ void MyTreeWidget::mousePressEvent(QMouseEvent* event)
 }
 void MyTreeWidget::mouseMoveEvent(QMouseEvent* event)
 {
-    stopY=QCursor::pos().y();
+        stopY=QCursor::pos().y();
 
-    sb->setVisible(true);
-    if(startY < stopY){
+//    sb->setVisible(true);
+    if((startY + 10) < stopY){
+        startY = stopY = QCursor::pos().y();
         sb->setValue(sb->value() - 1);
-
+        buffItem = 0;
     }
-    if(startY > stopY)
+    if((startY - 10) > stopY){
+        startY = stopY = QCursor::pos().y();
         sb->setValue(sb->value() + 1);
+        buffItem = 0;
+    }
 
     if (!event->buttons().testFlag(Qt::LeftButton))
         QTreeView::mouseMoveEvent(event);
@@ -125,11 +129,17 @@ void MyTreeWidget::mouseReleaseEvent(QMouseEvent*)
 
 bool MyTreeWidget::event(QEvent *event)
 {
-//    if(event->type() == QEvent::Show){
-//        this->collapseAll();
-//        this->itemClicked(rootItem,0);
-//        _expanded = true;
+//    if(event->type() == QEvent::ContentsRectChange){
+//        if(sb->isVisible() )
+//        {
+//            emit signalWidgetWidthChanged(LEFT_PANEL_TREE_WIDTH + sb->width());
+//            this->setFixedWidth(this->width() + sb->width());
+//        }
+//        else{
+//            this->setFixedWidth(LEFT_PANEL_TREE_WIDTH);
+//        }
 //    }
+//    qDebug() << event->type();
     return QTreeView::event(event);
 }
 MyTreeWidget::~MyTreeWidget()

@@ -1,7 +1,7 @@
 #ifndef SHEDULERIGHT_H
 #define SHEDULERIGHT_H
 
-#include "firstTab/mainshedule.h"
+#include "firstTab/sheduletablewidget.h"
 
 #include <QWidget>
 #include <QLabel>
@@ -25,7 +25,7 @@ private:
     QLabel                      *pHeader;
     QTabWidget                  *pTabWidget;
 
-    MainShedule                 *pMainShedule;
+    SheduleTableWidget          *pSheduleTableWidget;
 //    SheduleRightTableWidget     *pSheduleRightTableWidget;
 //    SheduleDateSwitch           *pSheduleDateSwitch;
 

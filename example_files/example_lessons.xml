@@ -1,0 +1,231 @@
+<!DOCTYPE lessons>
+<list>
+	<lesson name="Алгебра:">
+		<teacher>Делянова С.В.</teacher>
+		<teacher>Кадргулов Р.Р.</teacher>
+		<teacher>Таирова С.Е.</teacher>
+		<teacher>Фалалеева Л.А.</teacher>
+		<teacher>Фирсенков С.Е.</teacher>
+	</lesson>
+	<lesson name="Английский:">
+		<teacher>Журавская М.В.</teacher>
+		<teacher>Мокшина Я.В.</teacher>
+		<teacher>Павлюк Е.Ю.</teacher>
+		<teacher>Садюкова Н.С.</teacher>
+		<teacher>Седова Р.С.</teacher>
+		<teacher>Федера Т.А.</teacher>
+	</lesson>
+	<lesson name="Биология:">
+		<teacher>Грибовская Г.К</teacher>
+		<teacher>Зайцева Л.В.</teacher>
+		<teacher>Лукина Е.А.</teacher>
+	</lesson>
+	<lesson name="География:">
+		<teacher>Кузьмина В.В.</teacher>
+	</lesson>
+	<lesson name="Геометрия:">
+		<teacher>Делянова С.В.</teacher>
+		<teacher>Кадргулов Р.Р.</teacher>
+		<teacher>Таирова С.Е.</teacher>
+		<teacher>Фалалеева Л.А.</teacher>
+		<teacher>Фирсенков С.Е.</teacher>
+	</lesson>
+	<lesson name="ИЗО:">
+		<teacher>Гардер И.А.</teacher>
+	</lesson>
+	<lesson name="Информатика и ИКТ:">
+		<teacher>Булгаков Е.В.</teacher>
+		<teacher>Вербкин М.С.</teacher>
+		<teacher>Гайсина Ф.З.</teacher>
+		<teacher>Комаренко Н.А.</teacher>
+		<teacher>Малинина С.А.</teacher>
+		<teacher>Подольская Ю.Ю.</teacher>
+		<teacher>Симонова Л.Н.</teacher>
+		<teacher>Степанова Л.А.</teacher>
+		<teacher>Старшова Л.П.</teacher>
+		<teacher>Хватова Л.В.</teacher>
+		<teacher>Шубнякова Е.И.</teacher>
+	</lesson>
+	<lesson name="Истоки:">
+		<teacher>Гайсина Ф.З.</teacher>
+		<teacher>Десятникова Л.Н.</teacher>
+		<teacher>Ильюк Л.А.</teacher>
+		<teacher>Комаренко Н.А.</teacher>
+		<teacher>Маликова Е.А.</teacher>
+		<teacher>Малинина С.А.</teacher>
+		<teacher>Никулина Т.В.</teacher>
+		<teacher>Радостева Н.С.</teacher>
+		<teacher>Симонова Л.Н.</teacher>
+		<teacher>Старшова Л.П.</teacher>
+		<teacher>Степанова Л.А.</teacher>
+		<teacher>Шубнякова Е.И.</teacher>
+	</lesson>
+	<lesson name="История:">
+		<teacher>Павленко П.В.</teacher>
+		<teacher>Шепилов Р.М.</teacher>
+	</lesson>
+	<lesson name="Литература:">
+		<teacher>Ганжа Н.К.</teacher>
+		<teacher>Коссе Н.Н.</teacher>
+		<teacher>Лаптева Е.С.</teacher>
+		<teacher>Луценко Г.И.</teacher>
+		<teacher>Платонова С.Ю.</teacher>
+		<teacher>Ягодарова С.Э.</teacher>
+	</lesson>
+	<lesson name="Литературное чтение:">
+		<teacher>Гайсина Ф.З.</teacher>
+		<teacher>Десятникова Л.Н.</teacher>
+		<teacher>Ильюк Л.А.</teacher>
+		<teacher>Комаренко Н.А.</teacher>
+		<teacher>Маликова Е.А.</teacher>
+		<teacher>Малинина С.А.</teacher>
+		<teacher>Подольская Ю.Ю.</teacher>
+		<teacher>Потапова И.Г.</teacher>
+		<teacher>Радостева Н.С.</teacher>
+		<teacher>Симонова Л.Н.</teacher>
+		<teacher>Старшова Л.П.</teacher>
+		<teacher>Степанова Л.А.</teacher>
+		<teacher>Терёхина Т.Л.</teacher>
+		<teacher>Хватова Л.В.</teacher>
+		<teacher>Шубнякова Е.И.</teacher>
+	</lesson>
+	<lesson name="Математика:">
+		<teacher>Гайсина Ф.З.</teacher>
+		<teacher>Делянова С.В.</teacher>
+		<teacher>Десятникова Л.Н.</teacher>
+		<teacher>Ильюк Л.А.</teacher>
+		<teacher>Кадргулов Р.Р.</teacher>
+		<teacher>Комаренко Н.А.</teacher>
+		<teacher>Маликова Е.А.</teacher>
+		<teacher>Малинина С.А.</teacher>
+		<teacher>Подольская Ю.Ю.</teacher>
+		<teacher>Потапова И.Г.</teacher>
+		<teacher>Радостева Н.С.</teacher>
+		<teacher>Симонова Л.Н.</teacher>
+		<teacher>Старшова Л.П.</teacher>
+		<teacher>Степанова Л.А.</teacher>
+		<teacher>Терёхина Т.Л.</teacher>
+		<teacher>Фалалеева Л.А.</teacher>
+		<teacher>Хватова Л.В.</teacher>
+		<teacher>Шубнякова Е.И.</teacher>
+	</lesson>
+	<lesson name="Музыка:">
+		<teacher>Буторина О.В.</teacher>
+		<teacher>Савченко О.Б.</teacher>
+	</lesson>
+	<lesson name="ОБЖ:">
+		<teacher>Назаренко А.В.</teacher>
+	</lesson>
+	<lesson name="Обществознание:">
+		<teacher>Шепилов Р.М.</teacher>
+	</lesson>
+	<lesson name="Обществознание (включая экономику):">
+		<teacher>Шепилов Р.М.</teacher>
+	</lesson>
+	<lesson name="Окружающий мир:">
+		<teacher>Гайсина Ф.З.</teacher>
+		<teacher>Десятникова Л.Н.</teacher>
+		<teacher>Ильюк Л.А.</teacher>
+		<teacher>Комаренко Н.А.</teacher>
+		<teacher>Маликова Е.А.</teacher>
+		<teacher>Малинина С.А.</teacher>
+		<teacher>Мецлер С.Г.</teacher>
+		<teacher>Подольская Ю.Ю.</teacher>
+		<teacher>Потапова И.Г.</teacher>
+		<teacher>Радостева Н.С.</teacher>
+		<teacher>Симонова Л.Н.</teacher>
+		<teacher>Старшова Л.П.</teacher>
+		<teacher>Степанова Л.А.</teacher>
+		<teacher>Терёхина Т.Л.</teacher>
+		<teacher>Хватова Л.В.</teacher>
+		<teacher>Шубнякова Е.И.</teacher>
+	</lesson>
+	<lesson name="Основы религиозных культур:">
+		<teacher>Комаренко Н.А.</teacher>
+		<teacher>Никулина Т.В.</teacher>
+		<teacher>Потапова И.Г.</teacher>
+		<teacher>Терёхина Т.Л.</teacher>
+	</lesson>
+	<lesson name="Основы учебно-исследовательской и проектной деятельности:">
+		<teacher>Окишева И.В.</teacher>
+	</lesson>
+	<lesson name="Профессиональная подготовка:">
+		<teacher>Вербкин М.С.</teacher>
+		<teacher>Ермакова Н.И.</teacher>
+		<teacher>Новиков Д.Н.</teacher>
+		<teacher>Хусейнов Р.В.</teacher>
+	</lesson>
+	<lesson name="Русский язык:">
+		<teacher>Радостева Н.С.</teacher>
+		<teacher>Гайсина Ф.З.</teacher>
+		<teacher>Ганжа Н.К.</teacher>
+		<teacher>Десятникова Л.Н.</teacher>
+		<teacher>Ильюк Л.А. </teacher>
+		<teacher>Комаренко Н.А.</teacher>
+		<teacher>Коссе Н.Н.</teacher>
+		<teacher>Лаптева Е.С.</teacher>
+		<teacher>Луценко Г.И.</teacher>
+		<teacher>Маликова Е.А.</teacher>
+		<teacher>Малинина С.А.</teacher>
+		<teacher>Платонова С.Ю.</teacher>
+		<teacher>Подольская Ю.Ю.</teacher>
+		<teacher>Потапова И.Г.</teacher>
+		<teacher>Симонова Л.Н. </teacher>
+		<teacher>Старшова Л.П.</teacher>
+		<teacher>Степанова Л.А.</teacher>
+		<teacher>Терёхина Т.Л.</teacher>
+		<teacher>Хватова Л.В.</teacher>
+		<teacher>Шубнякова Е.И</teacher>.
+		<teacher>Ягодарова С.Э.</teacher>
+	</lesson>
+	<lesson name="Технология:">
+		<teacher>Гайсина Ф.З.</teacher>
+		<teacher>Десятникова Л.Н.</teacher>
+		<teacher>Джавадян Г.В.</teacher>
+		<teacher>Ильюк Л.А.</teacher>
+		<teacher>Комаренко Н.А.</teacher>
+		<teacher>Маликова Е.А.</teacher>
+		<teacher>Малинина С.А.</teacher>
+		<teacher>Мецлер С.Г.</teacher>
+		<teacher>Подольская Ю.Ю.</teacher>
+		<teacher>Потапова И.Г.</teacher>
+		<teacher>Радостева Н.С.</teacher>
+		<teacher>Симонова Л.Н.</teacher>
+		<teacher>Старшова Л.П.</teacher>
+		<teacher>Степанова Л.А.</teacher>
+		<teacher>Терёхина Т.Л.</teacher>
+		<teacher>Фролов Д.С</teacher>
+		<teacher>Хватова Л.В.</teacher>
+		<teacher>Шубнякова Е.И.</teacher>
+	</lesson>
+	<lesson name="Физ-ра:">
+		<teacher>Ленков А.И.</teacher>
+		<teacher>Пахтеева С.А.</teacher>
+		<teacher>Рослякова М.В.</teacher>
+		<teacher>Руди А.И.</teacher>
+		<teacher>Таран Ю.И.</teacher>
+		<teacher>Шкаликов В.А.</teacher>
+	</lesson>
+	<lesson name="Физика:">
+		<teacher>Кадргулов Р.Р.</teacher>
+		<teacher>Таирова С.Е.</teacher>
+	</lesson>
+	<lesson name="Химия:">
+		<teacher>Грибовская Г.К.</teacher>
+		<teacher>Лукина Е.А.</teacher>
+	</lesson>
+	<lesson name="Шахматы:">
+		<teacher>Гайсина Ф.З.</teacher>
+		<teacher>Комаренко Н.А.</teacher>
+		<teacher>Малинина С.А.</teacher>
+		<teacher>Мецлер С.Г.</teacher>
+		<teacher>Подольская Ю.Ю.</teacher>
+		<teacher>Потапова И.Г.</teacher>
+		<teacher>Симонова Л.Н.</teacher>
+		<teacher>Старшова Л.П.</teacher>
+		<teacher>Степанова Л.А.</teacher>
+		<teacher>Терёхина Т.Л.</teacher>
+		<teacher>Хватова Л.В.</teacher>
+		<teacher>Шубнякова Е.И.</teacher>
+	</lesson>
+</list>

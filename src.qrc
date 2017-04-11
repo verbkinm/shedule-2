@@ -27,4 +27,9 @@
     <qresource prefix="/">
         <file>style.qss</file>
     </qresource>
+    <qresource prefix="/examples">
+        <file>example_files/example_lessons.xml</file>
+        <file>example_files/example_сегодня.xml</file>
+        <file>example_files/README.txt</file>
+    </qresource>
 </RCC>

@@ -34,14 +34,15 @@
 #define FONT_SHEDULE_LEFT_PANEL_TREE_TRAVERS_NODE 10
 #define TEXT_VERTICAL_LABEL_LESSONS "ПРЕДМЕТЫ"
 
-//mainshedule
+//sheduletable
 #define FONT_SHEDULE_RIGHT_HEADER 20
 #define STRING_LENGHT_SHEDULE_RIGHT_HEADER 70
 #define HEADER_SIZE_HEIGHT 80
 //#define SHEDULE_DATE_SIZE_WIDTH 200
 
-//shedulerighttable
+//sheduletable
 #define FONT_SIZE_TABLE_SHEDULE 12
+#define SCROLL_BAR_WIDTH 20
 
 //shedulerighttablewidget
 #define SHARE_FILE_MAIN_SHEDULE_TODAY QString("share"+QString(PATH_SPLITER)+"расписание уроков"+QString(PATH_SPLITER)+"на сегодня"+QString(PATH_SPLITER)+"izmenenie.html")
@@ -57,6 +58,8 @@
 //sheduledateswitch
 #define SHEDULE_DATE_SWITCH_BUTTON_SIZE 70
 #define SHEDULE_DATE_TEXT_SIZE 32
+
+//#define SHEDULE_DATE_QLINEEDIT_WIDTH 300
 #define SHEDULE_DATE_ARCHIVE_LIMIT_MIN "2010"
 #define SHEDULE_DATE_ARCHIVE_LIMIT_MAX "2020"
 //
@@ -64,10 +67,10 @@
 #define TEXT_SHEDULE_DEFAULT "Расписание:"
 
 //shedule
-#define LEFT_PANEL_TREE_WIDTH 170
+#define LEFT_PANEL_TREE_WIDTH 200
 
 //verticallabel
-#define VERTICAL_LABEL_WIDTH 25
+#define VERTICAL_LABEL_WIDTH 50
 //
 
 

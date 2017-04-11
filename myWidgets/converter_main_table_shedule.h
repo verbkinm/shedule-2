@@ -22,7 +22,7 @@ private:
     void removeExcess(QString *string);
     void copyFilesInArchive();
 
-    QDate checkDate(QDate day, char operations = '=');
+//    QDate checkDate(QDate day, char operations = '=');
 
 signals:
 

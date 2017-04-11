@@ -3,20 +3,11 @@
 
 #include <QMessageBox>
 #include <QFileInfo>
+#include <QDate>
 
-
-bool fileVerification(QFile *file, QString *filePath)
-{
-    if(!file->isOpen() && !file->open(QIODevice::ReadOnly) ){
-        QMessageBox msgBox;
-        msgBox.setIcon(QMessageBox::Critical);
-        msgBox.setText(QString("Невозможно открыть файл: \"" + QFileInfo(*file).absoluteFilePath() ) + \
-                       "\" для чтения");
-        msgBox.exec();
-        return false;
-    }
-    *filePath = QFileInfo(*file).absoluteFilePath();
-    return true;
+namespace MySpace {
+    bool fileVerification(QFile *file, QString *filePath);
+    QDate checkDate(QDate date, char operations = '=');
 }
 
 #endif // MYFILE_H

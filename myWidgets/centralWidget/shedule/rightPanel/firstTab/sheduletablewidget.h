@@ -1,7 +1,9 @@
-#ifndef SHEDULERIGHTTABLEWIDGET_H
-#define SHEDULERIGHTTABLEWIDGET_H
+#ifndef SheduleTableWidget_H
+#define SheduleTableWidget_H
 
 #include "cell.h"
+#include "sheduledateswitch.h"
+#include "myClasses/mytouchscreen.h"
 
 #include <QWidget>
 #include <QDomDocument>
@@ -13,7 +15,7 @@
 
 // description of class
     // виджет на вкладки "изменение в расписании"
-class SheduleRightTableWidget : public QWidget
+class SheduleTableWidget : public QWidget
 {
     Q_OBJECT
 private:
@@ -34,9 +36,14 @@ private:
     QTableWidget *pTableLeftHeader;
     QTableWidget *pTableRightHeader;
 
+    SheduleDateSwitch           *pSheduleDateSwitch;
+
+    QScrollBar   *pScrollHorizontal, *pScrollVertical;
+
     QTableWidgetItem *pTableWidgetItem;
 
     QGridLayout *pLayout;
+    MyTouchScreen *pMyTouchScreen;
 
     QFileSystemWatcher *pFileSystemWatcher;
     bool file_is_exist_today; //local/расписание уроков/на сегодня/сегодня.xml
@@ -47,6 +54,7 @@ private:
     void structuring(QDomDocument *pDomDoc);
     void createLeftTable();
     void createRightTable();
+    void createSheduleDateSwitch();
 
     bool event(QEvent *event);
     void paintEvent(QPaintEvent * );
@@ -55,14 +63,16 @@ public:
 
     QString currentFile;
 
-    SheduleRightTableWidget(QWidget *parent = 0);
-    ~SheduleRightTableWidget();
+    SheduleTableWidget(QWidget *parent = 0);
+    ~SheduleTableWidget();
 
-    QScrollBar *getHorizontalScroolBar();
-    QScrollBar *getVerticalScroolBar();
+//    QScrollBar *getHorizontalScroolBar();
+//    QScrollBar *getVerticalScroolBar();
 
     void setMaximumHeightTableWidget(int);
     void setMaximumHeightTableWidgetLeft(int);
+
+//    void addWidget(QWidget*widget);
 
 signals:
     void signalSetDateSheduleDateSwitch(QString);
@@ -74,6 +84,13 @@ public slots:
 
     void slotRecreateTables(QString fileName);
 
+    void slotSetDate(QString);
+
+    void slotMyScreenValueChanchedX(int);
+    void slotMyScreenValueChanchedY(int);
+
+    void slotTest(int,int);
+
 };
 
-#endif // SHEDULERIGHTTABLEWIDGET_H
+#endif // SheduleTableWidget_H

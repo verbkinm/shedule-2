@@ -1,8 +1,9 @@
-#include "shedulerighttablewidget.h"
+#include "sheduletablewidget.h"
 #include "../../shedule.h"
 #include "generalsettings.h"
 #include "../../../../converter_main_table_shedule.h"
 #include "../../../../../myClasses/myfile.h"
+#include "../../inherited/myfilter.h"
 
 #include <QStyleOption>
 #include <QPainter>
@@ -15,7 +16,7 @@
 #include <QStringList>
 
 //CONSTRUKTOR
-SheduleRightTableWidget::SheduleRightTableWidget(QWidget *parent) : QWidget(parent)
+SheduleTableWidget::SheduleTableWidget(QWidget *parent) : QWidget(parent)
 {
     pFileSystemWatcher = new QFileSystemWatcher(this);
     file_is_exist_today = false;
@@ -34,10 +35,20 @@ SheduleRightTableWidget::SheduleRightTableWidget(QWidget *parent) : QWidget(pare
 
     convert_html_and_creat_xml();
     createLeftTable();
+    createSheduleDateSwitch();
 
-    pLayout->addWidget(pTableRightHeader, 0,1);
-    pLayout->addWidget(pTableWidgetLeft, 1,0);
-    pLayout->addWidget(pTableWidget, 1,1);
+    pLayout->addWidget(new QWidget,         0,0, 1,3); //spacing
+    pLayout->addWidget(pTableRightHeader,   1,1);
+    pLayout->addWidget(pTableWidgetLeft,    2,0);
+    pLayout->addWidget(pTableWidget,        2,1);
+
+    pLayout->addWidget(pScrollVertical,     1,2, 2,1);
+    pLayout->addWidget(pScrollHorizontal,   3,0, 1,3);
+    pLayout->addWidget(pSheduleDateSwitch,  4,0, 1,3);
+    pLayout->addWidget(new QWidget,         5,0, 1,3); //spacing
+
+    pScrollHorizontal->setFixedHeight(SCROLL_BAR_WIDTH);
+    pScrollVertical->setFixedWidth(SCROLL_BAR_WIDTH);
 
     this->setLayout(pLayout);
 
@@ -47,7 +58,7 @@ SheduleRightTableWidget::SheduleRightTableWidget(QWidget *parent) : QWidget(pare
     connect(pFileSystemWatcher, SIGNAL(directoryChanged(QString)),  this, SLOT(slotChangedDir (QString)) );
 }
 //FUNCTIONS
-void SheduleRightTableWidget::convert_html_and_creat_xml()
+void SheduleTableWidget::convert_html_and_creat_xml()
 {
     Converter_main_table_shedule converterToday(SHARE_FILE_MAIN_SHEDULE_TODAY, LOCAL_FILE_MAIN_SHEDULE_TODAY);
     Converter_main_table_shedule converterYesterday(SHARE_FILE_MAIN_SHEDULE_YESTERDAY, LOCAL_FILE_MAIN_SHEDULE_YESTERDAY, true);
@@ -75,14 +86,14 @@ void SheduleRightTableWidget::convert_html_and_creat_xml()
                     foreach (QString strDays, dirMonthes.entryList(QDir::Files | QDir::NoDotAndDotDot, QDir::Reversed)) {
                         if(break_all_foreach) break;
                         file.setFileName(dirMonthes.absolutePath() + PATH_SPLITER + strDays);
-                        if(fileVerification(&file, &currentFile))
+                        if(MySpace::fileVerification(&file, &currentFile))
                             break_all_foreach = true;
                     }
                 }
             }
         }
     }
-    fileVerification(&file, &currentFile);
+    MySpace::fileVerification(&file, &currentFile);
 
     QString allTextInFile = file.readAll();
     file.close();
@@ -93,9 +104,19 @@ void SheduleRightTableWidget::convert_html_and_creat_xml()
     structuring(&domDoc);
     createRightTable();
 }
-void SheduleRightTableWidget::createLeftTable()
+void SheduleTableWidget::createSheduleDateSwitch()
 {
-    pTableWidgetLeft = new QTableWidget(numberOfRow,2);
+    pSheduleDateSwitch       = new SheduleDateSwitch;
+    slotSetDate(currentFile);
+
+    connect(pSheduleDateSwitch, SIGNAL(signalPreviosDay(QString)),                  this, SLOT(slotRecreateTables(QString)) );
+    connect(pSheduleDateSwitch, SIGNAL(signalNextDay(QString)),                     this, SLOT(slotRecreateTables(QString)) );
+//    connect(this,               SIGNAL(signalSetDateSheduleDateSwitch(QString)),    this, SLOT(slotSetDate(QString)) );
+}
+
+void SheduleTableWidget::createLeftTable()
+{
+    pTableWidgetLeft = new QTableWidget(numberOfRow,2,this);
     pTableWidgetLeft->horizontalHeader()->hide();
     pTableWidgetLeft->verticalHeader()->hide();
 
@@ -163,11 +184,11 @@ void SheduleRightTableWidget::createLeftTable()
     pTableWidgetLeft->setMaximumHeight(fixedHeight + 2);
 
     connect(pTableWidget->verticalScrollBar(), SIGNAL(valueChanged(int)), pTableWidgetLeft->verticalScrollBar(), SLOT(setValue(int)) );
-    emit signalSetDateSheduleDateSwitch(currentFile);
+//    emit signalSetDateSheduleDateSwitch(currentFile);
 }
-void SheduleRightTableWidget::createRightTable()
+void SheduleTableWidget::createRightTable()
 {
-    pTableRightHeader = new QTableWidget(1, numberOfClass);
+    pTableRightHeader = new QTableWidget(1, numberOfClass,this);
     pTableRightHeader->horizontalHeader()->hide();
     pTableRightHeader->verticalHeader()->hide();
     pTableRightHeader->setEditTriggers(QAbstractItemView::NoEditTriggers);
@@ -176,7 +197,8 @@ void SheduleRightTableWidget::createRightTable()
     pTableRightHeader->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     pTableRightHeader->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
-    pTableWidget = new QTableWidget(numberOfRow,numberOfClass);
+    pTableWidget = new QTableWidget(numberOfRow,numberOfClass,this);
+
     pTableWidget->horizontalHeader()->hide();
     pTableWidget->verticalHeader()->hide();
     pTableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
@@ -248,12 +270,28 @@ void SheduleRightTableWidget::createRightTable()
         for (int ii = 0; ii < numberOfClass; ++ii)
             pTableWidget->item(i, ii)->setBackgroundColor(QColor(246,246,246));
     int fixedHeight = 0;
+    int fixedWidth  = 0;
     for (int i = 0; i < numberOfRow; ++i)
         fixedHeight += pTableWidget->rowHeight(i);
+    for (int i = 0; i < numberOfCollum; ++i)
+        fixedWidth += pTableWidget->columnWidth(i);
 
     pTableWidget->setMaximumHeight(fixedHeight +2 );
+    pScrollVertical = pTableWidget->verticalScrollBar();
+
+    pScrollHorizontal = pTableWidget->horizontalScrollBar();
+    connect(pScrollHorizontal, SIGNAL(valueChanged(int)), pTableRightHeader->horizontalScrollBar(), SLOT(setValue(int)) );
+
+    pMyTouchScreen = new MyTouchScreen(pTableWidget);
+    pMyTouchScreen->resize(fixedWidth, fixedHeight);
+
+    connect(pMyTouchScreen, SIGNAL(signalChangeX(int)), this, SLOT(slotMyScreenValueChanchedX(int)) );
+    connect(pMyTouchScreen, SIGNAL(signalChangeY(int)), this, SLOT(slotMyScreenValueChanchedY(int)) );
+//    connect(pTableWidget->verticalScrollBar(), SIGNAL(rangeChanged(int,int)), this, SLOT(slotTest(int, int)) );
+//    pTableWidget->verticalScrollBar()->installEventFilter(new MyFilter);
+//    qDebug()  << pTableWidget->verticalScrollBar()->set;
 }
-void SheduleRightTableWidget::structuring(QDomDocument *pDomDoc)
+void SheduleTableWidget::structuring(QDomDocument *pDomDoc)
 {
     root            = pDomDoc->firstChild(); //<table>
     numberOfLesson  = root.childNodes().size() - 1;
@@ -294,26 +332,29 @@ void SheduleRightTableWidget::structuring(QDomDocument *pDomDoc)
         }
     }
 }
-QScrollBar* SheduleRightTableWidget::getHorizontalScroolBar()
-{
-    connect(pTableWidget->horizontalScrollBar(), SIGNAL(valueChanged(int)), pTableRightHeader->horizontalScrollBar(), SLOT(setValue(int)) );
-    return pTableWidget->horizontalScrollBar();
-}
-QScrollBar* SheduleRightTableWidget::getVerticalScroolBar()
-{
-    connect(pTableWidget->verticalScrollBar(), SIGNAL(valueChanged(int)), pTableRightHeader->verticalScrollBar(), SLOT(setValue(int)) );
-    return pTableWidget->verticalScrollBar();
-}
-void SheduleRightTableWidget::setMaximumHeightTableWidget(int height)
+void SheduleTableWidget::setMaximumHeightTableWidget(int height)
 {
     pTableWidget->setMaximumHeight(height);
 }
-void SheduleRightTableWidget::setMaximumHeightTableWidgetLeft(int height)
+void SheduleTableWidget::setMaximumHeightTableWidgetLeft(int height)
 {
     pTableWidgetLeft->setMaximumHeight(height);
 }
 //SLOTS
-void SheduleRightTableWidget::slotChangedFile(const QString &flName)
+void SheduleTableWidget::slotMyScreenValueChanchedX(int x)
+{
+    pScrollHorizontal->setValue(pScrollHorizontal->value() + x);
+}
+void SheduleTableWidget::slotMyScreenValueChanchedY(int y)
+{
+    pScrollVertical->setValue(pScrollVertical->value() + y);
+}
+void SheduleTableWidget::slotSetDate(QString date)
+{
+    pSheduleDateSwitch->setSheduleDateSwitchText(date);
+}
+
+void SheduleTableWidget::slotChangedFile(const QString &flName)
 {
     if(flName.indexOf("сегодня") != -1){
         if(pFileSystemWatcher->addPath(SHARE_FILE_MAIN_SHEDULE_TODAY)){
@@ -322,8 +363,8 @@ void SheduleRightTableWidget::slotChangedFile(const QString &flName)
             delete pTableWidgetLeft;
             convert_html_and_creat_xml();
             createLeftTable();
-            pLayout->addWidget(pTableWidgetLeft, 0,0);
-            pLayout->addWidget(pTableWidget, 0,1);
+            pLayout->addWidget(pTableWidgetLeft, 1,0);
+            pLayout->addWidget(pTableWidget, 1,1);
         }
         else
             file_is_exist_today = false;
@@ -335,14 +376,14 @@ void SheduleRightTableWidget::slotChangedFile(const QString &flName)
             delete pTableWidgetLeft;
             convert_html_and_creat_xml();
             createLeftTable();
-            pLayout->addWidget(pTableWidgetLeft, 0,0);
-            pLayout->addWidget(pTableWidget, 0,1);
+            pLayout->addWidget(pTableWidgetLeft, 1,0);
+            pLayout->addWidget(pTableWidget, 1,1);
         }
         else
             file_is_exist_yesterday = false;
     }
 }
-void SheduleRightTableWidget::slotChangedDir(const QString &dirName)
+void SheduleTableWidget::slotChangedDir(const QString &dirName)
 {
     if(dirName.indexOf("сегодня") != -1){
         QDir dir(SHARE_DIR_MAIN_SHEDULE_TODAY);
@@ -364,14 +405,15 @@ void SheduleRightTableWidget::slotChangedDir(const QString &dirName)
         }
     }
 }
-void SheduleRightTableWidget::slotRecreateTables(QString fileName)
+void SheduleTableWidget::slotRecreateTables(QString fileName)
 {
     delete pTableRightHeader;
     delete pTableWidget;
     delete pTableWidgetLeft;
+    delete pSheduleDateSwitch;
 
     QFile file(fileName);
-    fileVerification(&file, &currentFile);
+    MySpace::fileVerification(&file, &currentFile);
 
     QString allTextInFile = file.readAll();
     file.close();
@@ -383,13 +425,34 @@ void SheduleRightTableWidget::slotRecreateTables(QString fileName)
 
     createRightTable();
     createLeftTable();
+    createSheduleDateSwitch();
 
-    pLayout->addWidget(pTableRightHeader, 0,1);
-    pLayout->addWidget(pTableWidgetLeft, 1,0);
-    pLayout->addWidget(pTableWidget, 1,1);
+    pLayout->addWidget(pTableRightHeader,   1,1);
+    pLayout->addWidget(pTableWidgetLeft,    2,0);
+    pLayout->addWidget(pTableWidget,        2,1);
+
+    pLayout->addWidget(pScrollVertical,     1,2, 2,1);
+    pLayout->addWidget(pScrollHorizontal,   3,0, 1,3);
+
+    pLayout->addWidget(pSheduleDateSwitch,  4,0, 1,3);
+
+    pScrollHorizontal->setFixedHeight(SCROLL_BAR_WIDTH);
+    pScrollVertical->setFixedWidth(SCROLL_BAR_WIDTH);
 }
+void SheduleTableWidget::slotTest(int a, int b)
+{
+//    qDebug() << a << b;
+//    if(a == 0 && b == 0){
+//        pScrollVertical->setEnabled(false);
+//        return;
+//    }
+//    else if(a == 0 && b != 0){
+//        pScrollVertical->setEnabled(true);
+//    }
+}
+
 //EVENTS
-bool SheduleRightTableWidget::event(QEvent *event)
+bool SheduleTableWidget::event(QEvent *event)
 {
     if(this->isVisible() && event->type() == QEvent::Resize){
 //        qDebug() << "resize" << pParent->size();
@@ -399,7 +462,7 @@ bool SheduleRightTableWidget::event(QEvent *event)
     }
     return QWidget::event(event);
 }
-void SheduleRightTableWidget::paintEvent(QPaintEvent *)
+void SheduleTableWidget::paintEvent(QPaintEvent *)
 {
     QStyleOption opt;
     opt.init(this);
@@ -407,7 +470,7 @@ void SheduleRightTableWidget::paintEvent(QPaintEvent *)
     style()->drawPrimitive(QStyle::PE_Widget, &opt, &p, this);
 }
 //DECONSTRUKTOR
-SheduleRightTableWidget::~SheduleRightTableWidget()
+SheduleTableWidget::~SheduleTableWidget()
 {
     delete pFileSystemWatcher;
     delete pTableWidgetLeft;

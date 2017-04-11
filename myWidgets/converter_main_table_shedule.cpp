@@ -1,5 +1,6 @@
 #include "converter_main_table_shedule.h"
 #include "generalsettings.h"
+#include "myClasses/myfile.h"
 
 #include <QDomDocument>
 #include <QTextCodec>
@@ -119,7 +120,9 @@ void Converter_main_table_shedule::removeExcess(QString *string)
 }
 void Converter_main_table_shedule::copyFilesInArchive()
 {
-    QDate date = (tomorrow ? checkDate(QDate::currentDate(), '+') : QDate::currentDate());
+    QDate date = (tomorrow ? MySpace::checkDate(QDate::currentDate(), '+') : QDate::currentDate());
+    if(date.dayOfWeek() == 7)
+        date = MySpace::checkDate(date, '+');
 
     QString directory_of_date = date.toString("yyyy") + \
             QString(PATH_SPLITER) + \
@@ -145,38 +148,4 @@ void Converter_main_table_shedule::copyFilesInArchive()
     tmpFileLocal.open(QIODevice::WriteOnly | QIODevice::Text);
     tmpFileLocal.write(fileXmlOut.readAll());
     tmpFileLocal.close();
-}
-QDate Converter_main_table_shedule::checkDate(QDate date, char operations)
-{
-    int day     = date.day();
-    int month   = date.month();
-    int year    = date.year();
-
-    if(operations == '+'){
-        day++;
-        if(day > date.daysInMonth()){
-            day = 1;
-            month++;
-            if(month > 12){
-                month = 1;
-                year++;
-            }
-        }
-    }else if(operations == '-'){
-        day--;
-        if(day < 1){
-            day = date.daysInMonth();
-            month--;
-            if(month < 1){
-                month = 12;
-                year--;
-            }
-        }
-    }else
-        printf("converter_main_table class error: argument \"operations\" is wrong!\n");
-
-    QDate resultDate;
-    resultDate.setDate(year, month, day);
-
-    return resultDate;
 }

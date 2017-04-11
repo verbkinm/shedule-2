@@ -11,7 +11,7 @@ VerticalLabel::VerticalLabel(QString text)
 {
     this->text = text;
     QFont font(this->font());
-    font.setPixelSize(FONT_SHEDULE_LEFT_PANEL_TREE_TRAVERS_NODE);
+    font.setPixelSize(FONT_SHEDULE_LEFT_PANEL_TREE_TRAVERS_NODE + 10);
     font.setBold(true);
     this->setFont(font);
     this->setMinimumWidth(VERTICAL_LABEL_WIDTH);
@@ -20,7 +20,7 @@ void VerticalLabel::paintEvent(QPaintEvent*)
 {
     QPainter p(this);
     QTransform old = p.transform();
-    p.translate(15,this->height()/2);
+    p.translate(30, this->height()/2);
     p.rotate(-90);
     p.drawText(0,0, text);
     p.setTransform(old);

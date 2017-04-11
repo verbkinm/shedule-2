@@ -54,8 +54,8 @@ void SheduleRight::creatTabs()
 //    Shedule * parent = qobject_cast<Shedule*>(this->parent());
 
     pTabWidget = new QTabWidget(this);
-    pMainShedule = new MainShedule;
-    pTabWidget->addTab(pMainShedule, "Изменение в расписании");
+    pSheduleTableWidget = new SheduleTableWidget;
+    pTabWidget->addTab(pSheduleTableWidget, "Изменение в расписании");
     for (int i = 1; i < 12; ++i){
         QWidget *pNewTabWidget = new QWidget;
         pTabWidget->addTab(pNewTabWidget, QString::number(i)+"-е классы");
@@ -102,7 +102,7 @@ void SheduleRight::paintEvent(QPaintEvent *)
 SheduleRight::~SheduleRight()
 {
     delete pHeader;
-    delete pMainShedule;
+    delete pSheduleTableWidget;
     delete pTabWidget;
     delete pLayout;
 }

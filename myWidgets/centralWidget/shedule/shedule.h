@@ -28,6 +28,10 @@ private:
     TrackingDate *trackingDate;
     myThread *thread;
 
+    void checkDirsAndFiles(); //проверка на существование каталогов
+    void checkDirsAndFilesFunc(QString local_or_share, QString dir_name);   // функция для функции checkDirsAndFiles()
+    void checkDirsAndFilesFunc2(QString local_file, QString src_file);      // функция для функции checkDirsAndFiles()
+
 signals:
 
 public slots:

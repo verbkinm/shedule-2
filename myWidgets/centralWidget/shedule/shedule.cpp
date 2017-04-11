@@ -1,13 +1,15 @@
 #include "shedule.h"
 #include "generalsettings.h"
 
-
+#include <QDir>
 #include <QDebug>
 
 //CONSTRUKTOR
 Shedule::Shedule(QWidget *parent) : QWidget(parent)
 {
     this->setObjectName("Shedule");
+
+    checkDirsAndFiles();
 
     pLayout         = new QHBoxLayout;
     pLayout->setSpacing(0);
@@ -31,11 +33,60 @@ Shedule::Shedule(QWidget *parent) : QWidget(parent)
     thread = new myThread;
 
     connect(thread, SIGNAL(started()), trackingDate, SLOT(start()) );
+    connect(trackingDate, SIGNAL(signalChangedDay(int)), this, SLOT(slotChangedDay(int)) );
 
     trackingDate->moveToThread(thread);
     thread->start();
-    connect(trackingDate, SIGNAL(signalChangedDay(int)), this, SLOT(slotChangedDay(int)) );
 }
+//FUNCTIONS
+void Shedule::checkDirsAndFiles()
+{
+//  local
+    checkDirsAndFilesFunc("local", "архив");
+    checkDirsAndFilesFunc("local", "на завтра");
+    checkDirsAndFilesFunc("local", "на сегодня");
+    checkDirsAndFilesFunc("local", "утвержденное");
+//  share
+    checkDirsAndFilesFunc("share", "архив");
+    checkDirsAndFilesFunc("share", "на завтра");
+    checkDirsAndFilesFunc("share", "на сегодня");
+    checkDirsAndFilesFunc("share", "утвержденное");
+//  README.txt and example files
+    checkDirsAndFilesFunc2("README.txt", ":/examples/example_files/README.txt");
+    checkDirsAndFilesFunc2("example_lessons.xml", ":/examples/example_files/example_lessons.xml");
+    checkDirsAndFilesFunc2("local" + QString(PATH_SPLITER) + \
+                           "расписание уроков" + QString(PATH_SPLITER) + \
+                           "на сегодня" + QString(PATH_SPLITER) + \
+                           "example_сегодня.xml",
+                           ":/examples/example_files/example_сегодня.xml");
+}
+void Shedule::checkDirsAndFilesFunc(QString local_or_share, QString dir_name)
+{
+    QDir dir(QDir::currentPath() + PATH_SPLITER + \
+                local_or_share + PATH_SPLITER + \
+                "расписание уроков" + PATH_SPLITER + \
+                dir_name);
+
+    if(!dir.mkpath(dir.path()) ){
+        printf("can't make dir %s\n", qPrintable(dir.path()) );
+        exit(5);
+    }
+}
+void Shedule::checkDirsAndFilesFunc2(QString local_file, QString src_file)
+{
+    QFile file(QDir::currentPath() + PATH_SPLITER + local_file);
+    if(!file.open(QIODevice::WriteOnly)){
+        printf("can't make file %s\n", qPrintable(QFileInfo(file).absolutePath()) );
+        exit(5);
+    }
+
+    QFile example(src_file);
+    example.open(QIODevice::ReadOnly);
+    file.write(example.readAll() );
+    file.close();
+    example.close();
+}
+
 //SLOTS
 void Shedule::slotSheduleLeftPanelItemClick(QTreeWidgetItem *item, int column)
 {
@@ -63,6 +114,8 @@ void Shedule::slotSheduleLeftPanelItemClick(QTreeWidgetItem *item, int column)
 }
 void Shedule::slotChangedDay(int day)
 {
+    qDebug() << "slot change day";
+
     QFile shareToday(SHARE_FILE_MAIN_SHEDULE_TODAY);
     QFile shareYesterday(SHARE_FILE_MAIN_SHEDULE_YESTERDAY);
 

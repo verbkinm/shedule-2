@@ -9,8 +9,9 @@ TrackingDate::TrackingDate()
 }
 void TrackingDate::start()
 {
+    qDebug() << "trackingday start";
     while(true) {
-        QThread::sleep(60);
+        QThread::sleep(1);
         if(day != QDate::currentDate().day()){
             day = QDate::currentDate().day();
             emit signalChangedDay(day);

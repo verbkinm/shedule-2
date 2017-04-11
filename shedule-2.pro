@@ -19,15 +19,17 @@ SOURCES += main.cpp\
     myWidgets/centralWidget/shedule/shedule.cpp \
     myWidgets/centralWidget/shedule/sheduleleftpanel.cpp \
     myWidgets/centralWidget/shedule/rightPanel/sheduleright.cpp \
-    myWidgets/centralWidget/shedule/rightPanel/firstTab/shedulerighttablewidget.cpp \
     myWidgets/centralWidget/shedule/inherited/mytreewidget.cpp \
     myWidgets/centralWidget/shedule/inherited/verticallabel.cpp \
     myWidgets/centralWidget/shedule/rightPanel/firstTab/cell.cpp \
     myWidgets/centralWidget/shedule/rightPanel/firstTab/sheduledateswitch.cpp \
     myWidgets/centralWidget/shedule/inherited/mylineedit.cpp \
     myWidgets/converter_main_table_shedule.cpp \
-    myWidgets/centralWidget/shedule/rightPanel/firstTab/mainshedule.cpp \
-    myClasses/trackingdate.cpp
+    myClasses/trackingdate.cpp \
+    myClasses/myfile.cpp \
+    myWidgets/centralWidget/shedule/inherited/myfilter.cpp \
+    myWidgets/centralWidget/shedule/rightPanel/firstTab/sheduletablewidget.cpp \
+    myClasses/mytouchscreen.cpp
 
 HEADERS  += widget.h \
     footer.h \
@@ -42,18 +44,19 @@ HEADERS  += widget.h \
     myWidgets/centralWidget/shedule/shedule.h \
     myWidgets/centralWidget/shedule/sheduleleftpanel.h \
     myWidgets/centralWidget/shedule/rightPanel/sheduleright.h \
-    myWidgets/centralWidget/shedule/rightPanel/firstTab/shedulerighttablewidget.h \
     myWidgets/centralWidget/shedule/inherited/mytreewidget.h \
 myWidgets/centralWidget/shedule/inherited/verticallabel.h \
     myWidgets/centralWidget/shedule/rightPanel/firstTab/cell.h \
     myWidgets/centralWidget/shedule/rightPanel/firstTab/sheduledateswitch.h \
     myWidgets/centralWidget/shedule/inherited/mylineedit.h \
     myWidgets/converter_main_table_shedule.h \
-    myWidgets/centralWidget/shedule/rightPanel/firstTab/mainshedule.h \
     mythread.h \
     myClasses/mythread.h \
     myClasses/trackingdate.h \
-    myClasses/myfile.h
+    myClasses/myfile.h \
+    myWidgets/centralWidget/shedule/inherited/myfilter.h \
+    myWidgets/centralWidget/shedule/rightPanel/firstTab/sheduletablewidget.h \
+    myClasses/mytouchscreen.h
 
 #INCLUDEPATH += ./
 

@@ -39,6 +39,7 @@ signals:
 
 public slots:
     void slotSwitchPanelToListLesson();
+    void slotResizeWidth(int);
 };
 
 #endif // SHEDULELEFTPANEL_H

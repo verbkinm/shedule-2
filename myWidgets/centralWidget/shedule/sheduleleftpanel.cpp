@@ -40,8 +40,11 @@ SheduleLeftPanel::SheduleLeftPanel(QWidget *parent) : QWidget(parent)
     pListLessons->pItemTeacher = 0;
     pLayout->addWidget(pListLessons);
     pListLessons->hide();
+
     connect(pListLessons,   SIGNAL(signalItemRootClick()),  SLOT(slotSwitchPanelToListLesson()) );
     connect(pListLessons,   SIGNAL(itemClicked(QTreeWidgetItem*, int)),  this, SIGNAL(signalItemClick(QTreeWidgetItem*, int)) );
+    connect(pListLessons, SIGNAL(signalWidgetWidthChanged(int)), this, SLOT(slotResizeWidth(int)) );
+
 
     this->setContentsMargins(0,0,0,0);
     this->setLayout(pLayout);
@@ -110,6 +113,11 @@ void SheduleLeftPanel::setUnits()
 //    pListLessons->expandItem(pItemRoot);
 }
 //SLOTS
+void SheduleLeftPanel::slotResizeWidth(int w)
+{
+    this->setFixedWidth(w);
+}
+
 void SheduleLeftPanel::slotSwitchPanelToListLesson()
 {
     QObject *object = this->sender();
