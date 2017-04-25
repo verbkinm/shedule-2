@@ -28,10 +28,11 @@ SheduleRight::SheduleRight(QWidget *parent) : QWidget(parent)
     pLayout->addWidget(pTabWidget);
 
     this->setLayout(pLayout);
-}
+    }
 //FUNCTIONS
-void SheduleRight::setHeaderText(QString str){
+void SheduleRight::setHeaderText(QString str, QString lesson, QString teacher){
     pHeader->setText(str);
+    pSheduleTableWidget->setFilter(&lesson, &teacher);
 }
 void SheduleRight::setUnits()
 {

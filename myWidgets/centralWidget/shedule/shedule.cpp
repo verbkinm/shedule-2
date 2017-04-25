@@ -95,22 +95,28 @@ void Shedule::slotSheduleLeftPanelItemClick(QTreeWidgetItem *item, int column)
     QString teacher = "\0";
 
     if(item->text(column) != TEXT_ROOT_LIST){
-        if(item->parent()->text(column) != TEXT_ROOT_LIST)
+        if(item->parent()->text(column) != TEXT_ROOT_LIST){
             lesson = item->parent()->text(column);
-        teacher = item->text(column);
+            teacher = item->text(column);
+        }
+        else
+            lesson = item->text(column);
     }
     else
-        lesson = TEXT_SHEDULE_DEFAULT;
+        str = TEXT_SHEDULE_DEFAULT;
 
-    while( (lesson.length() + teacher.length()) > STRING_LENGHT_SHEDULE_RIGHT_HEADER){
-        if(lesson.length() > teacher.length())
-            lesson = lesson.mid(0, lesson.length() - 3) + "~:\0";
-        if(lesson.length() < teacher.length())
-            teacher = teacher.mid(0, teacher.length() - 3) + "~:\0";
+    QString buffLesson = lesson;
+    QString buffTeacher= teacher;
+    while( (buffLesson.length() + buffTeacher.length()) > STRING_LENGHT_SHEDULE_RIGHT_HEADER){
+        if(buffLesson.length() > buffTeacher.length())
+            buffLesson = buffLesson.mid(0, buffLesson.length() - 3) + "~:\0";
+        if(buffLesson.length() < buffTeacher.length())
+            buffTeacher = buffTeacher.mid(0, buffTeacher.length() - 3) + "~:\0";
     }
 
-    str = lesson + " " + teacher;
-    pRightWidget->setHeaderText(str);
+    str = buffLesson + " " + buffTeacher;
+
+    pRightWidget->setHeaderText(str, lesson, teacher);
 }
 void Shedule::slotChangedDay(int day)
 {

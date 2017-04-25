@@ -7,7 +7,7 @@ class Cell : public QObject
 {
     Q_OBJECT
 private:
-    QString         header; // tmp?
+    QString         header; //цифра и буква класса
     QString         nameOfLesson;
     QStringList     teachers;
     QStringList     roomCabinets;

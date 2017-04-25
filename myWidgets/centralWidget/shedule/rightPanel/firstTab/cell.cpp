@@ -2,6 +2,8 @@
 
 #include <QStringList>
 
+#include <QDebug>
+
 Cell::Cell(QString header, QString nameOfLesson, QStringList teachers, QStringList roomCabinets) : QObject()
 {
     setHeader(header);
@@ -14,26 +16,43 @@ Cell::Cell() : QObject()
 
 }
 void Cell::setHeader(QString header)
-{this->header = header;}
+{
+    this->header = header;
+}
 void Cell::setNameOfLesson(QString nameOfLesson)
 {
     this->nameOfLesson = nameOfLesson.replace(" ","\n");
 }
 void Cell::setTeachers(QStringList teachers)
 {
-    for (int i = 0; i < teachers.size(); ++i)
-        if(QString(teachers.at(i)).startsWith("/") )
-            teachers.removeAt(i);
+    for (QStringList::iterator it = teachers.begin(); it != teachers.end(); ++it){
+        if(QString(*it).startsWith("/") ){
+            teachers.erase(it);
+            --it;
+        }
+    }
+
     this->teachers = teachers;
+
+//    qDebug() << "setTEacher " << this->teachers;
 }
 void Cell::setRoomCabinets(QStringList roomCabinets)
-{this->roomCabinets = roomCabinets;}
-
+{
+    this->roomCabinets = roomCabinets;
+}
 QString Cell::getHeader()
-{return header;}
+{
+    return header;
+}
 QString Cell::getnameOfLesson()
-{return nameOfLesson;}
+{
+    return nameOfLesson;
+}
 QStringList Cell::getTeachers()
-{return teachers;}
+{
+    return teachers;
+}
 QStringList Cell::getRoomCabinets()
-{return roomCabinets;}
+{
+    return roomCabinets;
+}

@@ -15,7 +15,7 @@ public:
     SheduleRight(QWidget *parent = 0);
     ~SheduleRight();
 
-    void setHeaderText(QString str);
+    void setHeaderText(QString str, QString lesson, QString teacher);
     void setUnits();
 
 private:
@@ -26,8 +26,6 @@ private:
     QTabWidget                  *pTabWidget;
 
     SheduleTableWidget          *pSheduleTableWidget;
-//    SheduleRightTableWidget     *pSheduleRightTableWidget;
-//    SheduleDateSwitch           *pSheduleDateSwitch;
 
     void createHeader();
     void creatTabs();

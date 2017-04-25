@@ -23,11 +23,11 @@ private:
     QVBoxLayout* pLayout;
 
     void setUnits();
-    void createListLesson();
+//    void createListLesson();
     void deleteListLesson();
 
     void createVerticalLabel();
-    void deleteVerticalLabel();
+//    void deleteVerticalLabel();
 
     void readFileLessons();
 

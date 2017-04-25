@@ -14,6 +14,7 @@
 #include <QScrollBar>
 #include <QDebug>
 #include <QStringList>
+#include <QString>
 
 //CONSTRUKTOR
 SheduleTableWidget::SheduleTableWidget(QWidget *parent) : QWidget(parent)
@@ -77,14 +78,27 @@ void SheduleTableWidget::convert_html_and_creat_xml()
                 exit(2);
             }
             bool break_all_foreach = false;
-            foreach (QString str, dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot, QDir::Reversed) ) {
-                if(break_all_foreach) break;
-                QDir dirYears(dir.absolutePath() + PATH_SPLITER + str);
+            QRegExp regExprYears("\\d\\d\\d\\d");
+            QRegExp regExprMonths("\\d\\d");
+            QRegExp regExprDays("\\d\\d.xml");
+            //проверяем папку архива на содержание подпапок (папок года)
+            foreach (QString strArchive, dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot, QDir::Reversed) ) {
+                if(break_all_foreach)
+                    break;
+                if(!regExprYears.exactMatch(strArchive))
+                    continue;
+                QDir dirYears(dir.absolutePath() + PATH_SPLITER + strArchive);
+                //проверяем папку года на содержание подпапок (месяцев)
                 foreach (QString strMonthes, dirYears.entryList(QDir::Dirs | QDir::NoDotAndDotDot, QDir::Reversed) ) {
                     if(break_all_foreach) break;
+                    if(!regExprMonths.exactMatch(strMonthes))
+                        continue;
                     QDir dirMonthes(dirYears.absolutePath() + PATH_SPLITER + strMonthes);
+                    //проверяем папку месяца на содержание файлов
                     foreach (QString strDays, dirMonthes.entryList(QDir::Files | QDir::NoDotAndDotDot, QDir::Reversed)) {
                         if(break_all_foreach) break;
+                        if(!regExprDays.exactMatch(strDays))
+                            continue;
                         file.setFileName(dirMonthes.absolutePath() + PATH_SPLITER + strDays);
                         if(MySpace::fileVerification(&file, &currentFile))
                             break_all_foreach = true;
@@ -248,7 +262,7 @@ void SheduleTableWidget::createRightTable()
     //ALIGN FIRST ROW IN pTableRightHeader
     for (int i = 0; i < numberOfClass; ++i)
         pTableRightHeader->item(0, i)->setTextAlignment(Qt::AlignCenter);
-    //SET BOLD FONT AND BACKGROUND FOR 0-COLUMN IN pTableRightHeade
+    //SET BOLD FONT AND BACKGROUND FOR 0-COLUMN IN pTableRightHeader
     for (int i = 0; i < numberOfClass; ++i) {
         pTableWidgetItem = pTableRightHeader->item(0, i);
         QFont font = pTableWidgetItem->font();
@@ -268,7 +282,7 @@ void SheduleTableWidget::createRightTable()
     //SET BACKGOUND COLOR FOR I-ROW
     for (int i = 1; i < numberOfRow; i += 2)
         for (int ii = 0; ii < numberOfClass; ++ii)
-            pTableWidget->item(i, ii)->setBackgroundColor(QColor(246,246,246));
+            pTableWidget->item(i, ii)->setBackgroundColor(QColor(255,246,255));
     int fixedHeight = 0;
     int fixedWidth  = 0;
     for (int i = 0; i < numberOfRow; ++i)
@@ -287,9 +301,8 @@ void SheduleTableWidget::createRightTable()
 
     connect(pMyTouchScreen, SIGNAL(signalChangeX(int)), this, SLOT(slotMyScreenValueChanchedX(int)) );
     connect(pMyTouchScreen, SIGNAL(signalChangeY(int)), this, SLOT(slotMyScreenValueChanchedY(int)) );
-//    connect(pTableWidget->verticalScrollBar(), SIGNAL(rangeChanged(int,int)), this, SLOT(slotTest(int, int)) );
-//    pTableWidget->verticalScrollBar()->installEventFilter(new MyFilter);
-//    qDebug()  << pTableWidget->verticalScrollBar()->set;
+
+    connect(pScrollHorizontal, SIGNAL(valueChanged(int)), this, SLOT(slotTest()) );
 }
 void SheduleTableWidget::structuring(QDomDocument *pDomDoc)
 {
@@ -340,6 +353,74 @@ void SheduleTableWidget::setMaximumHeightTableWidgetLeft(int height)
 {
     pTableWidgetLeft->setMaximumHeight(height);
 }
+void SheduleTableWidget::setFilter(const QString *filterLesson, const QString *filterTeacher)
+{
+    QString lesson = filterLesson->toUpper().remove(":").remove(" ");
+    QString teacher= filterTeacher->toUpper().remove(":").remove(" ").remove(".");
+
+    QString     originLesson;
+    QStringList originalTeachers;
+
+    itemsList.clear();
+
+    for (int i = 0; i < numberOfRow; ++i){
+        for (int ii = 0; ii < numberOfClass; ++ii){
+            originLesson = tableShedule[i][ii].getnameOfLesson().remove("\n").remove(" ").toUpper();
+            originalTeachers = tableShedule[i][ii].getTeachers();
+            for (QStringList::iterator it = originalTeachers.begin(); it != originalTeachers.end(); ++it)
+                *it = QString(*it).toUpper().remove(" ").remove(".");
+
+            if( (originLesson == lesson) && stringInList(originalTeachers, teacher) && lesson != ""){
+                pTableWidget->item(i, ii)->setBackgroundColor(Qt::red);
+                itemsList << pTableWidget->item(i, ii);
+            }
+            else
+                pTableWidget->item(i, ii)->setBackgroundColor(Qt::white);
+        }
+    }
+    slotTest();
+}
+bool SheduleTableWidget::stringInList(QStringList list, QString string)
+{
+    foreach (QString it, list) {
+//        qDebug() << "!!!" << it << string;
+        if(it.startsWith(string))
+            return true;
+    }
+    return false;
+}
+void SheduleTableWidget::set_cell(cell *myCell, bool visible, bool left, bool top, bool right, bool bottom)
+{
+    myCell->visible = visible;
+    myCell->left     = left;
+    myCell->top      = top;
+    myCell->right    = right;
+    myCell->bottom   = bottom;
+}
+
+SheduleTableWidget::cell SheduleTableWidget::isCellInSight(QTableWidget *table, QTableWidgetItem *item)
+{
+    cell tmpCell;
+    set_cell(&tmpCell, false, false, false, false, false);
+
+    QRect rect = table->visualItemRect(item);
+    if( (rect.x() + rect.width() > table->viewport()->width() ) || \
+        (rect.y() + rect.height() > table->viewport()->height()) ){
+        set_cell(&tmpCell, false, false, false, true, false);
+        return tmpCell;
+    }
+    else if( (rect.x() < 0) || (rect.y() < 0) ){
+        set_cell(&tmpCell, false, true, false, false, false);
+        return tmpCell;
+    }
+    else{
+        set_cell(&tmpCell, true, false, false, false, false);
+        return tmpCell;
+    }
+
+    return tmpCell;
+}
+
 //SLOTS
 void SheduleTableWidget::slotMyScreenValueChanchedX(int x)
 {
@@ -358,26 +439,35 @@ void SheduleTableWidget::slotChangedFile(const QString &flName)
 {
     if(flName.indexOf("сегодня") != -1){
         if(pFileSystemWatcher->addPath(SHARE_FILE_MAIN_SHEDULE_TODAY)){
+                qDebug() <<"3";
             file_is_exist_today = true;
+            delete pTableRightHeader;
             delete pTableWidget;
             delete pTableWidgetLeft;
             convert_html_and_creat_xml();
             createLeftTable();
-            pLayout->addWidget(pTableWidgetLeft, 1,0);
-            pLayout->addWidget(pTableWidget, 1,1);
+            pLayout->addWidget(pTableRightHeader,   1,1);
+            pLayout->addWidget(pTableWidgetLeft,    2,0);
+            pLayout->addWidget(pTableWidget,        2,1);
+            emit pSheduleDateSwitch->signalNextDay(currentFile);
         }
         else
             file_is_exist_today = false;
     }
+    qDebug() <<"1";
     if(flName.indexOf("завтра") != -1){
         if(pFileSystemWatcher->addPath(SHARE_FILE_MAIN_SHEDULE_YESTERDAY)){
+                qDebug() <<"2";
             file_is_exist_yesterday = true;
+            delete pTableRightHeader;
             delete pTableWidget;
             delete pTableWidgetLeft;
             convert_html_and_creat_xml();
             createLeftTable();
-            pLayout->addWidget(pTableWidgetLeft, 1,0);
-            pLayout->addWidget(pTableWidget, 1,1);
+            pLayout->addWidget(pTableRightHeader,   1,1);
+            pLayout->addWidget(pTableWidgetLeft,    2,0);
+            pLayout->addWidget(pTableWidget,        2,1);
+            emit pSheduleDateSwitch->signalNextDay(currentFile);
         }
         else
             file_is_exist_yesterday = false;
@@ -399,8 +489,10 @@ void SheduleTableWidget::slotChangedDir(const QString &dirName)
         QDir dir(SHARE_DIR_MAIN_SHEDULE_YESTERDAY);
         if(!file_is_exist_yesterday){
             foreach (QString str, dir.entryList(QDir::Files | QDir::NoDotAndDotDot)) {
-                if(str == "izmenenie.html")
+                if(str == "izmenenie.html"){
+                    qDebug() << "!!" << str;
                     slotChangedFile(SHARE_FILE_MAIN_SHEDULE_YESTERDAY);
+                }
             }
         }
     }
@@ -439,16 +531,21 @@ void SheduleTableWidget::slotRecreateTables(QString fileName)
     pScrollHorizontal->setFixedHeight(SCROLL_BAR_WIDTH);
     pScrollVertical->setFixedWidth(SCROLL_BAR_WIDTH);
 }
-void SheduleTableWidget::slotTest(int a, int b)
+void SheduleTableWidget::slotTest()
 {
-//    qDebug() << a << b;
-//    if(a == 0 && b == 0){
-//        pScrollVertical->setEnabled(false);
-//        return;
-//    }
-//    else if(a == 0 && b != 0){
-//        pScrollVertical->setEnabled(true);
-//    }
+    foreach (QTableWidgetItem* item, itemsList) {
+        if(isCellInSight(pTableWidget, item).visible )
+            qDebug() << item->text() << " - " << "видно";
+        else {
+            QString side;
+            if(isCellInSight(pTableWidget, item).left)
+                side = "left";
+            else
+                side = "right";
+
+            qDebug() << item->text() << " - " << "не видно " << side;
+        }
+    }
 }
 
 //EVENTS
@@ -472,12 +569,12 @@ void SheduleTableWidget::paintEvent(QPaintEvent *)
 //DECONSTRUKTOR
 SheduleTableWidget::~SheduleTableWidget()
 {
-    delete pFileSystemWatcher;
-    delete pTableWidgetLeft;
-//    if(pTableWidgetItem != 0)
-//        delete pTableWidgetItem;
-    delete pLayout;
-    delete [] pArrClassLiter;
-    delete [] pArrLessonTime;
-//    delete [] tableShedule;
+//    delete pFileSystemWatcher;
+//    delete pTableWidgetLeft;
+////    if(pTableWidgetItem != 0)
+////        delete pTableWidgetItem;
+//    delete pLayout;
+//    delete [] pArrClassLiter;
+//    delete [] pArrLessonTime;
+////    delete [] tableShedule;
 }

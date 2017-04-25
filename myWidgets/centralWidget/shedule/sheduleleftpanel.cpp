@@ -57,32 +57,32 @@ void SheduleLeftPanel::createVerticalLabel()
     pLayout->addWidget(pVerticalLabel);
     connect(pVerticalLabel, SIGNAL(signalClicked()),  this, SLOT(slotSwitchPanelToListLesson()) );
 }
-void SheduleLeftPanel::deleteVerticalLabel()
-{
-//    disconnect(pVerticalLabel, SIGNAL(signalClicked()), this, SLOT(slotSwitchPanelToListLesson()) );
-    delete pVerticalLabel;
-}
-void SheduleLeftPanel::createListLesson()
-{
-    pListLessons = new MyTreeWidget;
-    pListLessons->setObjectName(OBJECT_NAME_LIST_LESSON);
-    pListLessons->setFixedWidth(LEFT_PANEL_TREE_WIDTH);
-    pListLessons->pItemRoot = new QTreeWidgetItem(pListLessons);
-    pListLessons->pItemRoot->setText(0, TEXT_ROOT_LIST);
-    readFileLessons();
-    QFont font = pListLessons->pItemRoot->font(0);
-    font.setPixelSize(FONT_SHEDULE_LEFT_PANEL_TREE_ROOT);
-    font.setBold(true);
-    pListLessons->pItemRoot->setFont(0,font);
-    pListLessons->expandItem(pListLessons->pItemRoot);
-    pListLessons->pItemLesson = 0;
-    pListLessons->pItemTeacher = 0;
-    pLayout->addWidget(pListLessons);
-    this->setMaximumWidth(pListLessons->width());
+//void SheduleLeftPanel::deleteVerticalLabel()
+//{
+////    disconnect(pVerticalLabel, SIGNAL(signalClicked()), this, SLOT(slotSwitchPanelToListLesson()) );
+//    delete pVerticalLabel;
+//}
+//void SheduleLeftPanel::createListLesson()
+//{
+//    pListLessons = new MyTreeWidget;
+//    pListLessons->setObjectName(OBJECT_NAME_LIST_LESSON);
+//    pListLessons->setFixedWidth(LEFT_PANEL_TREE_WIDTH);
+//    pListLessons->pItemRoot = new QTreeWidgetItem(pListLessons);
+//    pListLessons->pItemRoot->setText(0, TEXT_ROOT_LIST);
+//    readFileLessons();
+//    QFont font = pListLessons->pItemRoot->font(0);
+//    font.setPixelSize(FONT_SHEDULE_LEFT_PANEL_TREE_ROOT);
+//    font.setBold(true);
+//    pListLessons->pItemRoot->setFont(0,font);
+//    pListLessons->expandItem(pListLessons->pItemRoot);
+//    pListLessons->pItemLesson = 0;
+//    pListLessons->pItemTeacher = 0;
+//    pLayout->addWidget(pListLessons);
+//    this->setMaximumWidth(pListLessons->width());
 
-    connect(pListLessons,   SIGNAL(signalItemRootClick()),  SLOT(slotSwitchPanelToListLesson()) );
-    connect(pListLessons,   SIGNAL(itemClicked(QTreeWidgetItem*, int)),  this, SIGNAL(signalItemClick(QTreeWidgetItem*, int)) );
-}
+//    connect(pListLessons,   SIGNAL(signalItemRootClick()),  SLOT(slotSwitchPanelToListLesson()) );
+//    connect(pListLessons,   SIGNAL(itemClicked(QTreeWidgetItem*, int)),  this, SIGNAL(signalItemClick(QTreeWidgetItem*, int)) );
+//}
 void SheduleLeftPanel::deleteListLesson()
 {
 //    disconnect(pListLessons, SIGNAL(signalItemRootClick()), this, SLOT(slotSwitchPanelToListLesson()) );
