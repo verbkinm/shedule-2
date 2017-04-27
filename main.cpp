@@ -1,7 +1,7 @@
 #include "widget.h"
 
 //#include "myWidgets/centralWidget/shedule/shedule.h"
-//#include "myWidgets/centralWidget/shedule/sheduledateswitch.h"
+//#include "myWidgets/centralWidget/shedule/rightPanel/firstTab/sheduledateswitch.h"
 
 #include <QApplication>
 #include <QFile>
@@ -18,7 +18,7 @@ int main(int argc, char *argv[])
 
 //    Shedule w;
     Widget w;
-    w.setCursor(Qt::BlankCursor);
+//    w.setCursor(Qt::BlankCursor);
 //    SheduleDateSwitch w;
 
 //    w.showFullScreen();

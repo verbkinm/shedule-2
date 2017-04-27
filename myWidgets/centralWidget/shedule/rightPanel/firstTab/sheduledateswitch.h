@@ -11,9 +11,11 @@ class SheduleDateSwitch : public QWidget
 {
     Q_OBJECT
 private:
-    QHBoxLayout *pLayout;
+    QGridLayout *pLayout;
     PushButton *pPreviousDay, *pNextDay;
     MyLineEdit *pDate;
+
+    QLabel *leftArrow, *rightArrow;
 
     QString previosFileName, nextFileName;
 
@@ -36,6 +38,9 @@ signals:
 public slots:
     void slotPreviosDay();
     void slotNextDay();
+
+    void slotSetLeftArrow(int); // 0 - south; 1 - sw; 2 - west; 3 - nw;
+    void slotSetRightArrow(int); // 0 - nord; 1 - ne; 2 - east; 3 - se;
 };
 
 #endif // SHEDULEDATESWITCH_H

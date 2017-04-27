@@ -23,6 +23,14 @@
         <file alias="previos_button_push">img/previos_button_push.png</file>
         <file alias="next_button">img/next_button.png</file>
         <file alias="next_button_push">img/next_button_push.png</file>
+        <file alias="arrow_5">img/arrow_right.png</file>
+        <file alias="arrow_7">img/arrow_bottom.png</file>
+        <file alias="arrow_4">img/arrow_left.png</file>
+        <file alias="arrow_2">img/arrow_top.png</file>
+        <file alias="arrow_3">img/arrow_ne.png</file>
+        <file alias="arrow_1">img/arrow_nw.png</file>
+        <file alias="arrow_8">img/arrow_se.png</file>
+        <file alias="arrow_6">img/arrow_sw.png</file>
     </qresource>
     <qresource prefix="/">
         <file>style.qss</file>

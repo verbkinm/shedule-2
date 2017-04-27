@@ -58,6 +58,7 @@ SheduleTableWidget::SheduleTableWidget(QWidget *parent) : QWidget(parent)
     connect(pFileSystemWatcher, SIGNAL(fileChanged(QString)),       this, SLOT(slotChangedFile(QString)) );
     connect(pFileSystemWatcher, SIGNAL(directoryChanged(QString)),  this, SLOT(slotChangedDir (QString)) );
 }
+
 //FUNCTIONS
 void SheduleTableWidget::convert_html_and_creat_xml()
 {
@@ -127,7 +128,6 @@ void SheduleTableWidget::createSheduleDateSwitch()
     connect(pSheduleDateSwitch, SIGNAL(signalNextDay(QString)),                     this, SLOT(slotRecreateTables(QString)) );
 //    connect(this,               SIGNAL(signalSetDateSheduleDateSwitch(QString)),    this, SLOT(slotSetDate(QString)) );
 }
-
 void SheduleTableWidget::createLeftTable()
 {
     pTableWidgetLeft = new QTableWidget(numberOfRow,2,this);
@@ -212,6 +212,7 @@ void SheduleTableWidget::createRightTable()
     pTableRightHeader->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
     pTableWidget = new QTableWidget(numberOfRow,numberOfClass,this);
+    pTableWidget->installEventFilter(this);
 
     pTableWidget->horizontalHeader()->hide();
     pTableWidget->verticalHeader()->hide();
@@ -282,7 +283,7 @@ void SheduleTableWidget::createRightTable()
     //SET BACKGOUND COLOR FOR I-ROW
     for (int i = 1; i < numberOfRow; i += 2)
         for (int ii = 0; ii < numberOfClass; ++ii)
-            pTableWidget->item(i, ii)->setBackgroundColor(QColor(255,246,255));
+            pTableWidget->item(i, ii)->setBackgroundColor(I_ROW_COLOR);
     int fixedHeight = 0;
     int fixedWidth  = 0;
     for (int i = 0; i < numberOfRow; ++i)
@@ -292,9 +293,11 @@ void SheduleTableWidget::createRightTable()
 
     pTableWidget->setMaximumHeight(fixedHeight +2 );
     pScrollVertical = pTableWidget->verticalScrollBar();
+    connect(pScrollVertical, SIGNAL(valueChanged(int)), this, SLOT(slotTest()) );
 
     pScrollHorizontal = pTableWidget->horizontalScrollBar();
     connect(pScrollHorizontal, SIGNAL(valueChanged(int)), pTableRightHeader->horizontalScrollBar(), SLOT(setValue(int)) );
+    connect(pScrollHorizontal, SIGNAL(valueChanged(int)), this, SLOT(slotTest()) );
 
     pMyTouchScreen = new MyTouchScreen(pTableWidget);
     pMyTouchScreen->resize(fixedWidth, fixedHeight);
@@ -302,7 +305,17 @@ void SheduleTableWidget::createRightTable()
     connect(pMyTouchScreen, SIGNAL(signalChangeX(int)), this, SLOT(slotMyScreenValueChanchedX(int)) );
     connect(pMyTouchScreen, SIGNAL(signalChangeY(int)), this, SLOT(slotMyScreenValueChanchedY(int)) );
 
-    connect(pScrollHorizontal, SIGNAL(valueChanged(int)), this, SLOT(slotTest()) );
+    pArrowLeft = new QLabel(pTableWidget);
+    pArrowRight = new QLabel(pTableWidget);
+    pArrowTop   = new QLabel(pTableWidget);
+    pArrowBottom= new QLabel(pTableWidget);
+
+    pArrowNW  = new QLabel(pTableWidget);
+    pArrowNE  = new QLabel(pTableWidget);
+    pArrowSW  = new QLabel(pTableWidget);
+    pArrowSE  = new QLabel(pTableWidget);
+
+
 }
 void SheduleTableWidget::structuring(QDomDocument *pDomDoc)
 {
@@ -355,8 +368,8 @@ void SheduleTableWidget::setMaximumHeightTableWidgetLeft(int height)
 }
 void SheduleTableWidget::setFilter(const QString *filterLesson, const QString *filterTeacher)
 {
-    QString lesson = filterLesson->toUpper().remove(":").remove(" ");
-    QString teacher= filterTeacher->toUpper().remove(":").remove(" ").remove(".");
+    lessonFilter = filterLesson->toUpper().remove(":").remove(" ");
+    teacherFilter= filterTeacher->toUpper().remove(":").remove(" ").remove(".");
 
     QString     originLesson;
     QStringList originalTeachers;
@@ -370,71 +383,130 @@ void SheduleTableWidget::setFilter(const QString *filterLesson, const QString *f
             for (QStringList::iterator it = originalTeachers.begin(); it != originalTeachers.end(); ++it)
                 *it = QString(*it).toUpper().remove(" ").remove(".");
 
-            if( (originLesson == lesson) && stringInList(originalTeachers, teacher) && lesson != ""){
+            if( (originLesson == lessonFilter) && isStringInList(originalTeachers, teacherFilter) && lessonFilter != ""){
                 pTableWidget->item(i, ii)->setBackgroundColor(Qt::red);
                 itemsList << pTableWidget->item(i, ii);
             }
-            else
-                pTableWidget->item(i, ii)->setBackgroundColor(Qt::white);
+            else{
+                (i % 2) \
+                ? pTableWidget->item(i, ii)->setBackgroundColor(Qt::white) \
+                : pTableWidget->item(i, ii)->setBackgroundColor(I_ROW_COLOR);
+            }
         }
     }
     slotTest();
 }
-bool SheduleTableWidget::stringInList(QStringList list, QString string)
+bool SheduleTableWidget::isStringInList(QStringList list, QString string)
 {
     foreach (QString it, list) {
-//        qDebug() << "!!!" << it << string;
         if(it.startsWith(string))
             return true;
     }
     return false;
 }
-void SheduleTableWidget::set_cell(cell *myCell, bool visible, bool left, bool top, bool right, bool bottom)
+void SheduleTableWidget::set_cell(cell *myCell, bool visibleX, bool visibleY, bool left, bool top, bool right, bool bottom)
 {
-    myCell->visible = visible;
+    myCell->visibleX = visibleX;
+    myCell->visibleY = visibleY;
     myCell->left     = left;
     myCell->top      = top;
     myCell->right    = right;
     myCell->bottom   = bottom;
 }
-
 SheduleTableWidget::cell SheduleTableWidget::isCellInSight(QTableWidget *table, QTableWidgetItem *item)
 {
     cell tmpCell;
-    set_cell(&tmpCell, false, false, false, false, false);
+    set_cell(&tmpCell, false, false, false, false, false, false);
 
     QRect rect = table->visualItemRect(item);
-    if( (rect.x() + rect.width() > table->viewport()->width() ) || \
-        (rect.y() + rect.height() > table->viewport()->height()) ){
-        set_cell(&tmpCell, false, false, false, true, false);
-        return tmpCell;
+    //X
+    if( (rect.x() + rect.width() > table->viewport()->width() ) ){
+        set_cell(&tmpCell, false,false,   false,        tmpCell.top,  true,           tmpCell.bottom); // right
+        qDebug() << "right" << rect.x() + rect.width() << table->viewport()->width() << item->text();
     }
-    else if( (rect.x() < 0) || (rect.y() < 0) ){
-        set_cell(&tmpCell, false, true, false, false, false);
-        return tmpCell;
+    if( rect.x() < 0 )
+        set_cell(&tmpCell, false,false,   true,         tmpCell.top,  false,          tmpCell.bottom); // left
+    if( (rect.x() > 0) && (rect.x() + rect.width() < table->viewport()->width()) )
+        set_cell(&tmpCell, true,false,    tmpCell.left, tmpCell.top,  tmpCell.right,  tmpCell.bottom); // visible_X
+
+    //Y
+    if( rect.y() + rect.height() > table->viewport()->height() )
+        set_cell(&tmpCell, tmpCell.visibleX,false,   tmpCell.left, false,        tmpCell.right,  true); // bottom
+    if( rect.y() < 0 ){
+        qDebug() << "top";
+        set_cell(&tmpCell, tmpCell.visibleX,false,   tmpCell.left, true,         tmpCell.right,  false); // top
     }
-    else{
-        set_cell(&tmpCell, true, false, false, false, false);
-        return tmpCell;
-    }
+    if( rect.y() > 0 && rect.y() + rect.height() < table->viewport()->height() )
+        set_cell(&tmpCell, tmpCell.visibleX,true,    tmpCell.left, false,        tmpCell.right,  false); // visible_y
 
     return tmpCell;
+}
+void SheduleTableWidget::creatArrowsForTable()
+{
+    QPixmap pix(":/img/arrow_4");
+    pArrowLeft->setFixedSize(30,30);
+    pArrowLeft->setPixmap(pix.scaled(30,30 ,Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    pArrowLeft->move(0,pTableWidget->height() / 2 - pArrowLeft->height() / 2);
+    pArrowLeft->show();
+
+    pArrowRight->setFixedSize(30,30);
+    pix.load(":/img/arrow_5");
+    pArrowRight->setPixmap(pix.scaled(30,30 ,Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    pArrowRight->move(pTableWidget->width() - pArrowRight->width(),pTableWidget->height() / 2 - pArrowRight->height() / 2);
+    pArrowRight->show();
+
+    pArrowTop->setFixedSize(30,30);
+    pix.load(":/img/arrow_2");
+    pArrowTop->setPixmap(pix.scaled(30,30 ,Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    pArrowTop->move(pTableWidget->width() / 2 - pArrowRight->width(),0);
+    pArrowTop->show();
+
+    pArrowBottom->setFixedSize(30,30);
+    pix.load(":/img/arrow_7");
+    pArrowBottom->setPixmap(pix.scaled(30,30 ,Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    pArrowBottom->move(pTableWidget->width() / 2 - pArrowRight->width(),pTableWidget->height() - pArrowRight->height());
+    pArrowBottom->show();
+
+    pArrowNW->setFixedSize(30,30);
+    pix.load(":/img/arrow_1");
+    pArrowNW->setPixmap(pix.scaled(30,30 ,Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    pArrowNW->move(0,0);
+    pArrowNW->show();
+
+    pArrowNE->setFixedSize(30,30);
+    pix.load(":/img/arrow_3");
+    pArrowNE->setPixmap(pix.scaled(30,30 ,Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    pArrowNE->move(pTableWidget->width() - pArrowNE->width(),0);
+    pArrowNE->show();
+
+    pArrowSW->setFixedSize(30,30);
+    pix.load(":/img/arrow_6");
+    pArrowSW->setPixmap(pix.scaled(30,30 ,Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    pArrowSW->move(0,pTableWidget->height() - pArrowSW->height());
+    pArrowSW->show();
+
+    pArrowSE->setFixedSize(30,30);
+    pix.load(":/img/arrow_8");
+    pArrowSE->setPixmap(pix.scaled(30,30 ,Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    pArrowSE->move(pTableWidget->width() - pArrowSE->width(),pTableWidget->height() - pArrowSW->height());
+    pArrowSE->show();
 }
 
 //SLOTS
 void SheduleTableWidget::slotMyScreenValueChanchedX(int x)
 {
     pScrollHorizontal->setValue(pScrollHorizontal->value() + x);
+    slotTest();
 }
 void SheduleTableWidget::slotMyScreenValueChanchedY(int y)
 {
     pScrollVertical->setValue(pScrollVertical->value() + y);
+    slotTest();
 }
 void SheduleTableWidget::slotSetDate(QString date)
 {
     pSheduleDateSwitch->setSheduleDateSwitchText(date);
 }
-
 void SheduleTableWidget::slotChangedFile(const QString &flName)
 {
     if(flName.indexOf("сегодня") != -1){
@@ -501,8 +573,14 @@ void SheduleTableWidget::slotRecreateTables(QString fileName)
 {
     delete pTableRightHeader;
     delete pTableWidget;
+//    delete pArrowLeft;
     delete pTableWidgetLeft;
     delete pSheduleDateSwitch;
+
+    delete pScrollHorizontal;
+    delete pScrollVertical;
+
+    itemsList.clear();
 
     QFile file(fileName);
     MySpace::fileVerification(&file, &currentFile);
@@ -519,6 +597,8 @@ void SheduleTableWidget::slotRecreateTables(QString fileName)
     createLeftTable();
     createSheduleDateSwitch();
 
+    setFilter(&lessonFilter, &teacherFilter);
+
     pLayout->addWidget(pTableRightHeader,   1,1);
     pLayout->addWidget(pTableWidgetLeft,    2,0);
     pLayout->addWidget(pTableWidget,        2,1);
@@ -533,32 +613,51 @@ void SheduleTableWidget::slotRecreateTables(QString fileName)
 }
 void SheduleTableWidget::slotTest()
 {
-    foreach (QTableWidgetItem* item, itemsList) {
-        if(isCellInSight(pTableWidget, item).visible )
-            qDebug() << item->text() << " - " << "видно";
-        else {
-            QString side;
-            if(isCellInSight(pTableWidget, item).left)
-                side = "left";
-            else
-                side = "right";
+    int arrowLeft = -1;
+    int arrowRight= -1;
 
-            qDebug() << item->text() << " - " << "не видно " << side;
-        }
+    foreach (QTableWidgetItem* item, itemsList) {
+        cell buffCell = isCellInSight(pTableWidget, item);
+        //left arrow
+        if(!buffCell.left && buffCell.bottom && !buffCell.right)
+            arrowLeft = 0; // south
+        if(buffCell.left && buffCell.bottom)
+            arrowLeft = 1; // sw
+        if(buffCell.left && !buffCell.bottom)
+            arrowLeft = 2; // west
+        if(buffCell.left && buffCell.top)
+            arrowLeft = 3; // nw
+        //right arrow
+        if(!buffCell.right && buffCell.top && !buffCell.left)
+            arrowRight = 0; // nord
+        if(buffCell.right && buffCell.top)
+            arrowRight = 1; // ne
+        if(buffCell.right && !buffCell.top)
+            arrowRight = 2; // esat
+        if(buffCell.right && buffCell.bottom)
+            arrowRight = 3; //se
     }
+    pSheduleDateSwitch->slotSetLeftArrow(arrowLeft);
+    pSheduleDateSwitch->slotSetRightArrow(arrowRight);
 }
 
 //EVENTS
 bool SheduleTableWidget::event(QEvent *event)
 {
-    if(this->isVisible() && event->type() == QEvent::Resize){
-//        qDebug() << "resize" << pParent->size();
-//        emit signalSetTableSize();
-//        setUnits();
-//        resized = 1;
-    }
+//    if(this->isVisible() && event->type() == QEvent::Show){
+//    }
     return QWidget::event(event);
 }
+bool SheduleTableWidget::eventFilter(QObject *obj, QEvent *event)
+{
+//    qDebug() << event->type();
+
+    if(pTableWidget->isVisible() && event->type() == QEvent::Resize){
+        creatArrowsForTable();
+    }
+    return QObject::eventFilter(obj, event);
+}
+
 void SheduleTableWidget::paintEvent(QPaintEvent *)
 {
     QStyleOption opt;
@@ -566,6 +665,7 @@ void SheduleTableWidget::paintEvent(QPaintEvent *)
     QPainter p(this);
     style()->drawPrimitive(QStyle::PE_Widget, &opt, &p, this);
 }
+
 //DECONSTRUKTOR
 SheduleTableWidget::~SheduleTableWidget()
 {

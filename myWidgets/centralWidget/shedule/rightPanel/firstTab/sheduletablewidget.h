@@ -28,50 +28,58 @@ private:
 
     QString *pArrClassLiter; //number and literal
     QString *pArrLessonTime;
+
+    QString lessonFilter, teacherFilter;
 //    QString *allTextInFile;
-    Cell **tableShedule;
+    Cell **tableShedule;    //клас для хранения данных ячеек
 
     QTableWidget *pTableWidget;     //основная таблица с расписанием
     QTableWidget *pTableWidgetLeft; //таблица с номерами уроков и временем
 //    QTableWidget *pTableLeftHeader;
     QTableWidget *pTableRightHeader;//таблица с цифрой и буквой класса
 
-    SheduleDateSwitch           *pSheduleDateSwitch;
+    SheduleDateSwitch           *pSheduleDateSwitch; // панель переключения даты расписания
 
-    QScrollBar   *pScrollHorizontal, *pScrollVertical;
+    QScrollBar   *pScrollHorizontal, *pScrollVertical; // скроллбар для основной таблицы
 
     QTableWidgetItem *pTableWidgetItem;
 
     QGridLayout *pLayout;
-    MyTouchScreen *pMyTouchScreen;
+    MyTouchScreen *pMyTouchScreen;  // класс "тачскрина" для листания таблицы одним пальцем
+
+    QLabel *pArrowLeft, *pArrowRight, *pArrowTop, *pArrowBottom,\
+           *pArrowNW, *pArrowNE, *pArrowSW, *pArrowSE;
 
     QFileSystemWatcher *pFileSystemWatcher;
     bool file_is_exist_today; //local/расписание уроков/на сегодня/сегодня.xml
     bool file_is_exist_yesterday; //local/расписание уроков/на завтра/на завтра.xml
 
-    QList<QTableWidgetItem*> itemsList;
+    QList<QTableWidgetItem*> itemsList;  // список ячеек(QTableWidgetItem*) попавших под фильтр
 
     typedef struct{
-        bool visible;
+        bool visibleX;
+        bool visibleY;
         bool left;
         bool right;
         bool top;
         bool bottom;
-    } cell;
+    } cell; // структура для обнаружения, где ячейка? В поле видимости или слева, или справа и т.д.
 
-    void set_cell(cell *myCell, bool visible, bool left, bool top, bool right, bool bottom);
+    void set_cell(cell *myCell, bool visibleX, bool visibleY, bool left, bool top, bool right, bool bottom); // установка параметров структуры cell
 
     cell isCellInSight(QTableWidget* table, QTableWidgetItem* item);
 
     void convert_html_and_creat_xml();
     void structuring(QDomDocument *pDomDoc);
-    void createLeftTable();
-    void createRightTable();
-    void createSheduleDateSwitch();
+    void createLeftTable();                     // создание таблицы с номерами уроков и временем
+    void createRightTable();                    // создание таблицы основной
+    void creatArrowsForTable();                 // создание стрелок направления для pTableWidget
+    void createSheduleDateSwitch();             //  создание панели переключения дней
 
-    bool stringInList(QStringList, QString);
+    bool isStringInList(QStringList, QString);  // проверка вхождения строки в список строк
 
     bool event(QEvent *event);
+    bool eventFilter(QObject *obj, QEvent *event);
     void paintEvent(QPaintEvent * );
 
 public:
