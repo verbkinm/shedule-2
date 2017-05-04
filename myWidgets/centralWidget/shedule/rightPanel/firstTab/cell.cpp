@@ -10,10 +10,13 @@ Cell::Cell(QString header, QString nameOfLesson, QStringList teachers, QStringLi
     setNameOfLesson(nameOfLesson);
     setTeachers(teachers);
     setRoomCabinets(roomCabinets);
+    setFiltred(false);
+    setCurrentLesson(false);
 }
 Cell::Cell() : QObject()
 {
-
+    setFiltred(false);
+    setCurrentLesson(false);
 }
 void Cell::setHeader(QString header)
 {
@@ -55,4 +58,28 @@ QStringList Cell::getTeachers()
 QStringList Cell::getRoomCabinets()
 {
     return roomCabinets;
+}
+void Cell::setFiltred(bool value)
+{
+    filtred = value;
+}
+bool Cell::isFiltred()
+{
+    return filtred;
+}
+void Cell::setBackgroundColor(QColor color)
+{
+    background = color;
+}
+QColor Cell::backgroundColor()
+{
+    return background;
+}
+void Cell::setCurrentLesson(bool value)
+{
+    currentLeson = value;
+}
+bool Cell::isCurrentLesson()
+{
+    return currentLeson;
 }

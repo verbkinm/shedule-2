@@ -50,7 +50,10 @@
 #define SHARE_FILE_MAIN_SHEDULE_YESTERDAY QString("share"+QString(PATH_SPLITER)+"расписание уроков"+QString(PATH_SPLITER)+"на завтра"+QString(PATH_SPLITER)+"izmenenie.html")
 #define SHARE_DIR_MAIN_SHEDULE_YESTERDAY QString("share"+QString(PATH_SPLITER)+"расписание уроков"+QString(PATH_SPLITER)+"на завтра")
 #define SHARE_ARCHIVE_PATH QString("share"+QString(PATH_SPLITER)+"расписание уроков"+QString(PATH_SPLITER)+"архив")
-#define I_ROW_COLOR QColor(219,219,219) // цвет нечетной строки в таблице
+#define NOT_EVEN_ROW_COLOR QColor(219,219,219) // цвет нечетной строки в таблице
+#define DEFAULT_BACKGROUND_COLOR QColor(Qt::white)
+#define FILTRED_CELL QColor(226,102,31)
+#define BACKGROUND_COLOR_CURRENT_LESSON QColor(Qt::green)
 
 #define LOCAL_FILE_MAIN_SHEDULE_TODAY QString("local"+QString(PATH_SPLITER)+"расписание уроков"+QString(PATH_SPLITER)+"на сегодня"+QString(PATH_SPLITER)+"сегодня.xml")
 #define LOCAL_FILE_MAIN_SHEDULE_YESTERDAY QString("local"+QString(PATH_SPLITER)+"расписание уроков"+QString(PATH_SPLITER)+"на завтра"+QString(PATH_SPLITER)+"на завтра.xml")

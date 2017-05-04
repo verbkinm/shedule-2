@@ -2,6 +2,7 @@
 #define CELL_H
 
 #include <QObject>
+#include <QColor>
 
 class Cell : public QObject
 {
@@ -11,6 +12,11 @@ private:
     QString         nameOfLesson;
     QStringList     teachers;
     QStringList     roomCabinets;
+
+    bool            filtred;
+    bool            currentLeson;
+
+    QColor          background;
 
 public:
     Cell(QString header, QString nameOfLesson, QStringList teachers, QStringList roomCabinets);
@@ -25,6 +31,15 @@ public:
     QString         getnameOfLesson ();
     QStringList     getTeachers     ();
     QStringList     getRoomCabinets ();
+
+    void            setFiltred(bool value);
+    bool            isFiltred();
+
+    void            setCurrentLesson(bool value);
+    bool            isCurrentLesson();
+
+    void            setBackgroundColor(QColor color);
+    QColor          backgroundColor();
 
 signals:
 

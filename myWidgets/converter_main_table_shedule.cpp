@@ -8,8 +8,9 @@
 #include <QDir>
 #include <QDebug>
 
-Converter_main_table_shedule::Converter_main_table_shedule(QString read_file, QString write_file, bool tomorrow, QObject *parent) : QObject(parent)
+Converter_main_table_shedule::Converter_main_table_shedule(QString read_file, bool tomorrow, QObject *parent) : QObject(parent)
 {
+    qDebug() << "read_file" << read_file;
     this->tomorrow = tomorrow;
 
     fileHtmlIn.setFileName(read_file);
@@ -17,11 +18,11 @@ Converter_main_table_shedule::Converter_main_table_shedule(QString read_file, QS
         printf("Converter_main_table_shedule error: file is not exists\n");
         return;
     }
-    if(!fileHtmlIn.open(QIODevice::ReadWrite) ){
+    if(!fileHtmlIn.open(QIODevice::ReadOnly) ){
         printf("converter_main_table_shedule error: cannot open the file %s\n", qPrintable(read_file));
         exit(3);
     }
-    printf("converter_main_table_shedule creating %s file...\n", qPrintable(write_file));
+//    printf("converter_main_table_shedule creating %s file...\n", qPrintable(write_file));
     QByteArray html = fileHtmlIn.readAll();
     QTextCodec* defaultTextCodec = QTextCodec::codecForName("Windows-1251");
     QString unicode = defaultTextCodec->toUnicode(html);
@@ -89,7 +90,7 @@ Converter_main_table_shedule::Converter_main_table_shedule(QString read_file, QS
     nodeList.at(1).removeChild(secondCell);
 
 //OUTPUT FILE
-    fileXmlOut.setFileName(write_file);
+    fileXmlOut.setFileName("tmp");//(write_file);
     fileXmlOut.open(QIODevice::ReadWrite | QIODevice::Text);
     fileXmlOut.write(domDoc.toByteArray());
 //COPY FILES IN ARCHIVE
@@ -97,6 +98,9 @@ Converter_main_table_shedule::Converter_main_table_shedule(QString read_file, QS
 //CLOSE FILES
     fileXmlOut.close();
     fileHtmlIn.close();
+
+    fileXmlOut.remove();
+    fileHtmlIn.remove();
 
     printf("converter_main_table_shedule creating OK!\n");
 }

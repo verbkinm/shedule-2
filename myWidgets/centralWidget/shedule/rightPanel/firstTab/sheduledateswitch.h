@@ -6,6 +6,7 @@
 #include "../../../../pushbutton.h"
 #include "../../inherited/mylineedit.h"
 #include <QLineEdit>
+#include <QPushButton>
 
 class SheduleDateSwitch : public QWidget
 {
@@ -13,9 +14,8 @@ class SheduleDateSwitch : public QWidget
 private:
     QGridLayout *pLayout;
     PushButton *pPreviousDay, *pNextDay;
+    QPushButton *pButtonToday;
     MyLineEdit *pDate;
-
-    QLabel *leftArrow, *rightArrow;
 
     QString previosFileName, nextFileName;
 
@@ -34,13 +34,12 @@ public:
 signals:
     void signalPreviosDay(QString fileName);
     void signalNextDay(QString fileName);
+    void signalToday(QString fileName);
 
-public slots:
+private slots:
     void slotPreviosDay();
     void slotNextDay();
-
-    void slotSetLeftArrow(int); // 0 - south; 1 - sw; 2 - west; 3 - nw;
-    void slotSetRightArrow(int); // 0 - nord; 1 - ne; 2 - east; 3 - se;
+    void slotToday();
 };
 
 #endif // SHEDULEDATESWITCH_H

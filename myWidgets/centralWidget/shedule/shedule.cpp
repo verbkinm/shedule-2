@@ -43,8 +43,6 @@ void Shedule::checkDirsAndFiles()
 {
 //  local
     checkDirsAndFilesFunc("local", "архив");
-    checkDirsAndFilesFunc("local", "на завтра");
-    checkDirsAndFilesFunc("local", "на сегодня");
     checkDirsAndFilesFunc("local", "утвержденное");
 //  share
     checkDirsAndFilesFunc("share", "архив");
@@ -54,11 +52,6 @@ void Shedule::checkDirsAndFiles()
 //  README.txt and example files
     checkDirsAndFilesFunc2("README.txt", ":/examples/example_files/README.txt");
     checkDirsAndFilesFunc2("example_lessons.xml", ":/examples/example_files/example_lessons.xml");
-    checkDirsAndFilesFunc2("local" + QString(PATH_SPLITER) + \
-                           "расписание уроков" + QString(PATH_SPLITER) + \
-                           "на сегодня" + QString(PATH_SPLITER) + \
-                           "example_сегодня.xml",
-                           ":/examples/example_files/example_сегодня.xml");
 }
 void Shedule::checkDirsAndFilesFunc(QString local_or_share, QString dir_name)
 {
@@ -120,40 +113,38 @@ void Shedule::slotSheduleLeftPanelItemClick(QTreeWidgetItem *item, int column)
 }
 void Shedule::slotChangedDay(int day)
 {
-    qDebug() << "slot change day";
+//    QFile shareToday(SHARE_FILE_MAIN_SHEDULE_TODAY);
+//    QFile shareYesterday(SHARE_FILE_MAIN_SHEDULE_YESTERDAY);
 
-    QFile shareToday(SHARE_FILE_MAIN_SHEDULE_TODAY);
-    QFile shareYesterday(SHARE_FILE_MAIN_SHEDULE_YESTERDAY);
+//    QFile localToday(LOCAL_FILE_MAIN_SHEDULE_TODAY);
+//    QFile localYestaerday(LOCAL_FILE_MAIN_SHEDULE_YESTERDAY);
 
-    QFile localToday(LOCAL_FILE_MAIN_SHEDULE_TODAY);
-    QFile localYestaerday(LOCAL_FILE_MAIN_SHEDULE_YESTERDAY);
-
-    //LOCAL_FILE
-    if(!localYestaerday.remove())
-        printf("error remove file %s\n", qPrintable(LOCAL_FILE_MAIN_SHEDULE_YESTERDAY));
-    else
-        printf("file removed %s\n", qPrintable(LOCAL_FILE_MAIN_SHEDULE_YESTERDAY));
-    if(!localToday.remove())
-        printf("error remove file %s\n", qPrintable(LOCAL_FILE_MAIN_SHEDULE_TODAY));
-    else
-        printf("file removed %s\n", qPrintable(LOCAL_FILE_MAIN_SHEDULE_TODAY));
+//    //LOCAL_FILE
+//    if(!localYestaerday.remove())
+//        printf("error remove file %s\n", qPrintable(LOCAL_FILE_MAIN_SHEDULE_YESTERDAY));
+//    else
+//        printf("file removed %s\n", qPrintable(LOCAL_FILE_MAIN_SHEDULE_YESTERDAY));
+//    if(!localToday.remove())
+//        printf("error remove file %s\n", qPrintable(LOCAL_FILE_MAIN_SHEDULE_TODAY));
+//    else
+//        printf("file removed %s\n", qPrintable(LOCAL_FILE_MAIN_SHEDULE_TODAY));
     //SHARE_FILE
-    if(!shareToday.remove())
-        printf("error remove file %s\n", qPrintable(SHARE_FILE_MAIN_SHEDULE_TODAY));
-    else
-        printf("file removed %s\n", qPrintable(SHARE_FILE_MAIN_SHEDULE_TODAY));
-    if(shareYesterday.open(QIODevice::ReadOnly)){
-        QFile newShareToday(SHARE_FILE_MAIN_SHEDULE_TODAY);
-        if(newShareToday.open(QIODevice::WriteOnly))
-            newShareToday.write(shareYesterday.readAll());
+//    if(!shareToday.remove())
+//        printf("error remove file %s\n", qPrintable(SHARE_FILE_MAIN_SHEDULE_TODAY));
+//    else
+//        printf("file removed %s\n", qPrintable(SHARE_FILE_MAIN_SHEDULE_TODAY));
+//    if(shareYesterday.open(QIODevice::ReadOnly)){
+//        QFile newShareToday(SHARE_FILE_MAIN_SHEDULE_TODAY);
+//        if(newShareToday.open(QIODevice::WriteOnly))
+//            newShareToday.write(shareYesterday.readAll());
 
-        newShareToday.close();
-        shareYesterday.close();
-        if(!shareYesterday.remove())
-            printf("error remove file %s\n", qPrintable(SHARE_FILE_MAIN_SHEDULE_YESTERDAY));
-        else
-            printf("file removed %s\n", qPrintable(SHARE_FILE_MAIN_SHEDULE_YESTERDAY));
-    }
+//        newShareToday.close();
+//        shareYesterday.close();
+//        if(!shareYesterday.remove())
+//            printf("error remove file %s\n", qPrintable(SHARE_FILE_MAIN_SHEDULE_YESTERDAY));
+//        else
+//            printf("file removed %s\n", qPrintable(SHARE_FILE_MAIN_SHEDULE_YESTERDAY));
+//    }
 
 }
 
